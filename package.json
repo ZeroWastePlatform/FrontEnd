@@ -7,6 +7,7 @@
     "start": "webpack serve",
     "build": "webpack",
     "test": "jest --All",
+    "lint": "eslint src/** --fix",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
