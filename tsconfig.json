@@ -5,7 +5,7 @@
     "allowJs": true,
     "noEmit": true,
     "strict": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "esModuleInterop": true,
     "jsx": "react-jsx"
   }
