@@ -26,6 +26,12 @@ module.exports = {
         extensions: [".ts", ".tsx"],
       },
     ],
+    "prettier/prettier": [
+      "error",
+      {
+        endOfLine: "auto",
+      },
+    ],
     "@typescript-eslint/no-var-requires": 0,
   },
   settings: {
