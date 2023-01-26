@@ -1,8 +1,5 @@
-import React from "react";
-import HeaderContainer from "../components/Common/Header/HeaderContainer";
-
 function Community() {
-  return <HeaderContainer />;
+  return <div>커뮤니티 페이지</div>;
 }
 
 export default Community;

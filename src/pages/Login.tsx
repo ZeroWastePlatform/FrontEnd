@@ -1,8 +1,5 @@
-import React from "react";
-import HeaderContainer from "../components/Common/Header/HeaderContainer";
-
 function Login() {
-  return <HeaderContainer />;
+  return <div>로그인 페이지</div>;
 }
 
 export default Login;
