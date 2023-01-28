@@ -1,8 +1,5 @@
-import React from "react";
-import HeaderContainer from "../components/Common/Header/HeaderContainer";
-
 function Mypage() {
-  return <HeaderContainer />;
+  return <div>마이 페이지</div>;
 }
 
 export default Mypage;

@@ -1,8 +1,5 @@
-import React from "react";
-import HeaderContainer from "../components/Common/Header/HeaderContainer";
-
 function Signup() {
-  return <HeaderContainer />;
+  return <div>회원가입 페이지</div>;
 }
 
 export default Signup;

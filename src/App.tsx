@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import Header from "./components/Common/Header/Header";
 import Community from "./pages/Community";
 import Contents from "./pages/Contents";
 import Home from "./pages/Home";
