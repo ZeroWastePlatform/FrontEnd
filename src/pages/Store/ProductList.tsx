@@ -1,0 +1,65 @@
+import React, { Suspense, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import HeaderContainer from "../../components/Common/Header/HeaderContainer";
+import CategoryNavigation from "../../components/Store/Common/CategoryNavigation/CategoryNavigation";
+import ProductCardListContainer from "../../components/Store/ProductList/ProductCardList/ProductCardListContainer";
+import ProductFilterBlockContainer from "../../components/Store/ProductList/ProductFilterBlock/ProductFilterBlockContainer";
+import AdCarousel from "../../components/Store/ProductList/ProductCarousel/ProductCarousel";
+import { ErrorBoundary } from "react-error-boundary";
+import ProductCarouselContainer from "../../components/Store/ProductList/ProductCarousel/ProductCarouselContainer";
+
+export interface filterType {
+  name: string | null;
+  value: string;
+  text: string;
+}
+export interface conditionType {
+  category: string;
+  filter: filterType[];
+  sort: string;
+  page: number;
+}
+
+export type setConditionType = React.Dispatch<conditionType>;
+
+function Store() {
+  const [condition, setCondition] = useState<conditionType>({
+    category: "전체",
+    filter: [],
+    sort: "인기순",
+    page: 1,
+  });
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const filterQuery = `&filter=${condition.filter.map(({ text }) => text).join("%")}`;
+    navigate(
+      `/store?category=${condition.category}${condition.filter.length ? filterQuery : ""}&sort=${condition.sort}&page=${
+        condition.page
+      }`,
+    );
+  }, [condition]);
+
+  return (
+    <>
+      <CategoryNavigation condition={condition} setCondition={setCondition} />
+      {condition.category === "전체" ? (
+        <ErrorBoundary FallbackComponent={() => <div>...에러발생</div>}>
+          <Suspense fallback={<div>...로딩중</div>}>
+            <ProductCarouselContainer />
+          </Suspense>
+        </ErrorBoundary>
+      ) : null}
+      {condition.category === "전체" ? null : (
+        <ProductFilterBlockContainer condition={condition} setCondition={setCondition} />
+      )}
+      <ErrorBoundary FallbackComponent={() => <div>...에러발생</div>}>
+        <Suspense fallback={<div>...로딩중</div>}>
+          <ProductCardListContainer condition={condition} setCondition={setCondition} />
+        </Suspense>
+      </ErrorBoundary>
+    </>
+  );
+}
+
+export default Store;
