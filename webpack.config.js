@@ -55,6 +55,7 @@ module.exports = {
     historyApiFallback: true,
   },
   output: {
+    publicPath: "/",
     path: path.join(__dirname, "build"),
     filename: "[name].js",
   },
