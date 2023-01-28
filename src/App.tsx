@@ -5,18 +5,23 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Mypage from "./pages/Mypage";
 import Signup from "./pages/Signup";
-import Store from "./pages/Store";
+import ProductList from "./pages/Store/ProductList";
+import ProductDetail from "./pages/Store/ProductDetail";
+
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/store" element={<Store />} />
-      <Route path="/contents" element={<Contents />} />
-      <Route path="/community" element={<Community />} />
-      <Route path="/mypage" element={<Mypage />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/login" element={<Login />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/store" element={<ProductList />} />
+        <Route path="/store/product/:id" element={<ProductDetail />} />
+        <Route path="/contents" element={<Contents />} />
+        <Route path="/community" element={<Community />} />
+        <Route path="/mypage" element={<Mypage />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </>
   );
 }
 
