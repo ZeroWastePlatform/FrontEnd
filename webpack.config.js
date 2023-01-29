@@ -19,13 +19,14 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.(jpg|gif)$/,
+        test: /\.(jpg|gif|png)$/,
         use: [
           {
             loader: "file-loader",
             options: {
-              publicPath: "./dist/",
+              // publicPath: "./dist/",
               name: "[name].[ext]",
+              outputPath: "images",
             },
           },
         ],
