@@ -13,12 +13,6 @@ const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <RecoilRoot>
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
-    </QueryClientProvider>
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
@@ -27,6 +21,7 @@ root.render(
             <App />
           </ThemeProvider>
         </BrowserRouter>
+        <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
       </QueryClientProvider>
     </React.StrictMode>
   </RecoilRoot>,
