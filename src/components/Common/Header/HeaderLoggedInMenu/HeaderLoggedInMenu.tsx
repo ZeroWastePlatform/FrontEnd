@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   HeaderLoggedInMenuLayout,
@@ -12,11 +12,10 @@ interface HeaderLoggedInMenuProps {
     path: string;
     text: string;
   }[];
-  toggle: boolean;
-  setToggle: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const HeaderLoggedInMenu = ({ menu, toggle, setToggle }: HeaderLoggedInMenuProps) => {
+const HeaderLoggedInMenu = ({ menu }: HeaderLoggedInMenuProps) => {
+  const [toggle, setToggle] = useState(false);
   return (
     <HeaderLoggedInMenuLayout>
       <HeaderLoggedInMenuProfileImg onClick={() => setToggle(!toggle)} />

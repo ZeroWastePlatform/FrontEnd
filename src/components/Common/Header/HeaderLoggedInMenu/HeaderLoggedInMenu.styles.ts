@@ -6,8 +6,8 @@ export const HeaderLoggedInMenuLayout = styled.div`
 
 export const HeaderLoggedInMenuProfileImg = styled.img`
   background-color: #eee;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 100%;
   cursor: pointer;
 `;
