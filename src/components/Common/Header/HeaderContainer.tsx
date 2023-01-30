@@ -1,7 +1,14 @@
+import { Outlet } from "react-router-dom";
 import Header from "./Header";
 
-function HeaderContainer() {
-  return <Header></Header>;
-}
+const HeaderContainer = () => {
+  const isLogin = false;
+  return (
+    <>
+      <Header isLogin={isLogin}></Header>
+      <Outlet />
+    </>
+  );
+};
 
 export default HeaderContainer;
