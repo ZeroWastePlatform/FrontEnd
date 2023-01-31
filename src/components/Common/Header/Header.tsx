@@ -8,8 +8,8 @@ import {
   HeaderNotLoggedInMenuBox,
   HeaderText,
 } from "./Header.styles";
-import HeaderLoggedInMenuContainer from "./HeaderLoggedInMenu/HeaderLoggedInMenuContainer";
-import HeaderSearchContainer from "./HeaderSearch/HeaderSearchContainer";
+import HeaderLoggedInMenuContainer from "./LoggedInMenu/LoggedInMenuContainer";
+import SearchContainer from "./Search/SearchContainer";
 
 interface HeaderProps {
   isLogin: boolean;
@@ -27,7 +27,7 @@ const Header = ({ isLogin }: HeaderProps) => {
       <Link to="/community">
         <HeaderBoldText>커뮤니티</HeaderBoldText>
       </Link>
-      <HeaderSearchContainer />
+      <SearchContainer />
       {isLogin && (
         <Link to="/">
           <HeaderHeartImg />
