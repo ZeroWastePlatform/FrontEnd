@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const SignupInputBox = styled.div`
+  width: 600px;
   display: flex;
   flex-direction: column;
   gap: 10px;
