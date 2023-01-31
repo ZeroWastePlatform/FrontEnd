@@ -1,5 +1,7 @@
+import LoginContainer from "../components/Login/LoginContainer";
+
 function Login() {
-  return <div>로그인 페이지</div>;
+  return <LoginContainer />;
 }
 
 export default Login;
