@@ -22,11 +22,11 @@ type AgreeList = {
 interface AgreeProps {
   agreeList: AgreeList;
   checkedList: AgreeList;
-  onCheckedAll: (checked: any) => void;
-  onCheckedElement: (checked: any, list: any) => void;
+  handleChangeAll: (checked: any) => void;
+  handleChangeElement: (checked: any, list: any) => void;
 }
 
-const Agree = ({ agreeList, checkedList, onCheckedAll, onCheckedElement }: AgreeProps) => {
+const Agree = ({ agreeList, checkedList, handleChangeAll, handleChangeElement }: AgreeProps) => {
   return (
     <AgreeLayout>
       <AgreeTitle>약관동의</AgreeTitle>
@@ -35,7 +35,7 @@ const Agree = ({ agreeList, checkedList, onCheckedAll, onCheckedElement }: Agree
           <AgreeSelectAllInput
             type="checkbox"
             id="all"
-            onChange={(e: any) => onCheckedAll(e.target.checked)}
+            onChange={(e: any) => handleChangeAll(e.target.checked)}
             checked={checkedList.length === 0 ? false : checkedList.length === agreeList.length ? true : false}
           />
           <AgreeSelectAllLabel htmlFor="all">전체동의</AgreeSelectAllLabel>
@@ -47,7 +47,7 @@ const Agree = ({ agreeList, checkedList, onCheckedAll, onCheckedElement }: Agree
               <AgreeSelectInput
                 type="checkbox"
                 id={"ck" + item.id}
-                onChange={(e: any) => onCheckedElement(e.target.checked, item)}
+                onChange={(e: any) => handleChangeElement(e.target.checked, item)}
                 checked={checkedList.includes(item as never) ? true : false}
               />
               <AgreeSelectLabel htmlFor={"ck" + item.id}>{item.text}</AgreeSelectLabel>

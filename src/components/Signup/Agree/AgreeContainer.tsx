@@ -27,7 +27,7 @@ const agreeList = [
 const AgreeContainer = () => {
   const [checkedList, setCheckedLists] = useState<typeof agreeList>([]);
 
-  const onCheckedAll = (checked: any) => {
+  const handleChangeAll = (checked: any) => {
     if (checked) {
       setCheckedLists([...agreeList]);
     } else {
@@ -35,7 +35,7 @@ const AgreeContainer = () => {
     }
   };
 
-  const onCheckedElement = (checked: any, list: any) => {
+  const handleChangeElement = (checked: any, list: any) => {
     if (checked) {
       setCheckedLists([...checkedList, list]);
     } else {
@@ -46,8 +46,8 @@ const AgreeContainer = () => {
     <Agree
       agreeList={agreeList}
       checkedList={checkedList}
-      onCheckedAll={onCheckedAll}
-      onCheckedElement={onCheckedElement}
+      handleChangeAll={handleChangeAll}
+      handleChangeElement={handleChangeElement}
     />
   );
 };
