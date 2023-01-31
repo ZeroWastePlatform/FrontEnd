@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import searchImg from "../../../../assets/images/search-icon.png";
 
-export const HeaderSearchLayout = styled.div`
+export const SearchLayout = styled.div`
   width: 475px;
   position: relative;
 `;
 
-export const HeaderSearchInput = styled.input`
+export const SearchInput = styled.input`
   width: 100%;
   border-radius: 30px;
   border: 1px solid #787878;
@@ -14,7 +14,7 @@ export const HeaderSearchInput = styled.input`
   box-sizing: border-box;
 `;
 
-export const HeaderSearchImg = styled.img.attrs({
+export const SearchImg = styled.img.attrs({
   src: `${searchImg}`,
 })`
   position: absolute;
