@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const HeaderLoggedInMenuLayout = styled.div`
+export const LoggedInMenuLayout = styled.div`
   position: relative;
 `;
 
-export const HeaderLoggedInMenuProfileImg = styled.img`
+export const LoggedInMenuProfileImg = styled.img`
   background-color: #eee;
   width: 50px;
   height: 50px;
@@ -12,7 +12,7 @@ export const HeaderLoggedInMenuProfileImg = styled.img`
   cursor: pointer;
 `;
 
-export const HeaderLoggedInMenuBox = styled.div`
+export const LoggedInMenuBox = styled.div`
   position: absolute;
   width: 168px;
   border: 1px solid ${({ theme }) => theme.colors.gray4};
@@ -20,7 +20,7 @@ export const HeaderLoggedInMenuBox = styled.div`
   margin-top: 10px;
 `;
 
-export const HeaderLoggedInMenuText = styled.span`
+export const LoggedInMenuText = styled.span`
   display: block;
   padding: 20px 12px;
   cursor: pointer;

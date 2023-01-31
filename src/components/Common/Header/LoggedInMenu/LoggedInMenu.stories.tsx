@@ -1,12 +1,12 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import HeaderLoggedInMenu from "./HeaderLoggedInMenu";
+import LoggedInMenu from "./LoggedInMenu";
 
 export default {
-  title: "Common/Header/HeaderLoggedInMenu",
-  component: HeaderLoggedInMenu,
-} as ComponentMeta<typeof HeaderLoggedInMenu>;
+  title: "Common/Header/LoggedInMenu",
+  component: LoggedInMenu,
+} as ComponentMeta<typeof LoggedInMenu>;
 
-const Template: ComponentStory<typeof HeaderLoggedInMenu> = args => <HeaderLoggedInMenu {...args} />;
+const Template: ComponentStory<typeof LoggedInMenu> = args => <LoggedInMenu {...args} />;
 
 export const GeneralType = Template.bind({});
 GeneralType.args = {
