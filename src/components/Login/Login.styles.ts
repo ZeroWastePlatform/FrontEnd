@@ -35,7 +35,7 @@ export const LoginButtonBox = styled.div`
   margin-top: 120px;
 `;
 
-export const LoginButton = styled.button<{ type: string; bgColor: string }>`
+export const LoginButton = styled.button<{ authType: string; bgColor: string }>`
   position: relative;
   border: 0;
   width: 100%;
@@ -45,17 +45,18 @@ export const LoginButton = styled.button<{ type: string; bgColor: string }>`
   margin-bottom: 20px;
   font-size: 16px;
   background-color: ${({ bgColor }) => bgColor};
-  color: ${({ type }) => type === "naver" && "#FFFFFF"};
-  ${({ type }) =>
-    type === "google" &&
+  color: ${({ authType }) => authType === "naver" && "#FFFFFF"};
+  ${({ authType }) =>
+    authType === "google" &&
     css`
       border: 2px solid #f1f4f5;
     `}
 
   &::after {
     position: absolute;
-    ${({ type }) => {
-      const img = type === "kakao" ? kakaoImg : type === "naver" ? naverImg : type === "google" && googleImg;
+    ${({ authType }) => {
+      const img =
+        authType === "kakao" ? kakaoImg : authType === "naver" ? naverImg : authType === "google" && googleImg;
       return css`
         background-image: url(${img});
       `;
