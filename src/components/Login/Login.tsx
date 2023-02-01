@@ -7,13 +7,13 @@ const Login = () => {
     <LoginLayout>
       <Logo />
       <LoginButtonBox>
-        <LoginButton type="kakao" bgColor="#FEE500">
+        <LoginButton authType="kakao" bgColor="#FEE500">
           카카오 로그인
         </LoginButton>
-        <LoginButton type="naver" bgColor="#03C75A">
+        <LoginButton authType="naver" bgColor="#03C75A">
           네이버 로그인
         </LoginButton>
-        <LoginButton type="google" bgColor="#FFFFFF">
+        <LoginButton authType="google" bgColor="#FFFFFF">
           구글 로그인
         </LoginButton>
       </LoginButtonBox>
