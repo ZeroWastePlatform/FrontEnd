@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   mode: "development",
@@ -34,6 +35,9 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      process: "process/browser.js",
+    }),
     new webpack.BannerPlugin({
       banner: `빌드 날짜: ${new Date().toLocaleString()}`,
     }),
@@ -42,6 +46,7 @@ module.exports = {
       // favicon: "./public/favicon.ico",
     }),
     new CleanWebpackPlugin(),
+    new Dotenv(),
   ],
   devServer: {
     static: {
