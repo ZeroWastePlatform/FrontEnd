@@ -8,6 +8,7 @@ import Signup from "./pages/Signup";
 import ProductList from "./pages/Store/ProductList";
 import ProductDetail from "./pages/Store/ProductDetail";
 import HeaderContainer from "./components/Common/Header/HeaderContainer";
+import Oauth from "./pages/Oauth/[Provider]";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
         </Route>
+        <Route path="/oauth/:provider" element={<Oauth />} />
       </Routes>
     </>
   );
