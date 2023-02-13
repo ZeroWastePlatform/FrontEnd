@@ -1,5 +1,5 @@
 import React from "react";
-import { ICategoryList } from "../ProductCategoryContainer";
+import { ICategoryList } from "../../../../types/index";
 import { CategoryItemImg, CategoryItemLayout, CategoryItemText } from "./CategoryItem.styles";
 
 interface CategoryItemProps {

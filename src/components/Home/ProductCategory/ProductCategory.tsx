@@ -6,7 +6,7 @@ import {
   ProductCategoryTitle,
   ProductCategoryTitleBox,
 } from "./ProductCategory.styles";
-import { ICategoryList } from "./ProductCategoryContainer";
+import { ICategoryList } from "../../../types/index";
 
 interface ProductCategoryProps {
   categoryList: ICategoryList[];
