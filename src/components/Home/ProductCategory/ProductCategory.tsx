@@ -1,12 +1,8 @@
 import React from "react";
 import CategoryItem from "./CategoryItem/CategoryItem";
-import {
-  ProductCategoryLayout,
-  ProductCategoryList,
-  ProductCategoryTitle,
-  ProductCategoryTitleBox,
-} from "./ProductCategory.styles";
+import { ProductCategoryLayout, ProductCategoryList } from "./ProductCategory.styles";
 import { ICategoryList } from "../../../types/index";
+import Header from "../Common/Header/Header";
 
 interface ProductCategoryProps {
   categoryList: ICategoryList[];
@@ -15,9 +11,7 @@ interface ProductCategoryProps {
 const ProductCategory = ({ categoryList }: ProductCategoryProps) => {
   return (
     <ProductCategoryLayout>
-      <ProductCategoryTitleBox>
-        <ProductCategoryTitle>제품 카테고리</ProductCategoryTitle>
-      </ProductCategoryTitleBox>
+      <Header title="제품 카테고리" />
       <ProductCategoryList>
         {categoryList.map((item, idx) => (
           <CategoryItem key={idx} category={item} />

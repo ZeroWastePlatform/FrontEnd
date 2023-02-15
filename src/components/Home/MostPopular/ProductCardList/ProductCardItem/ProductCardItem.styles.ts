@@ -16,6 +16,7 @@ export const ProductCardItemImg = styled.img`
 
 export const ProductCardItemTitle = styled.p`
   font-size: 18px;
+  font-weight: 500;
 `;
 
 export const ProductCardItemPrice = styled.span``;

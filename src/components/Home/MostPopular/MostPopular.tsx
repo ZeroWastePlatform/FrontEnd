@@ -1,13 +1,11 @@
 import React from "react";
 import { ICategoryList } from "../../../types";
+import Header from "../Common/Header/Header";
 import {
   MostPopularCategoryAnchor,
   MostPopularCategoryItem,
   MostPopularCategoryList,
   MostPopularLayout,
-  MostPopularSubTitle,
-  MostPopularTitle,
-  MostPopularTitleBox,
 } from "./MostPopular.styles";
 import ProductCardList from "./ProductCardList/ProductCardList";
 
@@ -18,10 +16,7 @@ interface MostPopularProps {
 const MostPopular = ({ categoryList }: MostPopularProps) => {
   return (
     <MostPopularLayout>
-      <MostPopularTitleBox>
-        <MostPopularTitle>지금 가장 인기있어요.</MostPopularTitle>
-        <MostPopularSubTitle>더보기</MostPopularSubTitle>
-      </MostPopularTitleBox>
+      <Header title="지금 가장 인기있어요." subTitle="더보기" />
       <MostPopularCategoryList>
         {categoryList.map((item, idx) => (
           <MostPopularCategoryItem key={idx}>
