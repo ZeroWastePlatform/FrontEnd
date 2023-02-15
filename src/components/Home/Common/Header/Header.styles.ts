@@ -16,7 +16,7 @@ export const HeaderTitleBox = styled.div`
 
 export const HeaderTitle = styled.p`
   font-weight: 700;
-  font-size: 24px;
+  font-size: 26px;
 `;
 
 export const HeaderSubTitle = styled.span`
