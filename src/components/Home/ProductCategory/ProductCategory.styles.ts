@@ -3,13 +3,13 @@ import styled from "styled-components";
 export const ProductCategoryLayout = styled.div`
   max-width: 1320px;
   margin: 0 auto;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 `;
 
 export const ProductCategoryTitleBox = styled.div`
   padding: 15px 0;
   border-bottom: 1px solid #d9d9d9;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 `;
 
 export const ProductCategoryTitle = styled.p`
