@@ -28,6 +28,24 @@ export const ProductCardImg = styled.img`
   border-radius: 10px;
 `;
 
+export const ProductRank = styled.div`
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 35px;
+  color: white;
+  z-index: 10;
+`;
+
+export const ProdcutCardLikeIcon = styled.div`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 35px;
+  color: white;
+  z-index: 10;
+`;
+
 export const ProductCardInfoList = styled.ul`
   display: flex;
   flex-direction: column;
@@ -69,13 +87,4 @@ export const ProductCardBadgeItem = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-export const ProdcutCardLikeIcon = styled.div`
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  font-size: 35px;
-  color: white;
-  z-index: 10;
 `;

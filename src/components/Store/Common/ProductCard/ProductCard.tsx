@@ -14,6 +14,7 @@ import {
   ProductCardDiscountRate,
   ProductCardPrice,
   ProdcutCardLikeIcon,
+  ProductRank,
 } from "./ProductCard.styles";
 
 export interface ProductCardProps {
@@ -43,6 +44,7 @@ const ProductCard = ({
     <ProductCardLayout>
       <ProductCardCol to={`/store/product/${id}`} state={{ category }}>
         <ProductCardImgBox>
+          <ProductRank>1</ProductRank>
           <ProductCardImg />
           <ProdcutCardLikeIcon
             onClick={e => {
