@@ -8,6 +8,7 @@ import Signup from "./pages/Signup";
 import ProductList from "./pages/Store/ProductList";
 import ProductDetail from "./pages/Store/ProductDetail";
 import HeaderContainer from "./components/Common/Header/HeaderContainer";
+import ProductBuy from "./pages/Store/ProductBuy";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route element={<HeaderContainer />}>
           <Route path="/" element={<Home />} />
           <Route path="/store" element={<ProductList />} />
+          <Route path="/store/buy" element={<ProductBuy />} />
           <Route path="/store/product/:id" element={<ProductDetail />} />
           <Route path="/contents" element={<Contents />} />
           <Route path="/community" element={<Community />} />
