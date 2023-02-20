@@ -10,6 +10,7 @@ import { conditionType, setConditionType } from "../../../../pages/Store/Product
 import { ProductCardListDataType } from "./ProductCardListContainer";
 import { UseMutateFunction } from "react-query";
 import { AxiosResponse } from "axios";
+import Pagenation from "../../../Common/Pagenation/Pagenation";
 
 interface ProductCardListProps {
   data: ProductCardListDataType;
@@ -26,10 +27,13 @@ const ProductCardList = ({ data, condition, setCondition, changeLiked }: Product
         <StoreSort condition={condition} setCondition={setCondition} />
       </ProductCardListTopBox>
       <ProductCardListGrid>
-        {data.contents.map(content => (
+        {(condition.category === "베스트" ? data.contents.slice(0, 6) : data.contents).map(content => (
           <ProductCard {...content} key={content.id} changeLiked={changeLiked} />
         ))}
       </ProductCardListGrid>
+      {condition.category === "베스트" ? null : (
+        <Pagenation curpage={condition.page} pagelist={[1, 2, 3, 4, 5]} movePage={setCondition} />
+      )}
     </ProductCardListLayout>
   );
 };

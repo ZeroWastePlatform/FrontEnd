@@ -1,10 +1,8 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import HeaderContainer from "../../components/Common/Header/HeaderContainer";
 import CategoryNavigation from "../../components/Store/Common/CategoryNavigation/CategoryNavigation";
 import ProductCardListContainer from "../../components/Store/ProductList/ProductCardList/ProductCardListContainer";
 import ProductFilterBlockContainer from "../../components/Store/ProductList/ProductFilterBlock/ProductFilterBlockContainer";
-import AdCarousel from "../../components/Store/ProductList/ProductCarousel/ProductCarousel";
 import { ErrorBoundary } from "react-error-boundary";
 import ProductCarouselContainer from "../../components/Store/ProductList/ProductCarousel/ProductCarouselContainer";
 
@@ -43,7 +41,7 @@ function Store() {
   return (
     <>
       <CategoryNavigation condition={condition} setCondition={setCondition} />
-      {condition.category === "전체" ? (
+      {condition.category === "전체" || condition.category === "베스트" ? (
         <ErrorBoundary FallbackComponent={() => <div>...에러발생</div>}>
           <Suspense fallback={<div>...로딩중</div>}>
             <ProductCarouselContainer />
