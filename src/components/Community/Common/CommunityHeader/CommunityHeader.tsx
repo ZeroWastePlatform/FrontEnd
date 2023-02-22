@@ -1,7 +1,10 @@
 import React from "react";
+import { Link, useLocation, useParams, useSearchParams } from "react-router-dom";
 import CategoryNavigation from "./CategoryNavigation/CategoryNavigation";
 import {
   CommunityHeaderBox,
+  CommunityHeaderCategoryItem,
+  CommunityHeaderCategoryList,
   CommunityHeaderKeywordBox,
   CommunityHeaderKeywordItem,
   CommunityHeaderKeywordList,
@@ -12,22 +15,37 @@ import {
   CommunityHeaderWriteImg,
 } from "./CommunityHeader.styles";
 
-const CommunityHeader = () => {
+interface CommunityHeaderProps {
+  title: string;
+  categoryList: string[] | null;
+}
+
+const CommunityHeader = ({ title, categoryList }: CommunityHeaderProps) => {
+  const { type } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const category = searchParams.get("category");
   return (
     <>
-      <CategoryNavigation></CategoryNavigation>
+      <CategoryNavigation />
       <CommunityHeaderLayout>
-        <CommunityHeaderTitle>자유게시판</CommunityHeaderTitle>
+        <CommunityHeaderTitle>{title}</CommunityHeaderTitle>
         <CommunityHeaderBox>
-          <CommunityHeaderKeywordBox>
-            <CommunityHeaderKeywordText>인기 검색 키워드</CommunityHeaderKeywordText>
-            <CommunityHeaderKeywordList>
-              <CommunityHeaderKeywordItem>#ee</CommunityHeaderKeywordItem>
-              <CommunityHeaderKeywordItem>#리리리</CommunityHeaderKeywordItem>
-              <CommunityHeaderKeywordItem>#추천</CommunityHeaderKeywordItem>
-              <CommunityHeaderKeywordItem>#추천다</CommunityHeaderKeywordItem>
-            </CommunityHeaderKeywordList>
-          </CommunityHeaderKeywordBox>
+          {type === "board" ? (
+            <CommunityHeaderKeywordBox>
+              <CommunityHeaderKeywordText>인기 검색 키워드</CommunityHeaderKeywordText>
+              <CommunityHeaderKeywordList>
+                <CommunityHeaderKeywordItem>#ee</CommunityHeaderKeywordItem>
+              </CommunityHeaderKeywordList>
+            </CommunityHeaderKeywordBox>
+          ) : (
+            <CommunityHeaderCategoryList>
+              {categoryList?.map((item, idx) => (
+                <CommunityHeaderCategoryItem key={idx} className={category === item ? "active" : ""}>
+                  <Link to={`/community/${type}?category=${item}`}>{item}</Link>
+                </CommunityHeaderCategoryItem>
+              ))}
+            </CommunityHeaderCategoryList>
+          )}
           <CommunityHeaderWriteAnchor to={"/community/write"}>
             글쓰기
             <CommunityHeaderWriteImg />
