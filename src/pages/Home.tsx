@@ -1,4 +1,3 @@
-import CarouselContainer from "../components/Home/Carousel/CarouselContainer";
 import ProductCategoryContainer from "../components/Home/ProductCategory/ProductCategoryContainer";
 import MostPopularContainer from "../components/Home/MostPopular/MostPopularContainer";
 import BestGreenusContainer from "../components/Home/BestGreenus/BestGreenusContainer";
@@ -8,7 +7,6 @@ import GreenCampaignContainer from "../components/Home/GreenCampaign/GreenCampai
 function Home() {
   return (
     <>
-      <CarouselContainer />
       <ProductCategoryContainer />
       <MostPopularContainer />
       <BestGreenusContainer />
