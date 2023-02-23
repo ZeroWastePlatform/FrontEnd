@@ -3,6 +3,7 @@ import downArrowImg from "../../../assets/images/down_arrow.png";
 import upArrowImg from "../../../assets/images/up_arrow.png";
 
 export const CustomSelectBox = styled.div`
+  position: relative;
   width: 160px;
 `;
 
@@ -24,8 +25,11 @@ export const CustomSelectLabel = styled.label<{ show: boolean }>`
 `;
 
 export const CustomSelectList = styled.ul<{ show: boolean }>`
+  width: 100%;
+  position: absolute;
   display: ${({ show }) => (show ? "block" : "none")};
   border: 1px solid #bdbdbe;
+  background-color: white;
   border-radius: 3px;
   margin-top: 5px;
 `;
