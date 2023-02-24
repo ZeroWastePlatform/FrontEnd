@@ -60,6 +60,9 @@ export const WriteContent = styled.textarea`
   &::placeholder {
     color: ${({ theme }) => theme.colors.gray4};
   }
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const WriteOptionBox = styled.div`
