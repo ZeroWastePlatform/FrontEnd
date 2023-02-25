@@ -10,6 +10,7 @@ import HeaderContainer from "./components/Common/Header/HeaderContainer";
 import ProductBuy from "./pages/Store/ProductBuy";
 import CommunityList from "./pages/Community/CommunityList";
 import Write from "./pages/Community/Write";
+import Article from "./pages/Community/Article";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/contents" element={<Contents />} />
           <Route path="/community/:type" element={<CommunityList />} />
           <Route path="/community/write" element={<Write />} />
+          <Route path="/community/article/:id" element={<Article />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
