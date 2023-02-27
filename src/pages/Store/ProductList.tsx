@@ -4,7 +4,7 @@ import CategoryNavigation from "../../components/Store/Common/CategoryNavigation
 import ProductCardListContainer from "../../components/Store/ProductList/ProductCardList/ProductCardListContainer";
 import ProductFilterBlockContainer from "../../components/Store/ProductList/ProductFilterBlock/ProductFilterBlockContainer";
 import { ErrorBoundary } from "react-error-boundary";
-import ProductCarouselContainer from "../../components/Store/ProductList/ProductCarousel/ProductCarouselContainer";
+import ProductCarouselContainer from "../../components/Common/Carousel/CarouselContainer";
 
 export interface filterType {
   name: string | null;
