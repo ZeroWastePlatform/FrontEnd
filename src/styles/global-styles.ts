@@ -16,6 +16,8 @@ const GlobalStyle = createGlobalStyle`
   
   button {
     cursor:pointer;
+    background: none;
+    border: none;
   }
 
   input[type="checkbox"] {
