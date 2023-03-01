@@ -25,14 +25,16 @@ const CouponPoint = ({ inputRef, changeHandler, changeMaxPoint }: CouponPointPro
           <CouponPointsubTitle>쿠폰</CouponPointsubTitle>
           <CouponPointInputBox>
             <CouponPointInput placeholder="보유쿠폰 0장" />
-            <CouponPointButton>쿠폰적용</CouponPointButton>
+            <CouponPointButton fill={"false"}>쿠폰적용</CouponPointButton>
           </CouponPointInputBox>
         </CouponPointSubBox>
         <CouponPointSubBox>
           <CouponPointsubTitle>포인트</CouponPointsubTitle>
           <CouponPointInputBox>
             <CouponPointInput defaultValue={0} ref={inputRef} onChange={changeHandler} />
-            <CouponPointButton onClick={changeMaxPoint}>모두사용</CouponPointButton>
+            <CouponPointButton onClick={changeMaxPoint} fill={"true"}>
+              모두사용
+            </CouponPointButton>
           </CouponPointInputBox>
           <CouponPointText>사용가능 포인트 3000p</CouponPointText>
         </CouponPointSubBox>
