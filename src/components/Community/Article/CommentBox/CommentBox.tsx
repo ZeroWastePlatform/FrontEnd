@@ -1,5 +1,5 @@
 import React from "react";
-import InputBox from "../Common/InputBox/InputBox";
+import InputBox from "./Common/InputBox/InputBox";
 import Comment from "./Comment/Comment";
 import {
   CommentBoxComments,

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import InputBox from "../../Common/InputBox/InputBox";
+import InputBox from "../Common/InputBox/InputBox";
 import {
   CommentActions,
   CommentBox,
