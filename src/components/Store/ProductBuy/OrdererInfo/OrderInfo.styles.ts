@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const OrderInfoLayout = styled.div`
-  margin: 0 0 40px 0;
+  margin: 0 0 96px 0;
 `;
 
 export const OrderInfoCol = styled.div`
