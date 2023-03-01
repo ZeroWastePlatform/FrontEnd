@@ -15,31 +15,30 @@ const useDetail = () => {
     recommend: recommendRef,
   };
   useEffect(() => {
-    let timer = true;
+    let timer: NodeJS.Timeout | null = null;
     const navigatePosition = () => {
-      if (timer) {
-        const curNavigation = Object.keys(refs)
-          .map(ref => ({ position: refs[ref].current?.getBoundingClientRect().top, category: ref }))
-          .reverse()
-          .find(el => (el.position as number) <= 0);
-        if (curNavigation !== undefined) {
-          setNavigation(curNavigation.category);
-        }
-        timer = false;
+      if (!timer) {
+        timer = setTimeout(() => {
+          const curNavigation = Object.keys(refs)
+            .map(ref => ({ position: refs[ref].current?.getBoundingClientRect().top, category: ref }))
+            .reverse()
+            .find(el => (el.position as number) <= 1);
+          console.log(Object.keys(refs).map(ref => refs[ref].current?.getBoundingClientRect().top));
+          if (curNavigation !== undefined) {
+            setNavigation(curNavigation.category);
+          }
+          timer = null;
+        }, 100);
       }
     };
-    const setTimer = setInterval(() => {
-      timer = true;
-    }, 100);
     window.addEventListener("scroll", navigatePosition);
     return () => {
-      clearInterval(setTimer);
       window.removeEventListener("scroll", navigatePosition);
     };
   }, []);
 
   const navigate = (type: string) => {
-    refs[type].current?.scrollIntoView({ behavior: "smooth" });
+    refs[type].current?.scrollIntoView();
     setNavigation(type);
   };
 
