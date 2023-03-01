@@ -1,9 +1,11 @@
 import { useState } from "react";
 import {
   ThumnailBigImg,
+  ThumnailBigImgBlock,
   ThumnailBigImgBox,
   ThumnailLayout,
   ThumnailSmallImg,
+  ThumnailSmallImgBlock,
   ThumnailSmallImgBox,
 } from "./Thumnail.styles";
 
@@ -16,11 +18,15 @@ const Thumnail = ({ photos }: ThumnailProps) => {
   return (
     <ThumnailLayout>
       <ThumnailBigImgBox>
-        <ThumnailBigImg src={photos[selectedThumnail]} />
+        <ThumnailBigImgBlock>
+          <ThumnailBigImg src={photos[selectedThumnail]} />
+        </ThumnailBigImgBlock>
       </ThumnailBigImgBox>
       <ThumnailSmallImgBox>
         {photos.map((photo, index) => (
-          <ThumnailSmallImg src={photo} key={photo} onClick={() => setSelectedThumnail(index)} />
+          <ThumnailSmallImgBlock key={photo} selected={selectedThumnail === index}>
+            <ThumnailSmallImg src={photo} key={photo} onMouseOver={() => setSelectedThumnail(index)} />
+          </ThumnailSmallImgBlock>
         ))}
       </ThumnailSmallImgBox>
     </ThumnailLayout>
