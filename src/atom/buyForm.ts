@@ -2,14 +2,14 @@
 import { atom, selector } from "recoil";
 
 export interface ProductType {
-  id: string;
+  id: number;
   selected: boolean;
   image: string;
   brand: string;
   name: string;
-  price: string;
+  price: number;
   count: number;
-  options: { content: string; price: string; selected: boolean }[];
+  options: { content: string; price: number; selected: boolean }[];
 }
 
 interface isBuyFormAtomType {
@@ -42,38 +42,7 @@ export const isBuyFormAtom = atom<isBuyFormAtomType>({
     address1: "",
     address2: "",
     address3: "",
-    product: [
-      {
-        id: "1",
-        selected: true,
-        image: "test.jpg",
-        brand: "동구밭",
-        name: "올바른 샴푸바 쿨링용",
-        price: "9500",
-        count: 1,
-        options: [{ content: "비누망 추가 구매 (+1,000원)", price: "1000", selected: true }],
-      },
-      {
-        id: "2",
-        selected: true,
-        image: "test.jpg",
-        brand: "아로마티카",
-        name: "로즈마리 헤어 씨크닝 컨디셔너바 115g",
-        price: "22000",
-        count: 1,
-        options: [],
-      },
-      {
-        id: "3",
-        selected: true,
-        image: "test.jpg",
-        brand: "율립",
-        name: "비건 립밤",
-        price: "27000",
-        count: 1,
-        options: [{ content: "[필수옵션] 코랄", price: "0", selected: true }],
-      },
-    ],
+    product: [],
     point: 0,
     coupon: "null",
     buyMethod: "",
