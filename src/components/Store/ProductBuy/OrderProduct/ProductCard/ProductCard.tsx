@@ -1,4 +1,5 @@
 import { ProductType } from "../../../../../atom/buyForm";
+import { numberWithCommas } from "../../../../../utils/priceProcess";
 import Counter from "../../../../Common/Counter/Counter";
 import {
   ProductCardBuyBox,
@@ -6,6 +7,7 @@ import {
   ProductCardBuyBoxText,
   ProductCardImg,
   ProductCardInfoBox,
+  ProductCardInfoBoxTop,
   ProductCardInfoBrand,
   ProductCardInfoButtonBox,
   ProductCardInfoName,
@@ -17,23 +19,34 @@ import {
   ProductCardInputBlock,
   ProductCardLayout,
 } from "./ProductCard.styles";
-
+import deleteImg from "../../../../../assets/images/delete.svg";
 interface ProductCardProps {
-  changeProduct: (id: string) => void;
-  changeCount: (id: string, type: "minus" | "plus") => void;
+  changeProduct: (id: string | number) => void;
+  changeCount: (id: string | number, type: "minus" | "plus") => void;
   data: ProductType;
+  index?: number;
+  moveBuyPage?: (index?: number) => void;
+  deleteProduct: (id: number) => void;
 }
 
-const ProductCard = ({ changeProduct, changeCount, data }: ProductCardProps) => {
+const ProductCard = ({ changeProduct, changeCount, data, index, moveBuyPage, deleteProduct }: ProductCardProps) => {
   return (
     <ProductCardLayout>
       <ProductCardInputBlock>
-        <ProductCardInput type="checkbox" defaultChecked={true} onClick={() => changeProduct(data.id)} />
+        <ProductCardInput
+          type="checkbox"
+          checked={data.selected || false}
+          onChange={() => changeProduct(index === undefined ? data.id : index)}
+        />
       </ProductCardInputBlock>
-      <ProductCardImg></ProductCardImg>
+      <ProductCardImg src={data.image} />
       <ProductCardInfoBox>
-        <ProductCardInfoBrand>{data.brand}</ProductCardInfoBrand>
+        <ProductCardInfoBoxTop>
+          <ProductCardInfoBrand>{data.brand}</ProductCardInfoBrand>
+          <img onClick={() => deleteProduct(index as number)} src={deleteImg} />
+        </ProductCardInfoBoxTop>
         <ProductCardInfoName>{data.name}</ProductCardInfoName>
+        {/*TO-DO : 리스트 형태로 수정하기*/}
         {data.options.map(({ content }, index) => {
           return (
             <ProductCardInfoOptionBox key={index}>
@@ -43,20 +56,27 @@ const ProductCard = ({ changeProduct, changeCount, data }: ProductCardProps) => 
           );
         })}
         <ProductCardInfoButtonBox>
-          <ProductCardInfoPrice>{data.price}원</ProductCardInfoPrice>
-          <Counter count={data.count} changeCount={(type: "minus" | "plus") => changeCount(data.id, type)} />
+          <ProductCardInfoPrice>{numberWithCommas(Number(data.price))}원</ProductCardInfoPrice>
+          <Counter
+            count={data.count}
+            changeCount={(type: "minus" | "plus") => changeCount(index === undefined ? data.id : index, type)}
+          />
         </ProductCardInfoButtonBox>
       </ProductCardInfoBox>
       <ProductCardBuyBox>
         <ProductCardBuyBoxText>
-          {data.count * Number(data.price) +
-            data.options.reduce((prev, cur) => {
-              if (cur.selected) return prev + Number(cur.price);
-              return prev;
-            }, 0)}
+          {numberWithCommas(
+            data.count * Number(data.price) +
+              data.options.reduce((prev, cur) => {
+                if (cur.selected) return prev + Number(cur.price);
+                return prev;
+              }, 0),
+          )}
           원
         </ProductCardBuyBoxText>
-        <ProductCardBuyBoxButton>바로구매</ProductCardBuyBoxButton>
+        {moveBuyPage ? (
+          <ProductCardBuyBoxButton onClick={() => moveBuyPage(index)}>바로구매</ProductCardBuyBoxButton>
+        ) : null}
       </ProductCardBuyBox>
     </ProductCardLayout>
   );

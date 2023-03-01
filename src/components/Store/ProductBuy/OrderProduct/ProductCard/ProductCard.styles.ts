@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const ProductCardLayout = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 20px;
+  padding: 30px 0;
 `;
 
 export const ProductCardInputBlock = styled.div`
@@ -12,7 +13,6 @@ export const ProductCardInputBlock = styled.div`
 export const ProductCardInput = styled.input``;
 
 export const ProductCardImg = styled.img`
-  background-color: beige;
   width: 158px;
   height: 158px;
 `;
@@ -24,13 +24,21 @@ export const ProductCardInfoBox = styled.div`
   width: 600px;
 `;
 
+export const ProductCardInfoBoxTop = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const ProductCardInfoBrand = styled.div`
-  color: #919193;
+  color: ${({ theme }) => theme.colors.gray5};
   font-size: 20px;
   font-weight: 500;
 `;
 
-export const ProductCardInfoName = styled.div``;
+export const ProductCardInfoName = styled.div`
+  font-size: 20px;
+  font-weight: 500;
+`;
 
 export const ProductCardInfoOptionBox = styled.div`
   background-color: #f1f4f5;
@@ -38,6 +46,7 @@ export const ProductCardInfoOptionBox = styled.div`
   display: flex;
   align-items: center;
   padding: 0 10px;
+  border-radius: 10px;
 `;
 
 export const ProductCardInfoOptionText = styled.div`
@@ -53,7 +62,12 @@ export const ProductCardInfoOptionButton = styled.div`
   color: #646667;
 `;
 
-export const ProductCardInfoPrice = styled.div``;
+export const ProductCardInfoPrice = styled.div`
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: flex-end;
+`;
 
 export const ProductCardInfoButtonBox = styled.div`
   margin-top: auto;
@@ -76,9 +90,13 @@ export const ProductCardBuyBoxText = styled.div`
 `;
 
 export const ProductCardBuyBoxButton = styled.button`
-  padding: 5px 15px;
-  border: 1px solid #66f095;
+  width: 110px;
+  height: 42px;
+  border: 2px solid #66f095;
   color: #66f095;
-  border-radius: 20px;
+  border-radius: 35px;
   background-color: white;
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 10px;
 `;
