@@ -6,6 +6,6 @@ export default {
   component: OrderProduct,
 } as ComponentMeta<typeof OrderProduct>;
 
-const Template: ComponentStory<typeof OrderProduct> = () => <OrderProduct />;
+const Template: ComponentStory<typeof OrderProduct> = args => <OrderProduct {...args} />;
 
 export const GeneralType = Template.bind({});
