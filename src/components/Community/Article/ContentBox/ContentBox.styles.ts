@@ -4,6 +4,8 @@ import visitImg from "../../../../assets/images/visit_black.png";
 
 export const ContentBoxLayout = styled.div`
   width: 873px;
+  padding-bottom: 30px;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.gray2};
 `;
 
 export const ContentBoxType = styled.span`
