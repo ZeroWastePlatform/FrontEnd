@@ -1,17 +1,30 @@
 import { filterType } from "../../../../../pages/Store/ProductList";
 import SelectedProductFilter from "./SelectedProductFilter/SelectedProductFilter";
-import { SelectedProductFilterListLayout } from "./SelectedProductFilterList.styles";
+import {
+  SelectedProductFilterListBlock,
+  SelectedProductFilterListButton,
+  SelectedProductFilterListLayout,
+} from "./SelectedProductFilterList.styles";
+import resetImg from "../../../../../assets/images/reset.svg";
 
 interface SelectedProductFilterList {
   selectedFilters: filterType[];
+  deleteFilter: (clickedFilter: filterType) => void;
+  resetFilter: () => void;
 }
 
-const SelectedProductFilterList = ({ selectedFilters }: SelectedProductFilterList) => {
+const SelectedProductFilterList = ({ selectedFilters, deleteFilter, resetFilter }: SelectedProductFilterList) => {
   return (
     <SelectedProductFilterListLayout>
-      {selectedFilters.map(({ text, value }) => (
-        <SelectedProductFilter name={text} key={value} />
-      ))}
+      <SelectedProductFilterListBlock>
+        {selectedFilters.map(filterData => (
+          <SelectedProductFilter filterData={filterData} key={filterData.value} deleteFilter={deleteFilter} />
+        ))}
+      </SelectedProductFilterListBlock>
+      <SelectedProductFilterListButton onClick={resetFilter}>
+        <img src={resetImg} />
+        초기화
+      </SelectedProductFilterListButton>
     </SelectedProductFilterListLayout>
   );
 };
