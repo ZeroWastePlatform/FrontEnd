@@ -9,8 +9,9 @@ import {
   StatusStarBase,
   StatusStarBox,
   StatusStarFill,
+  StatusStarNum,
 } from "./Status.styles";
-
+import starImg from "../../../../../../assets/images/star.svg";
 interface StatusProps {
   avgrate: number;
   rates: number[];
@@ -21,8 +22,15 @@ const Status = ({ avgrate, rates, total }: StatusProps) => {
   return (
     <StatusLayout>
       <StatusStarBox>
-        <StatusStarBase>★★★★★</StatusStarBase>
-        <StatusStarFill width={avgrate * 0.2}>★★★★★</StatusStarFill>
+        <StatusStarBase>
+          <img src={starImg}></img>
+          <img src={starImg}></img>
+          <img src={starImg}></img>
+          <img src={starImg}></img>
+          <img src={starImg}></img>
+        </StatusStarBase>
+        <StatusStarFill width={(140 * avgrate) / 5} />
+        <StatusStarNum>{avgrate}</StatusStarNum>
       </StatusStarBox>
       <StatusGraphBox>
         {rates.map((rate, index) => (
