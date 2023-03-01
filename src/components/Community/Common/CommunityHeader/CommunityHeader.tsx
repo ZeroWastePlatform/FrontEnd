@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation, useParams, useSearchParams } from "react-router-dom";
-import CategoryNavigation from "./CategoryNavigation/CategoryNavigation";
+import CategoryNavigation from "../CategoryNavigation/CategoryNavigation";
 import {
   CommunityHeaderBox,
   CommunityHeaderCategoryItem,

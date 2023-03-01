@@ -1,5 +1,5 @@
 import React from "react";
-import CategoryNavigation from "../../components/Community/Common/CommunityHeader/CategoryNavigation/CategoryNavigation";
+import CategoryNavigation from "../../components/Community/Common/CategoryNavigation/CategoryNavigation";
 import styled from "styled-components";
 import AsideContainer from "../../components/Community/Article/Aside/AsideContainer";
 import ContentBoxContainer from "../../components/Community/Article/ContentBox/ContentBoxContainer";

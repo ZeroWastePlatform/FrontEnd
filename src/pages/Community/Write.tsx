@@ -1,5 +1,5 @@
 import React from "react";
-import CategoryNavigation from "../../components/Community/Common/CommunityHeader/CategoryNavigation/CategoryNavigation";
+import CategoryNavigation from "../../components/Community/Common/CategoryNavigation/CategoryNavigation";
 import WriteContainer from "../../components/Community/Write/WriteContainer";
 
 const Write = () => {
