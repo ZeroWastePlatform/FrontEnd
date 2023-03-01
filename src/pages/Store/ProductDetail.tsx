@@ -9,6 +9,7 @@ import { conditionType } from "./ProductList";
 const ProductDetail = () => {
   const location = useLocation();
   const [condition, setCondition] = useState<{ category?: string }>({ category: location.state?.category });
+  /*TO-DO : 에러 컴포넌트와 로딩 컴포넌트 제작*/
   return (
     <main>
       <CategoryNavigation condition={condition as conditionType} setCondition={() => null} />

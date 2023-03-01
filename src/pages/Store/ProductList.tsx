@@ -37,7 +37,7 @@ function Store() {
       }`,
     );
   }, [condition]);
-
+  /*TO-DO : 에러 컴포넌트와 로딩 컴포넌트 제작*/
   return (
     <>
       <CategoryNavigation condition={condition} setCondition={setCondition} />
@@ -48,11 +48,11 @@ function Store() {
           </Suspense>
         </ErrorBoundary>
       ) : null}
-      {condition.category === "전체" ? null : (
+      {condition.category === "전체" || condition.category === "베스트" ? null : (
         <ProductFilterBlockContainer condition={condition} setCondition={setCondition} />
       )}
       <ErrorBoundary FallbackComponent={() => <div>...에러발생</div>}>
-        <Suspense fallback={<div>...로딩중</div>}>
+        <Suspense fallback={<div style={{ width: "1200px", height: "1908px" }}>...로딩중</div>}>
           <ProductCardListContainer condition={condition} setCondition={setCondition} />
         </Suspense>
       </ErrorBoundary>

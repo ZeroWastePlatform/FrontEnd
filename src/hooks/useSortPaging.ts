@@ -7,7 +7,9 @@ const useSortPaging = (initalPage: number, initalSort: string) => {
   return {
     page,
     sort,
-    setPage,
+    setPage: (page: number) => {
+      setPage(page);
+    },
     setSort,
   };
 };
