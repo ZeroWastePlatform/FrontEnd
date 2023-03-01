@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import logoImg from "../../../assets/images/logo.png";
+import logoImg from "../../../assets/images/header-logo.svg";
 import bagImg from "../../../assets/images/bag-04.png";
 import heartImg from "../../../assets/images/heart.png";
 
