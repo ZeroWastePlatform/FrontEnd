@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const ReviewSortLayout = styled.div`
   display: flex;
-  gap: 10px;
-  border-bottom: 1px solid #eaeaea;
+  gap: 32px;
+  border-bottom: 2px solid #e8e8e8;
 `;
 
 export const ReviewSortItem = styled.div<{ selected: boolean }>`
-  font-weight: 600;
+  font-size: 24px;
+  font-weight: 700;
   padding: 0 0 10px 0;
-  border-bottom: ${props => (props.selected ? "2px solid black" : "none")};
+  border-bottom: ${props => (props.selected ? "4px solid black" : "none")};
 `;

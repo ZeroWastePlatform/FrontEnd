@@ -47,14 +47,14 @@ const Delivery = ({ data, deliveryRef }: DeliveryProps) => {
           </DeliveryAlertText>
           <DeliveryOrderList>
             <DeliveryItem>
-              <i>1</i>구매자 단순 변심은 상품 수령 후 7일 이내
+              <i>1</i>구매자 단순 변심은 상품 수령 후 7일 이내<i> (구매자 반품배송비 부담)</i>
             </DeliveryItem>
             <DeliveryItem>
               <i>2</i>표시/광고와 상이, 상품하자의 경우 상품 수령 후 3개월 이내 혹은 표시/광고와 다른 사실을 안 날로부터
               30일 이내.
             </DeliveryItem>
             <DeliveryItem>
-              <i>3</i>둘 중 하나 경과 시 반품/교환 불가
+              <i>3</i>둘 중 하나 경과 시 반품/교환 불가<i> (판매자 반품배송비 부담)</i>
             </DeliveryItem>
           </DeliveryOrderList>
         </DeliveryBox>
@@ -67,9 +67,10 @@ const Delivery = ({ data, deliveryRef }: DeliveryProps) => {
             </DeliveryItem>
             <DeliveryItem>
               <i>2</i>구매자의 책임 있는 사유로 상품 등이 멸실 또는 훼손된 경우
+              <i>(단, 상품의 내용을 확인하기 위하여 포장 등을 훼손한 경우는 제외)</i>
             </DeliveryItem>
             <DeliveryItem>
-              <i>3</i>포장을 개봉하였으나 포장이 훼손되어 상품가치가 현저히 상실된 경우
+              <i>3</i>포장을 개봉하였으나 포장이 훼손되어 상품가치가 현저히 상실된 경우<i> (예 : 식품, 화장품)</i>
             </DeliveryItem>
             <DeliveryItem>
               <i>4</i>고객주문 확인 후 상품제작에 들어가는 주문제작상품

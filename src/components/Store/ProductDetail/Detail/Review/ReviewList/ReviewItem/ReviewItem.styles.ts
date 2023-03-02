@@ -4,18 +4,20 @@ export const ReviewItemLayout = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 20px 0;
+  padding: 40px 0;
   border-bottom: 1px solid #eaeaea;
+  font-size: 20px;
+  font-weight: 400;
 `;
 
 export const ReviewItemTopBox = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 16.5px;
 `;
 
 export const ReviewItemUserAvatar = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 66px;
+  height: 66px;
   border-radius: 50%;
   background-color: #eaeaea;
 `;
@@ -23,19 +25,24 @@ export const ReviewItemUserAvatar = styled.img`
 export const ReviewItemTopLeftBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
 `;
 
 export const ReviewItemUserNickname = styled.div`
-  font-weight: 600;
+  font-size: 24px;
+  font-weight: 700;
 `;
 
 export const ReviewItemTopLeftBottomBox = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
 `;
 
-export const ReviewItemRate = styled.div``;
+export const ReviewItemRate = styled.div`
+  display: flex;
+`;
 
 export const ReviewItemDate = styled.div``;
 
@@ -49,9 +56,8 @@ export const ReviewItemTopRightBox = styled.div`
 export const ReviewItemLikeButton = styled.button<{ selected: boolean }>`
   border-radius: 10px;
   padding: 7px 10px;
-  border: 1px solid #797979;
-  background-color: ${props => (props.selected ? "#797979" : "white")};
-  color: ${props => (props.selected ? "white" : "black")};
+  background-color: ${props => (props.selected ? props.theme.colors.primaryGreen100 : props.theme.colors.gray3)};
+  color: ${props => props.theme.colors.gray0};
 `;
 
 export const ReviewItemLikeCount = styled.div`
@@ -61,7 +67,7 @@ export const ReviewItemLikeCount = styled.div`
 `;
 
 export const ReviewItemContent = styled.div`
-  padding: 0 0 0 50px;
+  padding: 0 0 0 86px;
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.6;
@@ -71,7 +77,7 @@ export const ReviewItemContent = styled.div`
 `;
 
 export const ReviewItemImgList = styled.div`
-  padding: 0 0 0 50px;
+  padding: 0 0 0 86px;
   display: flex;
   gap: 10px;
 `;

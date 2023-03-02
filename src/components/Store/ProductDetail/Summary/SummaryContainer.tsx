@@ -5,9 +5,11 @@ export interface SummaryType {
   thumnail: string[];
   category: string;
   badges: string[];
+  brand: string;
   title: string;
-  price: string;
+  price: number;
   summary: string;
+  options: string[];
   liked: string;
 }
 

@@ -2,19 +2,29 @@ import styled from "styled-components";
 
 export const CategoryNavigationLayout = styled.nav`
   width: 100%;
-  border-bottom: 2px solid #e8e8e8;
+  border-bottom: 1px solid #eaeaea;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: white;
+  overflow: auto;
 `;
 
 export const CategoryNavigationRow = styled.ul`
   width: 1200px;
   display: flex;
-  gap: 30px;
+  justify-content: space-between;
   margin: auto;
+  height: 80px;
+  @media screen and (max-width: 1200px) {
+    padding: 0 20px;
+  }
 `;
 
 export const CategoryNavigationItem = styled.li<{ same: boolean }>`
   font-weight: 700;
   font-size: 24px;
-  border-bottom: ${props => (props.same ? "4px solid #66F095" : "none")};
-  padding: 20px 0;
+  border-bottom: ${({ same, theme }) => (same ? `2px solid ${theme.colors.primaryGreen100}` : "none")};
+  color: ${({ same, theme }) => (same ? theme.colors.primaryGreen100 : "#000000")};
+  padding: 25px 0;
 `;

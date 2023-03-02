@@ -11,10 +11,12 @@ export interface AskDataContentType {
   content: string;
   answer: string;
   secret: boolean;
+  answered: boolean;
 }
 
 export interface AskDataType {
   totalElement: number;
+  totalPage: number;
   categoryElement: number[];
   content: AskDataContentType[];
 }

@@ -3,16 +3,17 @@ import {
   SelectedProductFilterLayout,
   SelectedProductFilterName,
 } from "./SelectedProductFilter.styles";
-
+import deleteImg from "../../../../../../assets/images/delete.svg";
+import { filterType } from "../../../../../../pages/Store/ProductList";
 interface SelectedProductFilterProps {
-  name: string;
+  filterData: filterType;
+  deleteFilter: (clickedFilter: filterType) => void;
 }
-
-const SelectedProductFilter = ({ name }: SelectedProductFilterProps) => {
+const SelectedProductFilter = ({ filterData, deleteFilter }: SelectedProductFilterProps) => {
   return (
-    <SelectedProductFilterLayout>
-      <SelectedProductFilterName>{name}</SelectedProductFilterName>
-      <SelectedProductFilterDeleteIcon>X</SelectedProductFilterDeleteIcon>
+    <SelectedProductFilterLayout onClick={() => deleteFilter(filterData)}>
+      <SelectedProductFilterName>{filterData.text}</SelectedProductFilterName>
+      <SelectedProductFilterDeleteIcon src={deleteImg} />
     </SelectedProductFilterLayout>
   );
 };

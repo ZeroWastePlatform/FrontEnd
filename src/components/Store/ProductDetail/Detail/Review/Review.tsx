@@ -1,4 +1,5 @@
 import Pagenation from "../../../../Common/Pagenation/Pagenation";
+import PagenationContainer from "../../../../Common/Pagenation/PagenationContainer";
 import { ReviewCol, ReviewLayout, ReviewTitle } from "./Review.styles";
 import { ReviewDataType } from "./ReviewContainer";
 import ReviewList from "./ReviewList/ReviewList";
@@ -7,7 +8,7 @@ import Status from "./Status/Status";
 
 interface ReviewProps {
   page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
+  setPage: (page: number) => void;
   sort: string;
   setSort: React.Dispatch<React.SetStateAction<string>>;
   reviewRef: React.RefObject<HTMLDivElement>;
@@ -22,7 +23,7 @@ const Review = ({ data: { avgrate, rates, content, total }, sort, setSort, page,
         <Status avgrate={avgrate} rates={rates} total={total}></Status>
         <ReviewSort sort={sort} setSort={setSort} />
         <ReviewList data={content}></ReviewList>
-        <Pagenation curpage={page} pagelist={[1, 2, 3, 4, 5]} movePage={setPage} />
+        <PagenationContainer page={page} setPage={setPage} totalPage={9} unit={9} />
       </ReviewCol>
     </ReviewLayout>
   );

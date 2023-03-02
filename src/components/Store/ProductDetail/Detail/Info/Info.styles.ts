@@ -6,36 +6,37 @@ export const InfoLayout = styled.div`
 `;
 
 export const InfoTitle = styled.div`
-  font-weight: 600;
-  margin: 0 0 10px 0;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 40px 0;
 `;
 
 export const InfoCol = styled.div`
-  max-width: 1200px;
+  position: relative;
+  max-width: 1320px;
   margin: auto;
 `;
 
 export const InfoImg = styled.img`
-  position: relative;
-  height: 1000px;
+  height: 100%;
   width: 100%;
-  object-fit: cover;
-  background-color: #eaeaea;
-  &:after {
-    content: "";
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 50%;
-    top: 50%;
-    background: linear-gradient(to top, white, white 10%, transparent);
-  }
+  object-fit: contain;
 `;
 
-export const InfoButton = styled.div`
-  height: 60px;
-  border: 1px solid black;
+export const InfoButton = styled.button`
+  height: 100px;
+  width: 100%;
+  border: 2px solid ${({ theme }) => theme.colors.gray2};
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-weight: 700;
+  & > img {
+    margin: 0 0 0 10px;
+    width: 20px;
+    height: 20px;
+  }
 `;

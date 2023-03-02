@@ -6,19 +6,27 @@ export const ProductCardListLayout = styled.div`
 `;
 
 export const ProductCardListGrid = styled.div`
-  max-width: 1200px;
+  width: 1200px;
   margin: auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 15px;
   grid-row-gap: 50px;
+  @media screen and (max-width: 1200px) {
+    width: calc(100% - 40px);
+  }
 `;
 
 export const ProductCardListTopBox = styled.div`
-  max-width: 1200px;
+  width: 1200px;
   display: flex;
   justify-content: space-between;
-  margin: 0 auto 20px auto;
+  align-items: flex-end;
+  height: 60px;
+  margin: 0 auto 19px auto;
+  @media screen and (max-width: 1200px) {
+    width: calc(100% - 40px);
+  }
 `;
 
 export const ProductCardListTotalText = styled.span`
