@@ -11,15 +11,14 @@ const CouponPointContainer = () => {
     if (timer) {
       clearTimeout(timer.current);
     }
-    console.log(inputRef.current?.value);
     timer.current = setTimeout(() => {
       const value = Number(inputRef.current?.value);
       if (value >= 0 && value <= 3000) {
-        console.log(value);
         setToggleAtom(prev => ({ ...prev, point: value }));
       } else {
         setToggleAtom(prev => ({ ...prev, point: 0 }));
         if (inputRef.current !== null) {
+          alert("최대 포인트 이상을 사용할수 없습니다!");
           inputRef.current.value = "0";
         }
       }

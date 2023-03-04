@@ -11,8 +11,8 @@ export const InputBoxTitle = styled.h3`
   width: 100px;
 `;
 
-export const InputBoxInput = styled.input`
-  width: 200px;
-  height: 30px;
+export const InputBoxInput = styled.input<{ width?: string }>`
+  width: ${({ width }) => (width === undefined ? "150px" : width)};
+  height: 36px;
   padding: 0 10px;
 `;

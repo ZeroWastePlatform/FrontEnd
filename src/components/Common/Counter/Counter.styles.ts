@@ -5,10 +5,14 @@ export const CounterLayout = styled.div`
 `;
 
 export const CounterItem = styled.div`
-  width: 25px;
-  height: 25px;
+  width: 39px;
+  height: 39px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  font-size: 20px;
+  border: 1px solid #c8c8c8;
+  & + & {
+    border-left: none;
+  }
 `;

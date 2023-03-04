@@ -9,6 +9,7 @@ export const ProductSortRow = styled.div`
   gap: 10px;
 `;
 
-export const ProductSortText = styled.span<{ same: boolean }>`
+export const ProductSortText = styled.button<{ same: boolean }>`
   font-weight: ${props => (props.same ? "600" : "400")};
+  padding: 0;
 `;

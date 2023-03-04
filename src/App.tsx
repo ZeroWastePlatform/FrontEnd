@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 import Contents from "./pages/Contents";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -11,14 +11,18 @@ import ProductBuy from "./pages/Store/ProductBuy";
 import CommunityList from "./pages/Community/CommunityList";
 import Write from "./pages/Community/Write";
 import Article from "./pages/Community/Article";
+import Footer from "./components/Common/Footer/Footer";
+import Basket from "./pages/Store/Basket";
 
 function App() {
   return (
     <>
+      <HeaderContainer />
       <Routes>
-        <Route element={<HeaderContainer />}>
+        <Route>
           <Route path="/" element={<Home />} />
           <Route path="/store" element={<ProductList />} />
+          <Route path="/store/basket" element={<Basket />} />
           <Route path="/store/buy" element={<ProductBuy />} />
           <Route path="/store/product/:id" element={<ProductDetail />} />
           <Route path="/contents" element={<Contents />} />
@@ -30,6 +34,7 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Route>
       </Routes>
+      <Footer />
     </>
   );
 }

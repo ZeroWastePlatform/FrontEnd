@@ -7,9 +7,19 @@ interface ProductFilterBlockProps {
   condition: conditionType;
   setCheckboxFilter: (clickedFilter: filterType) => void;
   setRadioFilter: (clickedFilter: filterType) => void;
+  deleteFilter: (clickedFilter: filterType) => void;
+  selectedCheck: (text: string) => boolean;
+  resetFilter: () => void;
 }
 
-const ProductFilterBlock = ({ condition, setCheckboxFilter, setRadioFilter }: ProductFilterBlockProps) => {
+const ProductFilterBlock = ({
+  condition,
+  setCheckboxFilter,
+  setRadioFilter,
+  deleteFilter,
+  selectedCheck,
+  resetFilter,
+}: ProductFilterBlockProps) => {
   return (
     <ProductFilterBlockLayout>
       <ProductFilterBlockCol>
@@ -24,6 +34,7 @@ const ProductFilterBlock = ({ condition, setCheckboxFilter, setRadioFilter }: Pr
             { text: "바오푸드", value: "5" },
             { text: "로마린다", value: "6" },
           ]}
+          selectedCheck={selectedCheck}
           setCheckboxFilter={setCheckboxFilter}
           setRadioFilter={setRadioFilter}
         />
@@ -35,6 +46,7 @@ const ProductFilterBlock = ({ condition, setCheckboxFilter, setRadioFilter }: Pr
             { text: "30000~50000", value: "9", name: "price" },
             { text: "50000이상", value: "10", name: "price" },
           ]}
+          selectedCheck={selectedCheck}
           setCheckboxFilter={setCheckboxFilter}
           setRadioFilter={setRadioFilter}
         />
@@ -45,10 +57,15 @@ const ProductFilterBlock = ({ condition, setCheckboxFilter, setRadioFilter }: Pr
             { text: "할인 상품", value: "12" },
             { text: "품절상품 제외", value: "13" },
           ]}
+          selectedCheck={selectedCheck}
           setCheckboxFilter={setCheckboxFilter}
           setRadioFilter={setRadioFilter}
         />
-        <SelectedProductFilterList selectedFilters={condition.filter} />
+        <SelectedProductFilterList
+          selectedFilters={condition.filter}
+          deleteFilter={deleteFilter}
+          resetFilter={resetFilter}
+        />
       </ProductFilterBlockCol>
     </ProductFilterBlockLayout>
   );

@@ -1,5 +1,7 @@
+import MyPageContainer from "../components/MyPage/MyPageContainer";
+
 function Mypage() {
-  return <div>마이 페이지</div>;
+  return <MyPageContainer />;
 }
 
 export default Mypage;

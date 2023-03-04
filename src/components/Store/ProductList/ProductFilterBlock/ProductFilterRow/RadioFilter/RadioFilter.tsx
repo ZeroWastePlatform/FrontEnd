@@ -1,4 +1,4 @@
-import { filterType, setConditionType } from "../../../../../../pages/Store/ProductList";
+import { filterType } from "../../../../../../pages/Store/ProductList";
 import { RadioFilterInput, RadioFilterLabel, RadioFilterLayout } from "./RadioFilter.styles";
 
 interface RadioFilterProps {
@@ -6,9 +6,10 @@ interface RadioFilterProps {
   name: string;
   value: string;
   setRadioFilter: (clickedFilter: filterType) => void;
+  checked: boolean;
 }
 
-const RadioFilter = ({ text, name, value, setRadioFilter }: RadioFilterProps) => {
+const RadioFilter = ({ text, name, value, setRadioFilter, checked }: RadioFilterProps) => {
   return (
     <RadioFilterLayout>
       <RadioFilterInput
@@ -16,6 +17,7 @@ const RadioFilter = ({ text, name, value, setRadioFilter }: RadioFilterProps) =>
         id={text}
         name={name}
         value={value}
+        checked={checked}
         onClick={() => setRadioFilter({ name, value, text })}
       />
       <RadioFilterLabel htmlFor={text}>{text}</RadioFilterLabel>

@@ -13,7 +13,6 @@ const useFormRecoil = (title: string) => {
     }
     timer.current = setTimeout(() => {
       setToggleAtom(prev => ({ ...prev, [title]: elementRef.current?.value }));
-      console.log(isToggle);
     }, 500);
   };
 

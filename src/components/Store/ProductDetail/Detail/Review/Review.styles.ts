@@ -9,12 +9,13 @@ export const ReviewLayout = styled.div`
 
 export const ReviewCol = styled.div`
   margin: auto;
-  max-width: 1200px;
+  max-width: 1320px;
 `;
 
 export const ReviewTitle = styled.div`
-  font-weight: 600;
+  font-size: 24px;
+  font-weight: 700;
   border-bottom: 1px solid #eaeaea;
-  padding: 0 0 5px 0;
-  margin: 0 0 20px 0;
+  padding: 0 0 20px 0;
+  margin: 0 0 40px 0;
 `;

@@ -16,7 +16,7 @@ const Recommend = ({ data, recommendRef, changeLiked }: RecommendProps) => {
       <RecommendTitle>이런 제품은 어떠세요?</RecommendTitle>
       <RecommendList>
         {data.map((card, index) => {
-          return <ProductCard {...card} key={index} changeLiked={changeLiked}></ProductCard>;
+          return <ProductCard {...card} key={index} changeLiked={changeLiked} order={0}></ProductCard>;
         })}
       </RecommendList>
     </RecommendLayout>

@@ -1,11 +1,12 @@
+import { numberWithCommas } from "../../../../../utils/priceProcess";
+import Counter from "../../../../Common/Counter/Counter";
 import {
   BuyBadgeItem,
   BuyBadgeList,
   BuyButtonBox,
   BuyCircleButton,
-  BuyCounter,
+  BuyCircleButtonIcon,
   BuyCounterBox,
-  BuyCounterItem,
   BuyCounterTitle,
   BuyInfo,
   BuyLayout,
@@ -17,6 +18,7 @@ import {
   BuyToalPayItem,
   BuyTotalPayBox,
 } from "./Buy.styles";
+import heartImg from "../../../../../assets/images/heart.svg";
 
 interface BuyProps {
   count: number;
@@ -24,9 +26,10 @@ interface BuyProps {
   buyProduct: () => void;
   setLiked: () => void;
   setBasket: () => void;
+  brand: string;
   badges: string[];
   title: string;
-  price: string;
+  price: number;
   summary: string;
   liked: string;
 }
@@ -37,6 +40,7 @@ const Buy = ({
   buyProduct,
   setLiked,
   setBasket,
+  brand,
   badges,
   title,
   price,
@@ -47,34 +51,43 @@ const Buy = ({
     <BuyLayout>
       <BuyBadgeList>
         {badges.map(badge => (
-          <BuyBadgeItem key={badge}>{badge}</BuyBadgeItem>
+          <BuyBadgeItem key={badge} type={badge}>
+            {badge}
+          </BuyBadgeItem>
         ))}
       </BuyBadgeList>
-      <BuyProductName>{title}</BuyProductName>
-      <BuyPrice>{price}원</BuyPrice>
+      <BuyProductName>
+        [{brand}] {title}
+      </BuyProductName>
+      <BuyPrice>{numberWithCommas(Number(price))}원</BuyPrice>
       <BuyInfo>{summary}</BuyInfo>
       <BuyShipBox>
         <BuyShipText>
           혜택 <i>{Math.floor(Number(price) * 0.05)}p</i> 적립
         </BuyShipText>
-        <BuyShipText>배송 3,000원 (50,000원 이상 무료배송) | 도서산간 배송비 추가</BuyShipText>
+        <BuyShipText>
+          배송 3,000원 (50,000원 이상 무료배송) | <p>도서산간 배송비 추가</p>
+        </BuyShipText>
       </BuyShipBox>
       <BuyCounterBox>
         <BuyCounterTitle>수량</BuyCounterTitle>
-        <BuyCounter>
-          <BuyCounterItem onClick={() => changeCount("minus")}>-</BuyCounterItem>
-          <BuyCounterItem>{count}</BuyCounterItem>
-          <BuyCounterItem onClick={() => changeCount("plus")}>+</BuyCounterItem>
-        </BuyCounter>
+        <Counter count={count} changeCount={changeCount} />
       </BuyCounterBox>
       <BuyTotalPayBox>
         <BuyToalPayItem>주문금액 ({count}개)</BuyToalPayItem>
-        <BuyToalPayItem>{price}원</BuyToalPayItem>
+        <BuyPrice>{numberWithCommas(Number(price) * count)}원</BuyPrice>
       </BuyTotalPayBox>
       <BuyButtonBox>
-        <BuyCircleButton onClick={setLiked}>♡{liked}</BuyCircleButton>
-        <BuyRoundButton onClick={setBasket}>장바구니</BuyRoundButton>
-        <BuyRoundButton onClick={buyProduct}>바로구매</BuyRoundButton>
+        <BuyCircleButton onClick={setLiked}>
+          <BuyCircleButtonIcon src={heartImg} />
+          {liked}
+        </BuyCircleButton>
+        <BuyRoundButton onClick={setBasket} filled={"false"}>
+          장바구니
+        </BuyRoundButton>
+        <BuyRoundButton onClick={buyProduct} filled={"true"}>
+          바로구매
+        </BuyRoundButton>
       </BuyButtonBox>
     </BuyLayout>
   );

@@ -6,7 +6,7 @@ const OrderProductContainer = () => {
   const setToggleAtom = useSetRecoilState(isBuyFormAtom);
   const { product } = useRecoilValue(isBuyFormAtom);
 
-  const changeProduct = (id: string) => {
+  const changeProduct = (id: string | number) => {
     setToggleAtom(prev => {
       const product = JSON.parse(JSON.stringify(prev.product));
       const index = product.findIndex((e: { id: string }) => e.id === id);
@@ -15,7 +15,7 @@ const OrderProductContainer = () => {
     });
   };
 
-  const changeCount = (id: string, type: "minus" | "plus") => {
+  const changeCount = (id: string | number, type: "minus" | "plus") => {
     setToggleAtom(prev => {
       const product = JSON.parse(JSON.stringify(prev.product));
       const index = product.findIndex((e: { id: string }) => e.id === id);
@@ -32,7 +32,36 @@ const OrderProductContainer = () => {
     });
   };
 
-  return <OrderProduct changeProduct={changeProduct} buyProductList={product} changeCount={changeCount} />;
+  const checkAllSelected = () => product.filter(({ selected }) => selected).length === product.length;
+
+  const changeAllCheck = () => {
+    setToggleAtom(prev => {
+      const product = JSON.parse(JSON.stringify(prev.product));
+      const newProduct = product.map((element: { selected: boolean }) => ({ ...element, selected: !element.selected }));
+      console.log(newProduct);
+      return { ...prev, product: newProduct };
+    });
+  };
+
+  const deleteProduct = (id: number) => {
+    setToggleAtom(prev => {
+      const product = JSON.parse(JSON.stringify(prev.product));
+      const index = product.findIndex((element: { id: number }) => element.id === id);
+      product.splice(index, 1);
+      return { ...prev, product };
+    });
+  };
+
+  return (
+    <OrderProduct
+      changeProduct={changeProduct}
+      buyProductList={product}
+      changeCount={changeCount}
+      allSelected={checkAllSelected()}
+      changeAllCheck={changeAllCheck}
+      deleteProduct={deleteProduct}
+    />
+  );
 };
 
 export default OrderProductContainer;

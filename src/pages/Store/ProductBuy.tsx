@@ -24,7 +24,7 @@ const ProductBuy = () => {
 
 const ProductBuyLayout = styled.main`
   display: flex;
-  width: 1200px;
+  width: 1320px;
   margin: auto;
 `;
 

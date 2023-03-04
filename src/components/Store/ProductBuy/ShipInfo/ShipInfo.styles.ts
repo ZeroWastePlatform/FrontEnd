@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import DaumPostcode from "react-daum-postcode";
 
 export const ShipInfoLayout = styled.div`
   margin: 0 0 40px 0;
@@ -14,27 +13,37 @@ export const ShipInfoCol = styled.div`
 export const ShipInfoCheckbox = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 15px;
+  font-size: 14px;
+  & > input {
+    margin-right: 10px;
+  }
 `;
 
 export const ShipInfoAddressSearchButton = styled.button`
+  width: 111px;
+  height: 36px;
   color: white;
-  padding: 5px;
   background-color: #646667;
   margin: 0 0 0 10px;
   border-radius: 3px;
+  font-size: 16px;
 `;
 
-export const ShipInfoAddressInput = styled.input`
-  margin: 0 0 0 100px;
-  width: 300px;
-  height: 30px;
+export const ShipInfoAddressInputBlock = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
-export const ShipInfoPostCodeStyle = styled(DaumPostcode)`
-  display: block;
-  position: relative;
-  top: 0%;
-  width: 400px;
-  height: 400px;
-  padding: 7px;
+export const ShipInfoAddressInput = styled.input<{ type: string }>`
+  width: ${({ type }) => (type === "short" ? "90px" : "474px")};
+  margin-left: ${({ type }) => (type === "short" ? "0" : "100px")};
+  height: 36px;
+  padding: 0 10px;
+`;
+
+export const ShipInfoAddressInputTitle = styled.div`
+  font-weight: 500;
+  font-size: 16px;
+  width: 100px;
 `;

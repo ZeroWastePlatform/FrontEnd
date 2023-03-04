@@ -1,11 +1,12 @@
 import { useRef, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { isBuyFormAtom } from "../../../../atom/buyForm";
+import useFormRecoil from "../../../../hooks/useFormRecoil";
 import ShipInfo from "./ShipInfo";
 
 const ShipInfoContainer = () => {
-  const adress1 = useRef<HTMLInputElement>(null);
-  const adress2 = useRef<HTMLInputElement>(null);
+  const { changeHandler: address1Hander, elementRef: address1Ref } = useFormRecoil("address1");
+  const { changeHandler: address2Hander, elementRef: address2Ref } = useFormRecoil("address2");
 
   const [isOpenPost, setIsOpenPost] = useState(false);
   const setToggleAtom = useSetRecoilState(isBuyFormAtom);
@@ -25,21 +26,33 @@ const ShipInfoContainer = () => {
     }
 
     setToggleAtom(prev => ({ ...prev, address1: data.zonecode, address2: fullAddr }));
-    if (adress1.current !== null) {
-      adress1.current.value = data.zonecode;
+    if (address1Ref.current !== null) {
+      address1Ref.current.value = data.zonecode;
     }
-    if (adress2.current !== null) {
-      adress2.current.value = fullAddr;
+    if (address2Ref.current !== null) {
+      address2Ref.current.value = fullAddr;
     }
+    changePostStatus();
+  };
+
+  const changePostStatus = () => {
+    if (isOpenPost) {
+      document.body.style.removeProperty("overflow");
+    } else {
+      document.body.style.overflow = "hidden";
+    }
+    setIsOpenPost(!isOpenPost);
   };
 
   return (
     <ShipInfo
       onCompletePost={onCompletePost}
       isOpenPost={isOpenPost}
-      setIsOpenPost={setIsOpenPost}
-      adress1={adress1}
-      adress2={adress2}
+      changePostStatus={changePostStatus}
+      address1Ref={address1Ref}
+      address2Ref={address2Ref}
+      address1Hander={address1Hander}
+      address2Hander={address2Hander}
     />
   );
 };

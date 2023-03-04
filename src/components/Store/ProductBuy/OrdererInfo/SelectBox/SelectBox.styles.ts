@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const SelectBoxLayout = styled.select`
-  width: 200px;
-  height: 30px;
+  width: 150px;
+  height: 36px;
   padding: 0 10px;
 `;
 

@@ -25,13 +25,20 @@ export const CouponPointInputBox = styled.div`
 export const CouponPointsubTitle = styled.div``;
 
 export const CouponPointInput = styled.input`
-  width: 300px;
-  height: 30px;
+  width: 384px;
+  height: 36px;
+  border: 1px solid ${({ theme }) => theme.colors.gray3};
+  border-radius: 3px;
+  padding: 0 10px;
 `;
 
-export const CouponPointButton = styled.button`
-  width: 80px;
-  height: 30px;
+export const CouponPointButton = styled.button<{ fill: string }>`
+  width: 104px;
+  height: 36px;
+  border: 1px solid ${({ theme }) => theme.colors.primaryGreen100};
+  color: ${({ theme, fill }) => (fill === "true" ? theme.colors.gray0 : theme.colors.primaryGreen100)};
+  background-color: ${({ theme, fill }) => (fill === "true" ? theme.colors.primaryGreen100 : theme.colors.gray0)};
+  border-radius: 3px;
 `;
 
 export const CouponPointText = styled.div``;
