@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CustomSelect from "../../Common/CustomSelect/CustomSelect";
+import CustomSelectContainer from "../../Common/CustomSelect/CustomSelectContainer";
 import AttachmentContainer from "./Attachment/AttachmentContainer";
 import HashtagBoxContainer from "./HashtagBox/HashtagBoxContainer";
 import {
@@ -17,7 +18,7 @@ const Write = () => {
   return (
     <WriteLayout>
       <WriteMenu>
-        <CustomSelect initialValue="게시판 선택" options={["자유게시판", "중고거래", "정보공유"]} />
+        <CustomSelectContainer initialValue="게시판 선택" options={["자유게시판", "중고거래", "정보공유"]} />
         <WriteBtnBox>
           <WriteTempDataBtn>임시저장 | 0</WriteTempDataBtn>
           <WriteRegistBtn>등록</WriteRegistBtn>
