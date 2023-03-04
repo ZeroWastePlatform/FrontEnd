@@ -1,25 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
-import { selectValueAtom } from "../../../atom/SelectValue";
+import React from "react";
 import { CustomSelectBox, CustomSelectItem, CustomSelectLabel, CustomSelectList } from "./CustomSelect.styles";
 
 interface CustomSelectProps {
-  initialValue: string;
   options: string[];
+  selectValue: string;
+  isShowOption: boolean;
+  handleClick: (e: React.MouseEvent<HTMLLIElement>) => void;
+  setIsShowOption: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CustomSelect = ({ initialValue, options }: CustomSelectProps) => {
-  const [isShowOption, setIsShowOption] = useState(false);
-  const [selectValue, setSelectValue] = useRecoilState(selectValueAtom);
-
-  const handleClick = (e: React.MouseEvent<HTMLLIElement>) => {
-    setSelectValue(e.currentTarget.innerText);
-    setIsShowOption(prev => !prev);
-  };
-
-  useEffect(() => {
-    setSelectValue(initialValue);
-  }, []);
+const CustomSelect = ({ options, selectValue, isShowOption, setIsShowOption, handleClick }: CustomSelectProps) => {
   return (
     <CustomSelectBox>
       <CustomSelectLabel onClick={() => setIsShowOption(prev => !prev)} show={isShowOption}>
