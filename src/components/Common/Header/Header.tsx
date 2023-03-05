@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import {
   HeaderBagImg,
   HeaderBoldText,
+  HeaderBox,
   HeaderHeartImg,
   HeaderLayout,
   HeaderLogoImg,
@@ -18,37 +19,39 @@ interface HeaderProps {
 const Header = ({ isLogin }: HeaderProps) => {
   return (
     <HeaderLayout>
-      <Link to="/">
-        <HeaderLogoImg />
-      </Link>
-      <Link to="/store">
-        <HeaderBoldText>스토어</HeaderBoldText>
-      </Link>
-      <Link to="/community">
-        <HeaderBoldText>커뮤니티</HeaderBoldText>
-      </Link>
-      <SearchContainer />
-      {isLogin && (
+      <HeaderBox>
         <Link to="/">
-          <HeaderHeartImg />
+          <HeaderLogoImg />
         </Link>
-      )}
-      <Link to="/">
-        <HeaderBagImg />
-      </Link>
-      {isLogin ? (
-        <HeaderLoggedInMenuContainer />
-      ) : (
-        <HeaderNotLoggedInMenuBox>
-          <Link to="/login">
-            <HeaderText>로그인</HeaderText>
-          </Link>
-          |
+        <Link to="/store">
+          <HeaderBoldText>스토어</HeaderBoldText>
+        </Link>
+        <Link to="/community/board">
+          <HeaderBoldText>커뮤니티</HeaderBoldText>
+        </Link>
+        <SearchContainer />
+        {isLogin && (
           <Link to="/">
-            <HeaderText>고객센터</HeaderText>
+            <HeaderHeartImg />
           </Link>
-        </HeaderNotLoggedInMenuBox>
-      )}
+        )}
+        <Link to="/">
+          <HeaderBagImg />
+        </Link>
+        {isLogin ? (
+          <HeaderLoggedInMenuContainer />
+        ) : (
+          <HeaderNotLoggedInMenuBox>
+            <Link to="/login">
+              <HeaderText>로그인</HeaderText>
+            </Link>
+            |
+            <Link to="/">
+              <HeaderText>고객센터</HeaderText>
+            </Link>
+          </HeaderNotLoggedInMenuBox>
+        )}
+      </HeaderBox>
     </HeaderLayout>
   );
 };

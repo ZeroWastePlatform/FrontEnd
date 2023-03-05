@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { apiInstance } from "../../api/setting";
 import CategoryNavigation from "./Common/CategoryNavigation/CategoryNavigation";
 import ProfileAside from "./Common/ProfileAside/ProfileAside";
 import { MyPageRow } from "./MyPage.style";
