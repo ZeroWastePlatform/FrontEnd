@@ -186,6 +186,10 @@ export const AddressDetailInfoInput = styled(AddressInfoInput)`
   margin: 0;
 `;
 
+export const LocateInfoInput = styled(AddressInfoInput)`
+  padding: 0 12px;
+`;
+
 export const DeliverySaveButton = styled.button`
   width: 120px;
   height: 50px;
@@ -204,6 +208,39 @@ export const LocateSettingCol = styled.div`
   flex-direction: column;
 `;
 
+export const LocateInfoRow = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+`;
+
+export const LocateRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 428px;
+  gap: 10px;
+`;
+
+export const LocateBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  width: 208.35px;
+  height: 50px;
+  background: #66f095;
+  border-radius: 10px;
+  font-family: "Pretendard";
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: #f1f4f5;
+`;
+
+export const LocateDeleteButton = styled.button`
+  color: #f1f4f5;
+`;
+
 export const LocateSettingParagraph = styled(DeliveryInfoParagraph)`
   margin-bottom: 16px;
 `;
@@ -212,12 +249,12 @@ export const LocateAddButton = styled.button`
   display: flex;
   justify-content: space-between;
   border: 0;
-  width: 203px;
+  width: 97px;
   height: 50px;
   background: #d3d3d4;
   border-radius: 10px;
   align-items: center;
-  padding: 0 10px;
+  padding: 0 20px;
 `;
 
 export const AddText = styled.span`

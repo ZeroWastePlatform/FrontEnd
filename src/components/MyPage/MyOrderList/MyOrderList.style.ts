@@ -19,9 +19,15 @@ export const PeriodSelect = styled.select`
   width: 74px;
   height: 33px;
   background: #ffffff;
-  padding: 0 12px;
   border: 1px solid #a7a7a8;
   border-radius: 8px;
+  font-family: "Pretendard";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  color: #7a7b7d;
+  padding: 0 6px;
 `;
 
 export const DeliveryStatusBox = styled.div`

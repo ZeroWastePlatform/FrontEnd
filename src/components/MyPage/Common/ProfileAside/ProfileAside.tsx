@@ -16,9 +16,9 @@ import {
   ProfileBox,
 } from "./ProfileAside.style";
 import ProfileImg from "../../../../assets/images/profile.png";
-import LikeImg from "../../../../assets/images/heart.png";
-import pointImg from "../../../../assets/images/point.png";
-import couponImg from "../../../../assets/images/coupon.png";
+import LikeImg from "../../../../assets/images/heart.svg";
+import pointImg from "../../../../assets/images/point.svg";
+import couponImg from "../../../../assets/images/coupon.svg";
 import { useNavigate } from "react-router";
 
 const ProfileAside = () => {
