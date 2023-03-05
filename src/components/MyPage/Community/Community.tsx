@@ -17,6 +17,7 @@ import {
   TitleText,
   WritingTime,
 } from "./Community.style";
+import commentImg from "../../../assets/images/comments.svg";
 
 const Commuinty = () => {
   return (
@@ -25,7 +26,7 @@ const Commuinty = () => {
         <MyArticleSpan>내가 작성한 게시글</MyArticleSpan>
         <MyArticleNumber>10</MyArticleNumber>
 
-        <MyCommentSpan>| 내가 작성한 댓글</MyCommentSpan>
+        <MyCommentSpan>내가 작성한 댓글</MyCommentSpan>
         <MyCommentNumber>256</MyCommentNumber>
       </MyInfoRow>
 
@@ -38,12 +39,11 @@ const Commuinty = () => {
           <ArticleInfoRow>
             <WritingTime>1분 전</WritingTime>
             <CommentBox>
-              <img src="" alt="" />
+              <img src={commentImg} />
               <CommentNumber>22</CommentNumber>
             </CommentBox>
 
             <InquiryBox>
-              <img src="" alt="" />
               <InquiryNumber>1,220</InquiryNumber>
             </InquiryBox>
           </ArticleInfoRow>
@@ -57,12 +57,11 @@ const Commuinty = () => {
           <ArticleInfoRow>
             <WritingTime>1분 전</WritingTime>
             <CommentBox>
-              <img src="" alt="" />
+              <img src={commentImg} />
               <CommentNumber>22</CommentNumber>
             </CommentBox>
 
             <InquiryBox>
-              <img src="" alt="" />
               <InquiryNumber>1,220</InquiryNumber>
             </InquiryBox>
           </ArticleInfoRow>

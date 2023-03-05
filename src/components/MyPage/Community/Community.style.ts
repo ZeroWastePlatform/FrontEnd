@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CommuintyLayout = styled.section``;
 
 export const MyInfoRow = styled.div`
-  margin-bottom: 102px;
+  margin-bottom: 33px;
   display: flex;
   align-items: center;
 `;
@@ -20,6 +20,14 @@ export const MyArticleNumber = styled(MyArticleSpan)`
   color: #66f095;
   margin-left: 10px;
   margin-right: 15px;
+  ::after {
+    content: " |";
+    font-family: "Pretendard";
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+    color: #bdbdbe;
+  }
 `;
 
 export const MyCommentSpan = styled(MyArticleSpan)`
