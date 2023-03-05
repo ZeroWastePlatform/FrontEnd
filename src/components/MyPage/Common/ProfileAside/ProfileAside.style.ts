@@ -18,6 +18,7 @@ export const ProfileAsideLayout = styled.div`
 export const ProfileBox = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export const PropfileNickNameSpan = styled.span`
@@ -43,6 +44,9 @@ export const MemberInfoButton = styled.button`
   border: 1px solid #919193;
   background-color: white;
   margin-bottom: 40px;
+  border-radius: 10px;
+  width: 149px;
+  height: 44px;
 `;
 
 export const MemberDataRow = styled.div`
@@ -81,7 +85,7 @@ export const CouponText = styled(LikeText)``;
 export const LikeInfoText = styled.span`
   font-family: "Pretendard";
   font-weight: 500;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 24px;
   color: #646667;
 `;
