@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useQuery } from "react-query";
+import customAPI from "../lib/customApi";
 
 const useSuspenseQuery = <T>(queryKey: unknown[], url: string, onSuccess?: (data: T) => void) => {
-  const { data } = useQuery<T>(queryKey, () => axios(`http://greenus.duckdns.org/${url}`).then(res => res.data), {
+  const { data } = useQuery<T>(queryKey, () => customAPI(`${url}`).then(res => res.data), {
     suspense: true,
     useErrorBoundary: true,
     onSuccess,
