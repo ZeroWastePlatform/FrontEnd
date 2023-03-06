@@ -1,7 +1,4 @@
-import { AxiosResponse } from "axios";
 import React from "react";
-import { UseMutateFunction } from "react-query";
-import { WriteFormAtomType } from "../../../atom/writeForm";
 import CustomSelectContainer from "../../Common/CustomSelect/CustomSelectContainer";
 import AttachmentContainer from "./Attachment/AttachmentContainer";
 import HashtagBoxContainer from "./HashtagBox/HashtagBoxContainer";

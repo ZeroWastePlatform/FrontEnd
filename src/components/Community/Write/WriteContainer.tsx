@@ -7,7 +7,7 @@ import useSetQueryMutate from "../../../hooks/useSetQueryMutate";
 import Write from "./Write";
 
 const WriteContainer = () => {
-  const { mutate } = useSetQueryMutate(data => axios.post("https://zerowaste.herokuapp.com/posts", { data }));
+  const { mutate } = useSetQueryMutate(data => axios.post("http://greenus.duckdns.org/posts", { data }));
   const [writeForm, setWriteForm] = useRecoilState(writeFormAtom);
   const kind = useRecoilValue(selectValueSelector);
 
