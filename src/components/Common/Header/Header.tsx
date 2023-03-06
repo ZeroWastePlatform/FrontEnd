@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import {
   HeaderBagImg,
+  HeaderBellImg,
   HeaderBoldText,
   HeaderBox,
   HeaderHeartImg,
@@ -30,14 +31,19 @@ const Header = ({ isLogin }: HeaderProps) => {
           <HeaderBoldText>커뮤니티</HeaderBoldText>
         </Link>
         <SearchContainer />
-        {isLogin && (
-          <Link to="/">
-            <HeaderHeartImg />
-          </Link>
-        )}
         <Link to="/">
           <HeaderBagImg />
         </Link>
+        {isLogin && (
+          <>
+            <Link to="/">
+              <HeaderHeartImg />
+            </Link>
+            <Link to="/">
+              <HeaderBellImg />
+            </Link>
+          </>
+        )}
         {isLogin ? (
           <HeaderLoggedInMenuContainer />
         ) : (

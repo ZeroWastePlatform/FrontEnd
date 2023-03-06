@@ -1,16 +1,12 @@
 import moment from "moment";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { userInfoAtom } from "../../../atom/userInfo";
 import useSetQueryMutate from "../../../hooks/useSetQueryMutate";
 import customAPI from "../../../lib/customApi";
 
 const Oauth = () => {
-  const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
   const code = new URL(window.location.href).searchParams.get("code");
   const { provider } = useParams();
-  console.log("userInfo :", userInfo);
   const { mutate } = useSetQueryMutate(
     code =>
       customAPI.post(`/api/auth/${provider}/token`, {
