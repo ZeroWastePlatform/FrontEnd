@@ -52,7 +52,8 @@ module.exports = env => {
       }),
       new CleanWebpackPlugin(),
       new webpack.DefinePlugin({
-        "process.env.API_SERVER": JSON.stringify(process.env.API_SERVER), // env에서 읽은 ip를 저장
+        // "process.env.API_SERVER": JSON.stringify(process.env.API_SERVER), // env에서 읽은 ip를 저장
+        "process.env": JSON.stringify(dotenv.config().parsed),
       }),
     ],
     devServer: {
