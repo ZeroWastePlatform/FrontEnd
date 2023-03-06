@@ -1,23 +1,28 @@
-import axios from "axios";
+import moment from "moment";
 import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { userInfoAtom } from "../../../atom/userInfo";
 import useSetQueryMutate from "../../../hooks/useSetQueryMutate";
+import customAPI from "../../../lib/customApi";
 
 const Oauth = () => {
-  const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
   const code = new URL(window.location.href).searchParams.get("code");
   const { provider } = useParams();
+  console.log("userInfo :", userInfo);
   const { mutate } = useSetQueryMutate(
     code =>
-      axios.post(`http://greenus.duckdns.org/api/auth/${provider}/token`, {
+      customAPI.post(`/api/auth/${provider}/token`, {
         code,
         redirectUri: process.env.GOOGLE_REDIRECT_URI,
       }),
-    ["google"],
+    [provider],
     e => {
-      localStorage.setItem("login-token", e.data.refreshToken);
-      navigate("/");
-      console.log(e);
+      localStorage.setItem("refreshToken", e.data.refreshToken);
+      localStorage.setItem("accessToken", e.data.accessToken);
+      localStorage.setItem("expiresAt", moment().add(30, "m").format("yyyy-MM-DD HH:mm:ss"));
+      window.location.href = "/";
     },
   );
 
