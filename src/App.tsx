@@ -14,8 +14,23 @@ import Article from "./pages/Community/Article";
 import Footer from "./components/Common/Footer/Footer";
 import Basket from "./pages/Store/Basket";
 import Oauth from "./pages/Oauth/[Provider]";
+import useSuspenseQuery from "./hooks/useSuspenseQuery";
+import { useSetRecoilState } from "recoil";
+import { userInfoAtom } from "./atom/userInfo";
+import { useEffect } from "react";
+import { UserInfoResponseType } from "./types";
 
 function App() {
+  const setUserInfo = useSetRecoilState(userInfoAtom);
+  const accessToken = localStorage.getItem("accessToken");
+  const { data } = useSuspenseQuery<UserInfoResponseType>(["userInfo", accessToken], "api/members/me");
+  console.log(data);
+
+  useEffect(() => {
+    if (data) {
+      setUserInfo(prev => ({ ...data.myPageProfileResponse, isLogin: true }));
+    }
+  }, [data]);
   return (
     <>
       <HeaderContainer />
