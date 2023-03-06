@@ -72,14 +72,3 @@ export const LoginAnchor = styled.a<{ authType: string; bgColor: string }>`
     transform: translateY(-50%);
   }
 `;
-
-export const LoginTextBox = styled.div`
-  text-align: center;
-  margin-top: 100px;
-`;
-
-export const LoginText = styled.span`
-  text-decoration: underline;
-  color: ${({ theme }) => theme.colors.gray6};
-  cursor: pointer;
-`;

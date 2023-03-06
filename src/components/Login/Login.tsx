@@ -1,7 +1,7 @@
 import React from "react";
 import { GOOGLE_AUTH_URL, KAKAO_AUTH_URL, NAVER_AUTH_URL } from "../../constants/authURL";
 import Logo from "../Common/Logo/Logo";
-import { LoginAnchor, LoginAnchorBox, LoginLayout, LoginText, LoginTextBox } from "./Login.styles";
+import { LoginAnchor, LoginAnchorBox, LoginLayout } from "./Login.styles";
 
 const Login = () => {
   return (
@@ -18,9 +18,6 @@ const Login = () => {
           구글 로그인
         </LoginAnchor>
       </LoginAnchorBox>
-      <LoginTextBox>
-        <LoginText>SNS계정으로 간편하게 시작하기</LoginText>
-      </LoginTextBox>
     </LoginLayout>
   );
 };
