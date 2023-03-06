@@ -1,49 +1,50 @@
 import styled from "styled-components";
 
 export const BuyLayout = styled.div`
-  width: 500px;
-`;
-
-export const BuyBadgeList = styled.ul`
-  display: flex;
-  gap: 5px;
-  margin: 0 0 15px 0;
-`;
-
-export const BuyBadgeItem = styled.li`
-  border: 1px solid black;
-  padding: 3px 10px;
-  border-radius: 5px;
+  width: calc(50% - 30px);
 `;
 
 export const BuyProductName = styled.div`
-  font-size: 20px;
+  font-size: 36px;
+  font-weight: 700;
   margin: 0 0 10px 0;
 `;
+
 export const BuyPrice = styled.div`
   display: flex;
   justify-content: flex-end;
-  font-size: 20px;
+  font-size: 30px;
+  font-weight: 700;
   margin: 0 0 20px 0;
 `;
+
 export const BuyInfo = styled.div`
   min-height: 300px;
-  line-height: 1.6;
-  font-size: 18px;
+  line-height: 1.55;
+  font-size: 22px;
+  font-weight: 400;
 `;
 
 export const BuyShipBox = styled.div`
-  background-color: #efefef;
+  background-color: ${({ theme }) => theme.colors.gray1};
   border-radius: 10px;
-  padding: 10px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 13px;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0 0 52px 0;
 `;
 
 export const BuyShipText = styled.div`
   & > i {
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  & > p {
+    display: inline;
+    color: #828282;
   }
 `;
 
@@ -55,31 +56,18 @@ export const BuyCounterBox = styled.div`
 `;
 
 export const BuyCounterTitle = styled.div`
-  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
   font-weight: 500;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const BuyCounter = styled.div`
-  display: flex;
-`;
-
-export const BuyCounterItem = styled.div`
-  width: 25px;
-  height: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid black;
 `;
 
 export const BuyTotalPayBox = styled.div`
   display: flex;
   justify-content: flex-end;
   font-family: Pretendard;
-  font-size: 25px;
+  font-size: 24px;
   font-weight: 500;
   line-height: 24px;
   gap: 50px;
@@ -91,25 +79,61 @@ export const BuyToalPayItem = styled.div``;
 export const BuyButtonBox = styled.div`
   display: flex;
   font-size: 15px;
-  gap: 20px;
+  gap: 12px;
 `;
 
-export const BuyRoundButton = styled.div`
-  border-radius: 30px;
-  height: 45px;
-  width: 200px;
+export const BuyRoundButton = styled.div<{ filled: string }>`
+  border-radius: 50px;
+  flex-grow: 1;
+  height: 70px;
   border: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: ${({ theme, filled }) => (filled === "true" ? theme.colors.gray0 : theme.colors.primaryGreen100)};
+  background-color: ${({ theme, filled }) => (filled === "true" ? theme.colors.primaryGreen100 : theme.colors.gray0)};
+  border: 2px solid ${({ theme }) => theme.colors.primaryGreen100};
 `;
 
 export const BuyCircleButton = styled.div`
-  height: 45px;
-  width: 45px;
+  height: 70px;
+  width: 70px;
   border-radius: 50%;
   border: 1px solid black;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 4px;
+  border: 2px solid ${({ theme }) => theme.colors.gray3};
 `;
+
+export const BuyCircleButtonIcon = styled.img``;
+
+export const BuyBadgeList = styled.ul`
+  display: flex;
+  gap: 12px;
+  margin: 0 0 26px 0;
+`;
+
+export const BuyBadgeItem = styled.li<{ type: string }>`
+  width: 92px;
+  height: 36px;
+  border-radius: 10px;
+  background: ${({ theme, type }) => theme.colors[badgeType[type].background]};
+  color: ${({ theme, type }) => theme.colors[badgeType[type].color]};
+  border: 1px solid ${({ theme, type }) => theme.colors[badgeType[type].border]};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 400;
+`;
+
+const badgeType: { [index: string]: { background: string; color: string; border: string } } = {
+  BEST: { background: "primaryPurple100", color: "gray0", border: "primaryPurple100" },
+  NEW: { background: "gray0", color: "primaryGreen100", border: "primaryGreen100" },
+  SALE: { background: "primaryGreen100", color: "gray0", border: "primaryGreen100" },
+};

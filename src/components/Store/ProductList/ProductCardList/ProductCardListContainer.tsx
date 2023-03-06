@@ -5,18 +5,22 @@ import { conditionType, setConditionType } from "../../../../pages/Store/Product
 import { ProductCardProps } from "../../Common/ProductCard/ProductCard";
 import ProductCardList from "./ProductCardList";
 
+export interface ProductCardListDataContentType {
+  id: number;
+  category: string;
+  brand: string;
+  title: string;
+  discountRate: number;
+  price: number;
+  badges: string[];
+  liked: boolean;
+  img: string;
+}
+
 export interface ProductCardListDataType {
   totalCount: number;
-  contents: {
-    id: number;
-    category: string;
-    brand: string;
-    title: string;
-    discountRate: string;
-    price: string;
-    badges: string[];
-    liked: boolean;
-  }[];
+  totalPage: number;
+  contents: ProductCardListDataContentType[];
 }
 
 interface ProductCardListContainerProps {
@@ -55,7 +59,18 @@ const ProductCardListContainer = ({ condition, setCondition }: ProductCardListCo
       };
     },
   );
-  return <ProductCardList data={data} condition={condition} setCondition={setCondition} changeLiked={mutate} />;
+  const setPage = (page: number) => {
+    setCondition({ ...condition, page });
+  };
+  return (
+    <ProductCardList
+      data={data}
+      condition={condition}
+      setCondition={setCondition}
+      changeLiked={mutate}
+      setPage={setPage}
+    />
+  );
 };
 
 export default ProductCardListContainer;

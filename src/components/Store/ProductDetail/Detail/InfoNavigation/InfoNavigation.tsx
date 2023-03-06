@@ -12,14 +12,19 @@ const InfoNavigation = ({ data, navigate, navigation }: InfoNavigationProps) => 
       <InfoNavigationRow>
         {[
           { ko: "상품정보", en: "info" },
-          { ko: `리뷰${data.review}`, en: "review" },
+          { ko: "리뷰", en: "review", count: data.review },
           { ko: "배송/환불", en: "delivery" },
-          { ko: `문의${data.ask}`, en: "ask" },
+          { ko: "문의", en: "ask", count: data.ask },
           { ko: "추천제품", en: "recommend" },
-        ].map(el => {
+        ].map(element => {
           return (
-            <InfoNavigationItem key={el.en} onClick={() => navigate(el.en)} selected={navigation === el.en}>
-              {el.ko}
+            <InfoNavigationItem
+              key={element.en}
+              onClick={() => navigate(element.en)}
+              selected={navigation === element.en}
+            >
+              {element.ko}
+              {element.count !== undefined ? <i>{element.count}</i> : null}
             </InfoNavigationItem>
           );
         })}

@@ -14,6 +14,7 @@ const Template: ComponentStory<typeof ProductCard> = args => (
 
 export const GeneralType = Template.bind({});
 GeneralType.args = {
+  id: 1,
   brand: "그리너스",
   title: "마일드 고체치약 30정입",
   discountRate: "45",

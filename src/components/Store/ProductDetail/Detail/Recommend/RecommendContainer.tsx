@@ -9,19 +9,16 @@ export type RecommendDataType = {
   category: string;
   brand: string;
   title: string;
-  discountRate: string;
-  price: string;
+  discountRate: number;
+  price: number;
   badges: string[];
   liked: boolean;
+  img: string;
 }[];
 
 interface RecommendContainerProps {
   recommendRef: React.RefObject<HTMLDivElement>;
 }
-
-const a = () => {
-  return ["a"];
-};
 
 const RecommendContainer = ({ recommendRef }: RecommendContainerProps) => {
   const { data } = useSuspenseQuery<RecommendDataType>(["Store", "ProductDetail", "Recommend", "1"], "recommend");

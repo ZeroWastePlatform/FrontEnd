@@ -15,6 +15,8 @@ import {
   ReviewItemUserAvatar,
   ReviewItemUserNickname,
 } from "./ReviewItem.styles";
+import colorStar from "../../../../../../../assets/images/star.svg";
+import grayStar from "../../../../../../../assets/images/star-gray.svg";
 
 interface ReviewItemProps {
   review: ReviewDataContentType;
@@ -28,7 +30,12 @@ const ReviewItem = ({ review }: ReviewItemProps) => {
         <ReviewItemTopLeftBox>
           <ReviewItemUserNickname>{review.nickname}</ReviewItemUserNickname>
           <ReviewItemTopLeftBottomBox>
-            <ReviewItemRate>별점 {review.rate}점</ReviewItemRate>
+            <ReviewItemRate>
+              {new Array(5).fill(0).map((_, index) => {
+                if (index + 1 <= review.rate) return <img src={colorStar} key={index} />;
+                return <img src={grayStar} key={index} />;
+              })}
+            </ReviewItemRate>
             <ReviewItemDate>{review.date}</ReviewItemDate>
           </ReviewItemTopLeftBottomBox>
         </ReviewItemTopLeftBox>

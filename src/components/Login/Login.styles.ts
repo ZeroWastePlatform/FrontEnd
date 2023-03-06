@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import charactersLogoImg from "../../assets/images/characters-logo.png";
-import bigLogoImg from "../../assets/images/big-logo.png";
+import bigLogoImg from "../../assets/images/big-logo.svg";
 import kakaoImg from "../../assets/images/kakao-logo.png";
 import naverImg from "../../assets/images/naver-logo.png";
 import googleImg from "../../assets/images/google-logo.png";

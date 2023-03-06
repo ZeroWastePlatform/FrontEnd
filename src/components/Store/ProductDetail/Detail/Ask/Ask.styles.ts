@@ -14,5 +14,6 @@ export const AskTopBox = styled.div`
 `;
 
 export const AskTitle = styled.div`
-  font-weight: 600;
+  font-size: 24px;
+  font-weight: 700;
 `;

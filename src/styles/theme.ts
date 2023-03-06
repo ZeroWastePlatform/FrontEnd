@@ -1,6 +1,6 @@
 import { DefaultTheme } from "styled-components";
 
-const colors = {
+const colors: { [index: string]: string } = {
   primaryGreen10: "#F0FEF4",
   primaryGreen20: "#E0FCEA",
   primaryGreen30: "#D1FBDF",
@@ -34,6 +34,7 @@ const colors = {
   positive: "#36B37E",
   neutral: "#F7C644",
   negative: "#FF5630",
+  white: "#000000",
 };
 
 export type ColorsTypes = typeof colors;

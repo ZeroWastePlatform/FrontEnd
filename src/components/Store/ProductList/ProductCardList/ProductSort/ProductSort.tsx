@@ -10,9 +10,13 @@ const ProductSort = ({ condition, setCondition }: ProductSortProps) => {
   return (
     <ProductSortLayout>
       <ProductSortRow>
-        {["인기순", "신상품순", "낮은가격순", "높은가격순"].map(e => (
-          <ProductSortText key={e} same={e === condition.sort} onClick={() => setCondition({ ...condition, sort: e })}>
-            {e}
+        {sortData.map((element, index) => (
+          <ProductSortText
+            key={index}
+            same={element === condition.sort}
+            onClick={() => setCondition({ ...condition, sort: element })}
+          >
+            {element}
           </ProductSortText>
         ))}
       </ProductSortRow>
@@ -21,3 +25,5 @@ const ProductSort = ({ condition, setCondition }: ProductSortProps) => {
 };
 
 export default ProductSort;
+
+const sortData = ["인기순", "|", "신상품순", "|", "낮은가격순", "|", "높은가격순"];
