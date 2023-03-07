@@ -44,7 +44,7 @@ function Store() {
       {condition.category === "전체" || condition.category === "베스트" ? (
         <ErrorBoundary FallbackComponent={() => <div>...에러발생</div>}>
           <Suspense fallback={<div>...로딩중</div>}>
-            <ProductCarouselContainer />
+            <ProductCarouselContainer type="Store" />
           </Suspense>
         </ErrorBoundary>
       ) : null}

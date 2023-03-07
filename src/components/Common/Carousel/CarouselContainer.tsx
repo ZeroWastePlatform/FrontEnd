@@ -2,7 +2,7 @@ import useSuspenseQuery from "../../../hooks/useSuspenseQuery";
 import ProductCarousel from "./Carousel";
 import useProductCarousel from "./CarouselHook";
 
-const ProductCarouselContainer = () => {
+const ProductCarouselContainer = ({ type }: { type: "Store" | "Home" }) => {
   const { data } = useSuspenseQuery<string[]>(["Store", "productList", "productCarousel"], "productcarousel");
   const { order, changeOrder, stopTransition, checkActiveItem, setOrder } = useProductCarousel(data.length);
   return (
@@ -13,7 +13,7 @@ const ProductCarouselContainer = () => {
       changeOrder={changeOrder}
       checkActiveItem={checkActiveItem}
       setOrder={setOrder}
-      type={"Store"}
+      type={type}
     />
   );
 };
