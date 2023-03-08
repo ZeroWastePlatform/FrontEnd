@@ -25,11 +25,11 @@ const ProductBuy = () => {
 const ProductBuyLayout = styled.main`
   display: flex;
   width: 1320px;
-  margin: auto;
+  margin: 100px auto 0 auto;
 `;
 
 const ProductBuyContentList = styled.div`
-  width: 900px;
+  width: calc(100% - 530px);
 `;
 
 export default ProductBuy;
