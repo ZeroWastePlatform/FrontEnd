@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import searchImg from "../../../../assets/images/search-icon.png";
+import searchImg from "../../../../assets/images/search-icon.svg";
 
 export const SearchLayout = styled.div`
   width: 475px;
