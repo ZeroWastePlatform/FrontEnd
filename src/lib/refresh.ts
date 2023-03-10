@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 import moment from "moment";
+import { setExpiresAt } from "../utils/setExpiresAt";
 
 const refresh = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> => {
   try {
@@ -12,24 +13,23 @@ const refresh = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> 
       const body = {
         refreshToken,
       };
-
-      const { data } = await axios.post(`${process.env.API_SERVER}/api/auth/token/access`, body);
-      console.log("data", data);
+      const { data } = await axios.post(`${process.env.API_SERVER}api/auth/token/access`, body);
       token = data.accessToken;
       localStorage.setItem("accessToken", data.accessToken);
-      localStorage.setItem("expiresAt", moment().add(30, "m").format("yyyy-MM-DD HH:mm:ss"));
+      setExpiresAt();
     }
 
     config.headers["Authorization"] = `Bearer ${token}`;
   } catch (err) {
-    console.log(err);
+    console.log("refreshError", err);
     localStorage.removeItem("refreshToken");
+    localStorage.removeItem("accessToken");
   }
   return config;
 };
 
 const refreshErrorHandle = (err: any) => {
-  console.log("err :", err);
+  console.log("refreshErrorHandleErr :", err);
   localStorage.removeItem("refreshToken");
 };
 

@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useSetQueryMutate from "../../../hooks/useSetQueryMutate";
 import customAPI from "../../../lib/customApi";
+import { setExpiresAt } from "../../../utils/setExpiresAt";
 
 const Oauth = () => {
   const code = new URL(window.location.href).searchParams.get("code");
@@ -17,7 +18,7 @@ const Oauth = () => {
     e => {
       localStorage.setItem("refreshToken", e.data.refreshToken);
       localStorage.setItem("accessToken", e.data.accessToken);
-      localStorage.setItem("expiresAt", moment().add(30, "m").format("yyyy-MM-DD HH:mm:ss"));
+      setExpiresAt();
       window.location.href = "/";
     },
   );
