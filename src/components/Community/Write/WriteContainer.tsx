@@ -4,10 +4,11 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { selectValueSelector } from "../../../atom/selectValue";
 import { writeFormAtom } from "../../../atom/writeForm";
 import useSetQueryMutate from "../../../hooks/useSetQueryMutate";
+import customAPI from "../../../lib/customApi";
 import Write from "./Write";
 
 const WriteContainer = () => {
-  const { mutate } = useSetQueryMutate(data => axios.post("http://greenus.duckdns.org/posts", { data }));
+  const { mutate } = useSetQueryMutate(data => customAPI.post("posts", { data }));
   const [writeForm, setWriteForm] = useRecoilState(writeFormAtom);
   const kind = useRecoilValue(selectValueSelector);
 
