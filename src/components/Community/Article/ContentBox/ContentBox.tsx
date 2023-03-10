@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import {
   ContentBoxBody,
+  ContentBoxBtns,
   ContentBoxComment,
   ContentBoxDate,
+  ContentBoxDelete,
+  ContentBoxEdit,
+  ContentBoxHeader,
   ContentBoxInfo,
   ContentBoxLayout,
   ContentBoxLikeImg,
@@ -18,27 +22,44 @@ import {
 import onLikeImg from "../../../../assets/images/on_like.png";
 import offLikeImg from "../../../../assets/images/off_like.png";
 
-const ContentBox = () => {
-  const [isLike, setIsLike] = useState(false);
+interface ContentBoxProps {
+  id: number;
+  kind: number;
+  title: string;
+  content: string;
+  createdAt: string;
+  replyCnt: number;
+  viewCnt: number;
+  handleDeletePost: (postId: number) => void;
+}
 
+const ContentBox = ({ id, kind, title, content, createdAt, replyCnt, viewCnt, handleDeletePost }: ContentBoxProps) => {
+  const [isLike, setIsLike] = useState(false);
+  const contentType = kind === 1 ? "자유게시판" : kind === 2 ? "중고거래" : kind === 3 && "정보공유";
   return (
     <ContentBoxLayout>
-      <ContentBoxType>자유게시판</ContentBoxType>
-      <ContentBoxTitle>본문 제목이에요</ContentBoxTitle>
+      <ContentBoxHeader>
+        <ContentBoxType>{contentType}</ContentBoxType>
+        <ContentBoxBtns>
+          <ContentBoxEdit>수정</ContentBoxEdit>
+          <ContentBoxDelete onClick={() => handleDeletePost(id)}>삭제</ContentBoxDelete>
+        </ContentBoxBtns>
+      </ContentBoxHeader>
+      <ContentBoxTitle>{title}</ContentBoxTitle>
       <ContentBoxInfo>
         <ContentBoxProfile>
           <ContentBoxProfileImg />
           <ContentBoxProfileTextBox>
             <ContentBoxProfileName>dngur9801</ContentBoxProfileName>
-            <ContentBoxDate>3시간 전</ContentBoxDate>
+            <ContentBoxDate>{createdAt}</ContentBoxDate>
           </ContentBoxProfileTextBox>
         </ContentBoxProfile>
         <ContentBoxSubInfo>
-          <ContentBoxComment>10</ContentBoxComment>
-          <ContentBoxVisit>1,220</ContentBoxVisit>
+          <ContentBoxComment>{replyCnt}</ContentBoxComment>
+          <ContentBoxVisit>{viewCnt}</ContentBoxVisit>
         </ContentBoxSubInfo>
       </ContentBoxInfo>
-      <ContentBoxBody>본문 텍스트입니다 뭘 쓰는게 좋을까요 비건파스타 해먹었어요 옴뇸뇸 맛있어요 짱!</ContentBoxBody>
+      <ContentBoxBody>{content}</ContentBoxBody>
       <ContentBoxLikeImg src={isLike ? onLikeImg : offLikeImg} onClick={() => setIsLike(prev => !prev)} />
     </ContentBoxLayout>
   );

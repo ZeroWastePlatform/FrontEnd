@@ -38,3 +38,16 @@ export type AgreeList = {
   text: string;
   description: string;
 }[];
+
+export interface RecommendationsPostType {
+  id: number;
+  kind: number;
+  title: string;
+  content: string;
+}
+
+export interface PopularityPostType {
+  id: number;
+  title: string;
+  recommendCnt: number;
+}

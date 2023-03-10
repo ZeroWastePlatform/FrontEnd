@@ -8,9 +8,20 @@ export const ContentBoxLayout = styled.div`
   border-bottom: 2px solid ${({ theme }) => theme.colors.gray2};
 `;
 
+export const ContentBoxHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const ContentBoxType = styled.span`
   font-weight: 700;
 `;
+
+export const ContentBoxBtns = styled.div``;
+
+export const ContentBoxEdit = styled.button``;
+
+export const ContentBoxDelete = styled.button``;
 
 export const ContentBoxTitle = styled.p`
   font-size: 28px;

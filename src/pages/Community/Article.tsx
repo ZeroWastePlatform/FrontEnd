@@ -4,17 +4,23 @@ import styled from "styled-components";
 import AsideContainer from "../../components/Community/Article/Aside/AsideContainer";
 import ContentBoxContainer from "../../components/Community/Article/ContentBox/ContentBoxContainer";
 import CommentBoxContainer from "../../components/Community/Article/CommentBox/CommentBoxContainer";
+import { useParams } from "react-router-dom";
+import useSuspenseQuery from "../../hooks/useSuspenseQuery";
+import { PostType } from "../../types";
 
 const Article = () => {
+  const { id } = useParams();
+  const { data } = useSuspenseQuery<PostType>(["Community", "Article", "ContentBox", id], `posts/${id}`);
+  console.log("data : ", data);
   return (
     <>
       <CategoryNavigation />
       <ArticleLayout>
         <ArticleBox>
-          <ContentBoxContainer />
+          <ContentBoxContainer post={data} />
           <CommentBoxContainer />
         </ArticleBox>
-        <AsideContainer />
+        <AsideContainer kind={data.kind} />
       </ArticleLayout>
     </>
   );
