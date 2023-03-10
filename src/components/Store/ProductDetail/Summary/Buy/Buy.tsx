@@ -21,24 +21,26 @@ import {
 import heartImg from "../../../../../assets/images/heart.svg";
 
 interface BuyProps {
+  id: number;
   count: number;
   changeCount: (op: string) => void;
   buyProduct: () => void;
-  setLiked: () => void;
   setBasket: () => void;
   brand: string;
-  badges: string[];
+  badges: number;
   title: string;
   price: number;
   summary: string;
-  liked: string;
+  liked: boolean;
+  productLike: string[];
+  changeLike: (productId: number) => Promise<void>;
 }
 
 const Buy = ({
+  id,
   count,
   changeCount,
   buyProduct,
-  setLiked,
   setBasket,
   brand,
   badges,
@@ -46,15 +48,25 @@ const Buy = ({
   price,
   summary,
   liked,
+  productLike,
+  changeLike,
 }: BuyProps) => {
   return (
     <BuyLayout>
       <BuyBadgeList>
-        {badges.map(badge => (
-          <BuyBadgeItem key={badge} type={badge}>
-            {badge}
-          </BuyBadgeItem>
-        ))}
+        {badges
+          .toString(2)
+          .split("")
+          .map((bool, index) => {
+            if (bool === "1") return badgeList[index];
+            return "false";
+          })
+          .filter(el => el !== "false")
+          .map(badge => (
+            <BuyBadgeItem key={badge} type={badge}>
+              {badge}
+            </BuyBadgeItem>
+          ))}
       </BuyBadgeList>
       <BuyProductName>
         [{brand}] {title}
@@ -78,9 +90,9 @@ const Buy = ({
         <BuyPrice>{numberWithCommas(Number(price) * count)}원</BuyPrice>
       </BuyTotalPayBox>
       <BuyButtonBox>
-        <BuyCircleButton onClick={setLiked}>
-          <BuyCircleButtonIcon src={heartImg} />
-          {liked}
+        <BuyCircleButton onClick={() => changeLike(id)}>
+          <BuyCircleButtonIcon liked={liked ? "true" : "false"}>{liked ? "♥" : "♡"}</BuyCircleButtonIcon>
+          {productLike.length}
         </BuyCircleButton>
         <BuyRoundButton onClick={setBasket} filled={"false"}>
           장바구니
@@ -94,3 +106,5 @@ const Buy = ({
 };
 
 export default Buy;
+
+const badgeList = ["BEST", "NEW", "SALE"];

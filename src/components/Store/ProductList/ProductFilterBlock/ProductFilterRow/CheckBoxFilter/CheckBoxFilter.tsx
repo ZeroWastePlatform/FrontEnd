@@ -16,7 +16,7 @@ const CheckBoxFilter = ({ text, value, checked, setCheckboxFilter }: CheckBoxFil
         id={text}
         value={value}
         checked={checked}
-        onClick={() => setCheckboxFilter({ name: null, value, text })}
+        onChange={() => setCheckboxFilter({ name: null, value, text })}
       />
       <CheckBoxFilterLabel htmlFor={text}>{text}</CheckBoxFilterLabel>
     </CheckBoxFilterLayout>

@@ -8,7 +8,7 @@ interface InfoContainerProps {
 }
 
 const InfoContainer = ({ infoRef }: InfoContainerProps) => {
-  const { data } = useSuspenseQuery<InfoDataType>(["Store", "ProductDetail", "Info", "1"], "info");
+  const { data } = useSuspenseQuery<InfoDataType>(["Store", "ProductDetail", "Info", "1"], "product/info");
 
   return <Info data={data} infoRef={infoRef} />;
 };

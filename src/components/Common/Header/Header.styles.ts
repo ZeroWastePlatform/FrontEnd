@@ -2,6 +2,7 @@ import styled from "styled-components";
 import logoImg from "../../../assets/images/header-logo.svg";
 import bagImg from "../../../assets/images/bag-04.svg";
 import heartImg from "../../../assets/images/heart.svg";
+import bellImg from "../../../assets/images/bell.svg";
 
 export const HeaderLayout = styled.div`
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
@@ -30,14 +31,18 @@ export const HeaderText = styled.span`
   padding: 0 25px;
 `;
 
-export const HeaderHeartImg = styled.img.attrs({
-  src: `${heartImg}`,
-})``;
-
 export const HeaderBagImg = styled.img.attrs({
   src: `${bagImg}`,
 })`
   padding: 0 10px;
 `;
+
+export const HeaderHeartImg = styled.img.attrs({
+  src: `${heartImg}`,
+})``;
+
+export const HeaderBellImg = styled.img.attrs({
+  src: `${bellImg}`,
+})``;
 
 export const HeaderNotLoggedInMenuBox = styled.div``;

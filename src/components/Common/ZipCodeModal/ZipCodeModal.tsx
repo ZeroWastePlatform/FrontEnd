@@ -1,5 +1,5 @@
 import DaumPostcodeEmbed from "react-daum-postcode";
-import { ZipCodeModalBlock, ZipCodeModalLayout } from "./ZipCodeModal.styles";
+import { ZipCodeModalLayout } from "./ZipCodeModal.styles";
 
 interface ZipCodeModalProps {
   changePostStatus: () => void;

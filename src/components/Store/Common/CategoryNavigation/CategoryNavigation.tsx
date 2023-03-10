@@ -19,7 +19,9 @@ const CategoryNavigation = ({ condition, setCondition }: CategoryNavigationProps
                 to={`/store?category=${category}`}
                 onClick={() =>
                   setCondition(
-                    category == "베스트" ? { ...condition, category, sort: "식품" } : { ...condition, category },
+                    category == "베스트"
+                      ? { ...condition, category, sort: "식품", page: 1 }
+                      : { ...condition, category, sort: "인기순", page: 1 },
                   )
                 }
               >
@@ -35,17 +37,4 @@ const CategoryNavigation = ({ condition, setCondition }: CategoryNavigationProps
 
 export default CategoryNavigation;
 
-const categoryData = [
-  "베스트",
-  "전체",
-  "식품",
-  "주방",
-  "욕실",
-  "생활",
-  "취미",
-  "선물",
-  "여성용품",
-  "반려동물",
-  "문구",
-  "이벤트",
-];
+const categoryData = ["베스트", "전체", "식품", "주방", "욕실", "생활", "취미", "선물", "여성용품", "반려동물", "문구"];

@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useQueryClient } from "react-query";
+import { useRecoilValue } from "recoil";
 import { ProductType } from "../../../../../atom/buyForm";
+import { userInfoAtom } from "../../../../../atom/userInfo";
 import useLoginCheck from "../../../../../hooks/useLoginCheck";
 import useSetQueryMutate from "../../../../../hooks/useSetQueryMutate";
 import { SummaryType } from "../SummaryContainer";
@@ -8,56 +10,31 @@ import Buy from "./Buy";
 import useBuy from "./BuyHook";
 interface BuyContainerProps {
   data: SummaryType;
+  liked: boolean;
+  changeLike: (productId: number) => Promise<void>;
 }
 
-const BuyContainer = ({ data }: BuyContainerProps) => {
+const BuyContainer = ({ data, liked, changeLike }: BuyContainerProps) => {
   const { id, count, changeCount, buyProduct } = useBuy();
   const queryClient = useQueryClient();
   const islogin = useLoginCheck();
-  const { mutate: basketMutate } = useSetQueryMutate<{ id: number }, (data: ProductType[]) => ProductType[]>(
-    id => axios.post("http://localhost:8000/basket", { id }),
-    ["Store", "Basket", "ProductList", "1"],
-    e => {
-      return (data: ProductType[]) => {
-        const duplication = data.filter(el => {
-          if (Number(el.id) === e.data.id) true;
-          return false;
-        });
-        if (duplication) {
-          alert("이미 장바구니에 포함되어있습니다");
-          return data;
-        } else {
-          const summary = queryClient.getQueryData<SummaryType>([
-            "Store",
-            "ProductDetail",
-            "summary",
-            "1",
-          ]) as SummaryType;
-          const basket = queryClient.getQueryData<ProductType[]>(["my", "baskey", "1"]);
-          const product = {
-            id: Number(id),
-            selected: true,
-            image: summary.thumnail[0],
-            brand: summary.brand,
-            name: summary.title,
-            price: summary.price,
-            count,
-            options: summary.options.map(content => ({ content, price: 0, selected: true })),
-          };
-          if (basket === undefined) {
-            return [product];
-          } else {
-            return [...basket, product];
-          }
-        }
-      };
-    },
-  );
+  const { id: userid } = useRecoilValue(userInfoAtom);
 
-  const { mutate: likedMutate } = useSetQueryMutate(
-    id => axios.post("http://localhost:8000/liked", { id }),
-    ["Store", "ProductDetail", "summary", "Buy", "liked", id],
-  );
+  const basketMutate = async () => {
+    try {
+      const { data, status } = await axios.post(
+        `https://zerowasteproduct.herokuapp.com/basket?userId=${userid}&productId=${id}`,
+      );
+      if (status == 203) {
+        alert("이미 담겨있습니다.");
+      } else {
+        alert("장바구니에 담았습니다");
+        queryClient.invalidateQueries();
+      }
+    } catch (error) {
+      alert("에러발생");
+    }
+  };
 
   return (
     <Buy
@@ -65,20 +42,9 @@ const BuyContainer = ({ data }: BuyContainerProps) => {
       count={count}
       changeCount={changeCount}
       buyProduct={buyProduct}
-      setBasket={() => {
-        if (islogin) {
-          basketMutate(id);
-        } else {
-          alert("로그인을 해주세요");
-        }
-      }}
-      setLiked={() => {
-        if (islogin) {
-          likedMutate(id);
-        } else {
-          alert("로그인을 해주세요");
-        }
-      }}
+      setBasket={basketMutate}
+      liked={liked}
+      changeLike={changeLike}
     ></Buy>
   );
 };

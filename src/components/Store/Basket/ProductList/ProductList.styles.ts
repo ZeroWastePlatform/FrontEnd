@@ -3,7 +3,8 @@ import styled from "styled-components";
 
 export const ProductListLayout = styled.div`
   width: 100%;
-  margin: 0 0 40px 0;
+  margin: 70px 0 40px 0;
+  min-height: calc(100vh - 200px);
 `;
 
 export const ProductListRow = styled.div`

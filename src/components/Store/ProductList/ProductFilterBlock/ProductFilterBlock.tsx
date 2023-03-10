@@ -26,13 +26,30 @@ const ProductFilterBlock = ({
         <StoreFilterRow
           title={"브랜드"}
           list={[
-            { text: "잇츠베러", value: "0" },
-            { text: "젤러스 스윗", value: "1" },
-            { text: "비건 포레스트", value: "2" },
-            { text: "저스트에그", value: "3" },
-            { text: "비건타민", value: "4" },
-            { text: "바오푸드", value: "5" },
-            { text: "로마린다", value: "6" },
+            { text: "이크", value: "이크" },
+            { text: "탄소창고", value: "탄소창고" },
+            { text: "지구샵", value: "지구샵" },
+            { text: "잇츠베러", value: "잇츠베러" },
+            { text: "소락", value: "소락" },
+            { text: "비건포레스트", value: "비건포레스트" },
+            { text: "닥터노아", value: "닥터노아" },
+            { text: "노플라스틱선데이", value: "노플라스틱선데이" },
+            { text: "빌리스벳", value: "빌리스벳" },
+            { text: "플레시버블", value: "플레시버블" },
+            { text: "꽃마리협동조합", value: "꽃마리협동조합" },
+            { text: "동구밭", value: "동구밭" },
+            { text: "클로에코", value: "클로에코" },
+            { text: "씨드키퍼", value: "씨드키퍼" },
+            { text: "그리너스", value: "그리너스" },
+            { text: "밀키프로젝트", value: "밀키프로젝트" },
+            { text: "프로젝트 1907", value: "프로젝트 1907" },
+            { text: "곡물집", value: "곡물집" },
+            { text: "파이토플레이트", value: "파이토플레이트" },
+            { text: "아로마티카", value: "아로마티카" },
+            { text: "toun 28", value: "toun 28" },
+            { text: "허블룸", value: "허블룸" },
+            { text: "빌리스뱃", value: "빌리스뱃" },
+            { text: "티읕", value: "티읕" },
           ]}
           selectedCheck={selectedCheck}
           setCheckboxFilter={setCheckboxFilter}
@@ -41,10 +58,10 @@ const ProductFilterBlock = ({
         <StoreFilterRow
           title={"가격"}
           list={[
-            { text: "10000원이하", value: "7", name: "price" },
-            { text: "10000~30000", value: "8", name: "price" },
-            { text: "30000~50000", value: "9", name: "price" },
-            { text: "50000이상", value: "10", name: "price" },
+            { text: "10,000원 이하", value: "10,000원 이하", name: "price" },
+            { text: "10,000원 ~ 30,000원", value: "10,000원 ~ 30,000원", name: "price" },
+            { text: "30,000원 ~ 50,000원", value: "30,000원 ~ 50,000원", name: "price" },
+            { text: "50,000원 이상", value: "50,000원 이상", name: "price" },
           ]}
           selectedCheck={selectedCheck}
           setCheckboxFilter={setCheckboxFilter}
@@ -52,11 +69,7 @@ const ProductFilterBlock = ({
         />
         <StoreFilterRow
           title={"제품상태"}
-          list={[
-            { text: "무료배송", value: "11" },
-            { text: "할인 상품", value: "12" },
-            { text: "품절상품 제외", value: "13" },
-          ]}
+          list={[{ text: "할인 상품", value: "할인 상품" }]}
           selectedCheck={selectedCheck}
           setCheckboxFilter={setCheckboxFilter}
           setRadioFilter={setRadioFilter}

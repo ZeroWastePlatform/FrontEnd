@@ -1,7 +1,9 @@
 import axios from "axios";
-import useSetQueryMutate from "../../../../../hooks/useSetQueryMutate";
+import { useRef } from "react";
+import { useQueryClient } from "react-query";
+import { useRecoilValue } from "recoil";
+import { userInfoAtom } from "../../../../../atom/userInfo";
 import useSuspenseQuery from "../../../../../hooks/useSuspenseQuery";
-import { ProductCardProps } from "../../../Common/ProductCard/ProductCard";
 import Recommend from "./Recommend";
 
 export type RecommendDataType = {
@@ -11,9 +13,8 @@ export type RecommendDataType = {
   title: string;
   discountRate: number;
   price: number;
-  badges: string[];
-  liked: boolean;
-  img: string;
+  badges: number;
+  thumnail: string;
 }[];
 
 interface RecommendContainerProps {
@@ -21,23 +22,34 @@ interface RecommendContainerProps {
 }
 
 const RecommendContainer = ({ recommendRef }: RecommendContainerProps) => {
-  const { data } = useSuspenseQuery<RecommendDataType>(["Store", "ProductDetail", "Recommend", "1"], "recommend");
-  const { mutate } = useSetQueryMutate<{ id: number }, (data: ProductCardProps[]) => ProductCardProps[]>(
-    id => axios.post("http://localhost:8000/product", { id }),
+  const { data } = useSuspenseQuery<RecommendDataType>(
     ["Store", "ProductDetail", "Recommend", "1"],
-    e => {
-      return (data: ProductCardProps[]) => {
-        return data.map(el => {
-          if (el.id === e.data.id) {
-            console.log(el.id);
-            return { ...el, liked: !el.liked };
-          }
-          return el;
-        });
-      };
-    },
+    "product/recommend",
   );
-  return <Recommend data={data} recommendRef={recommendRef} changeLiked={mutate} />;
+  const { id: userid, isLogin } = useRecoilValue(userInfoAtom);
+  const activeChange = useRef(false);
+  const queryClient = useQueryClient();
+
+  const changeLike = async (productId: number) => {
+    if (!isLogin) return alert("로그인을 해야 관심상품으로 추가할수 있습니다");
+    if (!activeChange.current) {
+      activeChange.current = true;
+      const newLike = queryClient.getQueryData<number[]>(["Store", "ProductList", "like", userid]) as number[];
+      if (likeData.indexOf(productId) === -1) {
+        await axios.post(`https://zerowasteproduct.herokuapp.com/like?productId=${productId}&userId=${userid}`);
+        newLike.push(productId);
+      } else {
+        await axios.delete(`https://zerowasteproduct.herokuapp.com/like?productId=${productId}&userId=${userid}`);
+        const index = newLike.indexOf(productId);
+        newLike.splice(index, 1);
+      }
+      queryClient.invalidateQueries();
+      queryClient.setQueryData(["Store", "ProductList", "like", userid], [...newLike]);
+      activeChange.current = false;
+    }
+  };
+  const { data: likeData } = useSuspenseQuery<number[]>(["Store", "ProductList", "like", userid], `like?id=${userid}`);
+  return <Recommend data={data} recommendRef={recommendRef} changeLike={changeLike} likeData={likeData} />;
 };
 
 export default RecommendContainer;

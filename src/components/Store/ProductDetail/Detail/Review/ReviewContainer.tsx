@@ -28,7 +28,7 @@ const ReviewContainer = ({ reviewRef }: ReviewContainerProps) => {
   const { page, sort, setPage, setSort } = useSortPaging(1, "베스트순");
   const { data } = useSuspenseQuery<ReviewDataType>(
     ["Store", "ProductDetal", "Review", "1", sort, page],
-    `review?sort=${sort}&page=${page}`,
+    `product/review?sort=${sort}&page=${page}`,
   );
   return <Review data={data} sort={sort} page={page} setSort={setSort} setPage={setPage} reviewRef={reviewRef} />;
 };
