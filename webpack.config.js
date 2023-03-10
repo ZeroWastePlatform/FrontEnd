@@ -6,11 +6,6 @@ const dotenv = require("dotenv");
 
 module.exports = env => {
   const { DEV } = env;
-  if (DEV) {
-    dotenv.config({ path: "./dev.env" });
-  } else {
-    dotenv.config({ path: "./.env" });
-  }
   return {
     mode: "development",
     entry: {
