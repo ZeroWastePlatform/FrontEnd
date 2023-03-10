@@ -1,8 +1,8 @@
 import { useRecoilValue } from "recoil";
-import { isLoginUserAtom } from "../atom/loginuser";
+import { userInfoAtom } from "../atom/userInfo";
 
 const useLoginCheck = () => {
-  return useRecoilValue(isLoginUserAtom).login;
+  return useRecoilValue(userInfoAtom).isLogin;
 };
 
 export default useLoginCheck;
