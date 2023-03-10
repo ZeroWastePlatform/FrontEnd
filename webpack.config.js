@@ -11,7 +11,6 @@ module.exports = env => {
   } else {
     dotenv.config({ path: "./.env" });
   }
-  console.log(Object.keys(process.env));
   return {
     mode: "development",
     entry: {

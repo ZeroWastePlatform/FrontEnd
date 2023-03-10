@@ -1,5 +1,20 @@
 import styled from "styled-components";
 
+export const ProductCardListNoResultLayout = styled.div`
+  width: 100%;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+export const ProductCardListNoResultTitle = styled.div`
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 30px;
+`;
+
 export const ProductCardListLayout = styled.div`
   width: 100%;
   margin: 0 0 50px 0;

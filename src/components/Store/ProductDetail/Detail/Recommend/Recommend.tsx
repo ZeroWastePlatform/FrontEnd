@@ -1,5 +1,3 @@
-import { AxiosResponse } from "axios";
-import { UseMutateFunction } from "react-query";
 import ProductCard from "../../../Common/ProductCard/ProductCard";
 import { RecommendLayout, RecommendList, RecommendTitle } from "./Recommend.styles";
 import { RecommendDataType } from "./RecommendContainer";
@@ -7,16 +5,25 @@ import { RecommendDataType } from "./RecommendContainer";
 interface RecommendProps {
   data: RecommendDataType;
   recommendRef: React.RefObject<HTMLDivElement>;
-  changeLiked: UseMutateFunction<AxiosResponse<unknown, unknown>, unknown, unknown, unknown>;
+  changeLike: (productId: number) => Promise<void>;
+  likeData: number[];
 }
 
-const Recommend = ({ data, recommendRef, changeLiked }: RecommendProps) => {
+const Recommend = ({ data, recommendRef, changeLike, likeData }: RecommendProps) => {
   return (
     <RecommendLayout ref={recommendRef}>
       <RecommendTitle>이런 제품은 어떠세요?</RecommendTitle>
       <RecommendList>
         {data.map((card, index) => {
-          return <ProductCard {...card} key={index} changeLiked={changeLiked} order={0}></ProductCard>;
+          return (
+            <ProductCard
+              {...card}
+              key={index}
+              changeLike={changeLike}
+              order={0}
+              liked={likeData.indexOf(card.id) !== -1}
+            ></ProductCard>
+          );
         })}
       </RecommendList>
     </RecommendLayout>

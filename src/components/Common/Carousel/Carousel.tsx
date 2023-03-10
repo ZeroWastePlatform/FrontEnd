@@ -28,21 +28,44 @@ const Carousel = ({ data, order, changeOrder, type, stopTransition, checkActiveI
       <CarouselLayout type={type}>
         <CarouselRow type={type} to={"/store"}>
           {/*TO-DO : 주소를 적절한 종류로 교체하기*/}
-          <CarouselImg src={data[data.length - 1]} key={0} order={order} stopTransition={stopTransition} />
+          <CarouselImg
+            src={`https://zerowasteproduct.herokuapp.com${data[data.length - 1]}`}
+            key={0}
+            order={order}
+            stopTransition={stopTransition}
+          />
           {data.map((_, index) => {
-            return <CarouselImg src={data[index]} key={index + 1} order={order} stopTransition={stopTransition} />;
+            return (
+              <CarouselImg
+                src={`https://zerowasteproduct.herokuapp.com${data[index]}`}
+                key={index + 1}
+                order={order}
+                stopTransition={stopTransition}
+              />
+            );
           })}
-          <CarouselImg src={data[0]} key={4} order={order} stopTransition={stopTransition} />
+          <CarouselImg
+            src={`https://zerowasteproduct.herokuapp.com${data[0]}`}
+            key={5}
+            order={order}
+            stopTransition={stopTransition}
+          />
           <CarouselButtonWrap>
             <CarouselButton
               direction={"left"}
-              onClick={() => changeOrder({ direction: "left", length: data.length, order })}
+              onClick={e => {
+                changeOrder({ direction: "left", length: data.length, order });
+                e.preventDefault();
+              }}
             >
               <img src={leftArrow} />
             </CarouselButton>
             <CarouselButton
               direction={"right"}
-              onClick={() => changeOrder({ direction: "right", length: data.length, order })}
+              onClick={e => {
+                changeOrder({ direction: "right", length: data.length, order });
+                e.preventDefault();
+              }}
             >
               <img src={rightArrow} />
             </CarouselButton>

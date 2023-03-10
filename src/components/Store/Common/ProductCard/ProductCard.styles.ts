@@ -114,7 +114,7 @@ export const ProductCardBadgeItem = styled.li<{ type: string }>`
 `;
 
 const badgeType: { [index: string]: { background: string; color: string; border: string } } = {
-  best: { background: "primaryPurple100", color: "gray0", border: "primaryPurple100" },
-  new: { background: "gray0", color: "primaryGreen100", border: "primaryGreen100" },
-  sale: { background: "primaryGreen100", color: "gray0", border: "primaryGreen100" },
+  BEST: { background: "primaryPurple100", color: "gray0", border: "primaryPurple100" },
+  NEW: { background: "gray0", color: "primaryGreen100", border: "primaryGreen100" },
+  SALE: { background: "primaryGreen100", color: "gray0", border: "primaryGreen100" },
 };

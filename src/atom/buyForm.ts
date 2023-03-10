@@ -4,12 +4,11 @@ import { atom, selector } from "recoil";
 export interface ProductType {
   id: number;
   selected: boolean;
-  image: string;
+  thumnail: string;
   brand: string;
   name: string;
   price: number;
   count: number;
-  options: { content: string; price: number; selected: boolean }[];
 }
 
 interface isBuyFormAtomType {
@@ -55,11 +54,7 @@ export const PriceSelector = selector({
     const { product } = get(isBuyFormAtom);
     if (product.length) {
       return product.reduce((prev, cur) => {
-        const optionSum = cur.options.reduce((prev, cur) => {
-          if (cur.selected) return prev + Number(cur.price);
-          return prev;
-        }, 0);
-        return prev + optionSum + Number(cur.price) * cur.count;
+        return prev + Number(cur.price) * cur.count;
       }, 0);
     }
     return 0;

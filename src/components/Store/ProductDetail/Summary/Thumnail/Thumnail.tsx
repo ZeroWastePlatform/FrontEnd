@@ -9,17 +9,21 @@ import {
   ThumnailSmallImgBox,
 } from "./Thumnail.styles";
 
+import empty from "../../../../../assets/images/characters-logo.png";
+
 interface ThumnailProps {
-  photos: string[];
+  photo: string;
 }
 
-const Thumnail = ({ photos }: ThumnailProps) => {
+const Thumnail = ({ photo }: ThumnailProps) => {
+  const photos = [`https://zerowasteproduct.herokuapp.com${photo}`, empty];
+
   const [selectedThumnail, setSelectedThumnail] = useState(0);
   return (
     <ThumnailLayout>
       <ThumnailBigImgBox>
         <ThumnailBigImgBlock>
-          <ThumnailBigImg src={photos[selectedThumnail]} />
+          <ThumnailBigImg src={selectedThumnail === 0 ? `https://zerowasteproduct.herokuapp.com${photo}` : empty} />
         </ThumnailBigImgBlock>
       </ThumnailBigImgBox>
       <ThumnailSmallImgBox>

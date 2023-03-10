@@ -31,16 +31,13 @@ const Header = ({ isLogin }: HeaderProps) => {
           <HeaderBoldText>커뮤니티</HeaderBoldText>
         </Link>
         <SearchContainer />
-        <Link to="/">
-          <HeaderBagImg />
-        </Link>
         {isLogin && (
           <>
             <Link to="/">
               <HeaderHeartImg />
             </Link>
-            <Link to="/">
-              <HeaderBellImg />
+            <Link to="/store/basket">
+              <HeaderBagImg />
             </Link>
           </>
         )}

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const LoggedInMenuLayout = styled.div`
   position: relative;
+  z-index: 5;
 `;
 
 export const LoggedInMenuProfileImg = styled.img`
