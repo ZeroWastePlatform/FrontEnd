@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useRef } from "react";
 import { useQueryClient } from "react-query";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { isLoginUserAtom } from "../../../../atom/loginuser";
+import { userInfoAtom } from "../../../../atom/userInfo";
 import useSetQueryMutate from "../../../../hooks/useSetQueryMutate";
 import useSuspenseQuery from "../../../../hooks/useSuspenseQuery";
 import { conditionType, setConditionType } from "../../../../pages/Store/ProductList";
@@ -36,7 +36,7 @@ const ProductCardListContainer = ({ condition, setCondition }: ProductCardListCo
     ["Store", "ProductList", "ProductCardList", category, filter, sort, page],
     `product?category=${category}${filter.map(el => `&filter=${el}`).join("")}&sort=${sort}&page=${page}`,
   );
-  const { id, login, like } = useRecoilValue(isLoginUserAtom);
+  const { id, isLogin, like } = useRecoilValue(userInfoAtom);
   const activeChange = useRef(false);
   const queryClient = useQueryClient();
 
@@ -47,7 +47,7 @@ const ProductCardListContainer = ({ condition, setCondition }: ProductCardListCo
   };
 
   const changeLike = async (productId: number) => {
-    if (!login) return alert("로그인을 해야 관심상품으로 추가할수 있습니다");
+    if (!isLogin) return alert("로그인을 해야 관심상품으로 추가할수 있습니다");
     if (!activeChange.current) {
       activeChange.current = true;
       const newLike = queryClient.getQueryData<number[]>(["Store", "ProductList", "like", id]) as number[];

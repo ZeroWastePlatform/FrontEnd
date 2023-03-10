@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import {
   HeaderBagImg,
+  HeaderBellImg,
   HeaderBoldText,
   HeaderBox,
   HeaderHeartImg,

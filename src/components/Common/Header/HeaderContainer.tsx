@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { isLoginUserAtom } from "../../../atom/loginuser";
+import { userInfoAtom } from "../../../atom/userInfo";
 import Header from "./Header";
 
 const HeaderContainer = () => {
-  const { login } = useRecoilValue(isLoginUserAtom);
+  const userInfo = useRecoilValue(userInfoAtom);
   return (
     <>
-      <Header isLogin={login}></Header>
+      <Header isLogin={userInfo.isLogin}></Header>
       <Outlet />
     </>
   );

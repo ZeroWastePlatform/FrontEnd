@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { isLoginUserAtom } from "../../../../atom/loginuser";
+import { userInfoAtom } from "../../../../atom/userInfo";
 import useSuspenseQuery from "../../../../hooks/useSuspenseQuery";
 import Summary from "./Summary";
 
@@ -35,12 +35,12 @@ const SummaryContainer = ({ setCondition }: SummaryContainerProps) => {
     e => setCondition({ category: e.category }),
   );
 
-  const { id: userid, login } = useRecoilValue(isLoginUserAtom);
+  const { id: userid, isLogin } = useRecoilValue(userInfoAtom);
   const activeChange = useRef(false);
   const queryClient = useQueryClient();
 
   const changeLike = async (productId: number) => {
-    if (!login) return alert("로그인을 해야 관심상품으로 추가할수 있습니다");
+    if (!isLogin) return alert("로그인을 해야 관심상품으로 추가할수 있습니다");
     if (!activeChange.current) {
       activeChange.current = true;
       const newLike = queryClient.getQueryData<number[]>(["Store", "ProductList", "like", userid]) as number[];

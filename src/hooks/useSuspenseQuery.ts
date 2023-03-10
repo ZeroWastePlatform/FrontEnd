@@ -1,11 +1,15 @@
-import axios from "axios";
 import { useQuery } from "react-query";
+import customAPI from "../lib/customApi";
 
-const useSuspenseQuery = <T>(queryKey: unknown[], url: string, onSuccess?: (data: T) => void) => {
+const useSuspenseQuery = <T>(queryKey: unknown[], url: string, onSuccess?: (data: T) => void, enabled?: boolean) => {
   const { data } = useQuery<T>(
     queryKey,
-    () => axios(`https://zerowasteproduct.herokuapp.com/${url}`).then(res => res.data),
+    () =>
+      customAPI(`${url}`)
+        .then(res => res.data)
+        .catch(err => console.error("err :", err)),
     {
+      enabled: enabled ?? true,
       suspense: true,
       useErrorBoundary: true,
       onSuccess,

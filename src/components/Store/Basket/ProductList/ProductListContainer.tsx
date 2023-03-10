@@ -4,7 +4,7 @@ import { useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { isBuyFormAtom, ProductType } from "../../../../atom/buyForm";
-import { isLoginUserAtom } from "../../../../atom/loginuser";
+import { userInfoAtom } from "../../../../atom/userInfo";
 import useSetQueryMutate from "../../../../hooks/useSetQueryMutate";
 import useSuspenseQuery from "../../../../hooks/useSuspenseQuery";
 import ProductList from "./ProductList";
@@ -12,7 +12,7 @@ import ProductList from "./ProductList";
 const ProductListContainer = () => {
   const [checkList, setCheckList] = useState<boolean[]>([]);
   const [countList, setCountList] = useState<number[]>([]);
-  const { id: userid, login } = useRecoilValue(isLoginUserAtom);
+  const { id: userid, isLogin } = useRecoilValue(userInfoAtom);
   const { data } = useSuspenseQuery<ProductType[]>(["Store", "Basket", "ProductList", userid], `basket?id=${userid}`);
   const queryClient = useQueryClient();
   const basketMutate = async (id: number) => {
