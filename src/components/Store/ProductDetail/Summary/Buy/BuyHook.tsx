@@ -24,7 +24,6 @@ const useBuy = () => {
         name: data.title,
         price: data.price,
         count,
-        options: data.options.map(content => ({ content, price: 0, selected: true })),
       },
     ];
     setToggleAtom(prev => ({ ...prev, product }));

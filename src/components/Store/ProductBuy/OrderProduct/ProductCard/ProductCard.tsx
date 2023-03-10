@@ -11,9 +11,6 @@ import {
   ProductCardInfoBrand,
   ProductCardInfoButtonBox,
   ProductCardInfoName,
-  ProductCardInfoOptionBox,
-  ProductCardInfoOptionButton,
-  ProductCardInfoOptionText,
   ProductCardInfoPrice,
   ProductCardInput,
   ProductCardInputBlock,
@@ -39,22 +36,13 @@ const ProductCard = ({ changeProduct, changeCount, data, index, moveBuyPage, del
           onChange={() => changeProduct(index === undefined ? data.id : index)}
         />
       </ProductCardInputBlock>
-      <ProductCardImg src={data.image} />
+      <ProductCardImg src={`https://zerowasteproduct.herokuapp.com${data.thumnail}`} />
       <ProductCardInfoBox>
         <ProductCardInfoBoxTop>
           <ProductCardInfoBrand>{data.brand}</ProductCardInfoBrand>
-          <img onClick={() => deleteProduct(index as number)} src={deleteImg} />
+          <img onClick={() => deleteProduct(data.id)} src={deleteImg} />
         </ProductCardInfoBoxTop>
         <ProductCardInfoName>{data.name}</ProductCardInfoName>
-        {/*TO-DO : 리스트 형태로 수정하기*/}
-        {data.options.map(({ content }, index) => {
-          return (
-            <ProductCardInfoOptionBox key={index}>
-              <ProductCardInfoOptionText>{content}</ProductCardInfoOptionText>
-              <ProductCardInfoOptionButton>옵션변경</ProductCardInfoOptionButton>
-            </ProductCardInfoOptionBox>
-          );
-        })}
         <ProductCardInfoButtonBox>
           <ProductCardInfoPrice>{numberWithCommas(Number(data.price))}원</ProductCardInfoPrice>
           <Counter
@@ -64,16 +52,7 @@ const ProductCard = ({ changeProduct, changeCount, data, index, moveBuyPage, del
         </ProductCardInfoButtonBox>
       </ProductCardInfoBox>
       <ProductCardBuyBox>
-        <ProductCardBuyBoxText>
-          {numberWithCommas(
-            data.count * Number(data.price) +
-              data.options.reduce((prev, cur) => {
-                if (cur.selected) return prev + Number(cur.price);
-                return prev;
-              }, 0),
-          )}
-          원
-        </ProductCardBuyBoxText>
+        <ProductCardBuyBoxText>{numberWithCommas(data.count * Number(data.price))}원</ProductCardBuyBoxText>
         {moveBuyPage ? (
           <ProductCardBuyBoxButton onClick={() => moveBuyPage(index)}>바로구매</ProductCardBuyBoxButton>
         ) : null}

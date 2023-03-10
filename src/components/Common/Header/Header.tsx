@@ -31,13 +31,15 @@ const Header = ({ isLogin }: HeaderProps) => {
         </Link>
         <SearchContainer />
         {isLogin && (
-          <Link to="/">
-            <HeaderHeartImg />
-          </Link>
+          <>
+            <Link to="/">
+              <HeaderHeartImg />
+            </Link>
+            <Link to="/store/basket">
+              <HeaderBagImg />
+            </Link>
+          </>
         )}
-        <Link to="/">
-          <HeaderBagImg />
-        </Link>
         {isLogin ? (
           <HeaderLoggedInMenuContainer />
         ) : (

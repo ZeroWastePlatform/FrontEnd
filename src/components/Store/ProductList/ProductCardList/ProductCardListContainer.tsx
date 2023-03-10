@@ -1,4 +1,8 @@
 import axios from "axios";
+import { useEffect, useRef } from "react";
+import { useQueryClient } from "react-query";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { isLoginUserAtom } from "../../../../atom/loginuser";
 import useSetQueryMutate from "../../../../hooks/useSetQueryMutate";
 import useSuspenseQuery from "../../../../hooks/useSuspenseQuery";
 import { conditionType, setConditionType } from "../../../../pages/Store/ProductList";
@@ -12,15 +16,13 @@ export interface ProductCardListDataContentType {
   title: string;
   discountRate: number;
   price: number;
-  badges: string[];
-  liked: boolean;
-  img: string;
+  badges: number;
+  thumnail: string;
 }
 
 export interface ProductCardListDataType {
-  totalCount: number;
-  totalPage: number;
-  contents: ProductCardListDataContentType[];
+  count: number;
+  rows: ProductCardListDataContentType[];
 }
 
 interface ProductCardListContainerProps {
@@ -32,43 +34,44 @@ const ProductCardListContainer = ({ condition, setCondition }: ProductCardListCo
   const { category, filter, sort, page } = condition;
   const { data } = useSuspenseQuery<ProductCardListDataType>(
     ["Store", "ProductList", "ProductCardList", category, filter, sort, page],
-    `product?category=${category}&filter=${filter}&sort=${sort}&page=${page}`,
+    `product?category=${category}${filter.map(el => `&filter=${el}`).join("")}&sort=${sort}&page=${page}`,
   );
+  const { id, login, like } = useRecoilValue(isLoginUserAtom);
+  const activeChange = useRef(false);
+  const queryClient = useQueryClient();
 
-  const { mutate } = useSetQueryMutate<
-    { id: number },
-    (data: { totalCount: number; contents: ProductCardProps[] }) => {
-      totalCount: number;
-      contents: ProductCardProps[];
-    }
-  >(
-    id => axios.post("http://localhost:8000/product", { id }),
-    ["Store", "ProductList", "ProductCardList", category, filter, sort, page],
-    e => {
-      return (data: { totalCount: number; contents: ProductCardProps[] }) => {
-        return {
-          totalCount: data.totalCount,
-          contents: data.contents.map(el => {
-            if (el.id === e.data.id) {
-              console.log(el.id);
-              return { ...el, liked: !el.liked };
-            }
-            return el;
-          }),
-        };
-      };
-    },
-  );
+  const { data: likeData } = useSuspenseQuery<number[]>(["Store", "ProductList", "like", id], `like?id=${id}`);
+
   const setPage = (page: number) => {
     setCondition({ ...condition, page });
+  };
+
+  const changeLike = async (productId: number) => {
+    if (!login) return alert("로그인을 해야 관심상품으로 추가할수 있습니다");
+    if (!activeChange.current) {
+      activeChange.current = true;
+      const newLike = queryClient.getQueryData<number[]>(["Store", "ProductList", "like", id]) as number[];
+      if (like.indexOf(productId) === -1) {
+        await axios.post(`https://zerowasteproduct.herokuapp.com/like?productId=${productId}&userId=${id}`);
+        newLike.push(productId);
+      } else {
+        await axios.delete(`https://zerowasteproduct.herokuapp.com/like?productId=${productId}&userId=${id}`);
+        const index = newLike.indexOf(productId);
+        newLike.splice(index, 1);
+      }
+
+      queryClient.setQueryData(["Store", "ProductList", "like", id], [...newLike]);
+      activeChange.current = false;
+    }
   };
   return (
     <ProductCardList
       data={data}
       condition={condition}
       setCondition={setCondition}
-      changeLiked={mutate}
       setPage={setPage}
+      likeData={likeData}
+      changeLike={changeLike}
     />
   );
 };

@@ -14,7 +14,7 @@ const Info = ({ data, infoRef }: InfoProps) => {
       <InfoCol>
         <InfoTitle>상품정보</InfoTitle>
         {(fold ? [data[0]] : data).map(src => (
-          <InfoImg src={src} key={src} />
+          <InfoImg src={`https://zerowasteproduct.herokuapp.com${src}`} key={src} />
         ))}
         <InfoButton onClick={() => setFold(!fold)}>
           상품정보 {fold ? "더보기" : "접기"}

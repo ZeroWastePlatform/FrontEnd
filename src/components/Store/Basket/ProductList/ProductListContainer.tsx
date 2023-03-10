@@ -1,8 +1,10 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { isBuyFormAtom, ProductType } from "../../../../atom/buyForm";
+import { isLoginUserAtom } from "../../../../atom/loginuser";
 import useSetQueryMutate from "../../../../hooks/useSetQueryMutate";
 import useSuspenseQuery from "../../../../hooks/useSuspenseQuery";
 import ProductList from "./ProductList";
@@ -10,27 +12,23 @@ import ProductList from "./ProductList";
 const ProductListContainer = () => {
   const [checkList, setCheckList] = useState<boolean[]>([]);
   const [countList, setCountList] = useState<number[]>([]);
-  const { data } = useSuspenseQuery<ProductType[]>(["Store", "Basket", "ProductList", "1"], "basket");
-  const { mutate: basketMutate } = useSetQueryMutate<{ id: number }, (data: ProductType[]) => ProductType[]>(
-    id => axios.delete("http://localhost:8000/basket", { data: { id } }),
-    ["Store", "Basket", "ProductList", "1"],
-    e => {
-      return (data: ProductType[]) => {
-        data.splice(e.data.id, 1);
-        setCountList(list => {
-          const newlist = [...list];
-          newlist.splice(e.data.id, 1);
-          return newlist;
-        });
-        setCheckList(list => {
-          const newlist = [...list];
-          newlist.splice(e.data.id, 1);
-          return newlist;
-        });
-        return data;
-      };
-    },
-  );
+  const { id: userid, login } = useRecoilValue(isLoginUserAtom);
+  const { data } = useSuspenseQuery<ProductType[]>(["Store", "Basket", "ProductList", userid], `basket?id=${userid}`);
+  const queryClient = useQueryClient();
+  const basketMutate = async (id: number) => {
+    await axios.delete(`https://zerowasteproduct.herokuapp.com/basket?userId=${userid}&productId=${id}`);
+    setCountList(list => {
+      const newlist = [...list];
+      newlist.splice(id, 1);
+      return newlist;
+    });
+    setCheckList(list => {
+      const newlist = [...list];
+      newlist.splice(id, 1);
+      return newlist;
+    });
+    queryClient.invalidateQueries();
+  };
 
   const setbuyFormAtom = useSetRecoilState(isBuyFormAtom);
   const navigation = useNavigate();
