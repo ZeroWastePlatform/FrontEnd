@@ -24,11 +24,9 @@ function App() {
   const setUserInfo = useSetRecoilState(userInfoAtom);
   const accessToken = localStorage.getItem("accessToken");
   const { data } = useSuspenseQuery<UserInfoResponseType>(["userInfo", accessToken], "api/members/me");
-  console.log(data);
-
   useEffect(() => {
     if (data) {
-      setUserInfo(prev => ({ ...data.myPageProfileResponse, isLogin: true }));
+      setUserInfo({ ...data.myPageProfileResponse, isLogin: true });
     }
   }, [data]);
   return (

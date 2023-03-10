@@ -16,3 +16,9 @@ export interface UserInfoType {
 export interface UserInfoResponseType {
   myPageProfileResponse: UserInfoType;
 }
+
+export type AgreeList = {
+  id: number;
+  text: string;
+  description: string;
+}[];

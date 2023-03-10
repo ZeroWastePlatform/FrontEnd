@@ -1,4 +1,5 @@
 import React from "react";
+import { AgreeList } from "../../../types";
 import {
   AgreeBox,
   AgreeLayout,
@@ -14,11 +15,6 @@ import {
   AgreeSelectText,
 } from "./Agree.styles";
 
-type AgreeList = {
-  id: number;
-  text: string;
-  description: string;
-}[];
 interface AgreeProps {
   agreeList: AgreeList;
   checkedList: AgreeList;
