@@ -5,12 +5,14 @@ export interface ICategoryList {
 
 export interface UserInfoType {
   isLogin: boolean;
+  id: null | number;
   couponCnt: number;
   level: number;
   name: string;
   nickname: string;
   point: number;
   zzimCnt: number;
+  like: number[];
 }
 export interface UserInfoResponseType {
   myPageProfileResponse: UserInfoType;

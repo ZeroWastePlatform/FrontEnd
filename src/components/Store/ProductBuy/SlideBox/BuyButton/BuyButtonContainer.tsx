@@ -2,13 +2,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { isBuyFormAtom, PriceSelector } from "../../../../../atom/buyForm";
-import { isLoginUserAtom } from "../../../../../atom/loginuser";
+import { userInfoAtom } from "../../../../../atom/userInfo";
 import BuyButton from "./BuyButton";
 
 const BuyButtonContainer = () => {
   const price = useRecoilValue(PriceSelector);
   const buyInfo = useRecoilValue(isBuyFormAtom);
-  const user = useRecoilValue(isLoginUserAtom);
+  const user = useRecoilValue(userInfoAtom);
 
   const navigation = useNavigate();
   const buyProduct = async () => {

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useQueryClient } from "react-query";
 import { useRecoilValue } from "recoil";
 import { ProductType } from "../../../../../atom/buyForm";
-import { isLoginUserAtom } from "../../../../../atom/loginuser";
+import { userInfoAtom } from "../../../../../atom/userInfo";
 import useLoginCheck from "../../../../../hooks/useLoginCheck";
 import useSetQueryMutate from "../../../../../hooks/useSetQueryMutate";
 import { SummaryType } from "../SummaryContainer";
@@ -18,7 +18,7 @@ const BuyContainer = ({ data, liked, changeLike }: BuyContainerProps) => {
   const { id, count, changeCount, buyProduct } = useBuy();
   const queryClient = useQueryClient();
   const islogin = useLoginCheck();
-  const { id: userid } = useRecoilValue(isLoginUserAtom);
+  const { id: userid } = useRecoilValue(userInfoAtom);
 
   const basketMutate = async () => {
     try {

@@ -29,15 +29,15 @@ const Carousel = ({ data, order, changeOrder, type, stopTransition, checkActiveI
         <CarouselRow type={type} to={"/store"}>
           {/*TO-DO : 주소를 적절한 종류로 교체하기*/}
           <CarouselImg
-            src={`https://zerowasteproduct.herokuapp.com${data[data.length - 1]}`}
+            src={`https://zerowasteproduct.herokuapp.com${data?.[data?.length - 1]}`}
             key={0}
             order={order}
             stopTransition={stopTransition}
           />
-          {data.map((_, index) => {
+          {data?.map((_, index) => {
             return (
               <CarouselImg
-                src={`https://zerowasteproduct.herokuapp.com${data[index]}`}
+                src={`https://zerowasteproduct.herokuapp.com${data?.[index]}`}
                 key={index + 1}
                 order={order}
                 stopTransition={stopTransition}
@@ -45,7 +45,7 @@ const Carousel = ({ data, order, changeOrder, type, stopTransition, checkActiveI
             );
           })}
           <CarouselImg
-            src={`https://zerowasteproduct.herokuapp.com${data[0]}`}
+            src={`https://zerowasteproduct.herokuapp.com${data?.[0]}`}
             key={5}
             order={order}
             stopTransition={stopTransition}
@@ -63,7 +63,7 @@ const Carousel = ({ data, order, changeOrder, type, stopTransition, checkActiveI
             <CarouselButton
               direction={"right"}
               onClick={e => {
-                changeOrder({ direction: "right", length: data.length, order });
+                changeOrder({ direction: "right", length: data?.length, order });
                 e.preventDefault();
               }}
             >
@@ -71,7 +71,7 @@ const Carousel = ({ data, order, changeOrder, type, stopTransition, checkActiveI
             </CarouselButton>
             {type === "Home" ? (
               <CarouselListButtonBlock>
-                {new Array(data.length).fill(0).map((_, index) => (
+                {new Array(data?.length).fill(0).map((_, index) => (
                   <CarouselListButton active={checkActiveItem(index)} key={index} onClick={() => setOrder(index + 1)} />
                 ))}
               </CarouselListButtonBlock>
