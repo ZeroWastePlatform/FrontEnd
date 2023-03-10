@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import charactersImg from "../../../assets/images/characters-logo.png";
-import bigLogoImg from "../../../assets/images/big-logo.png";
+import bigLogoImg from "../../../assets/images/big-logo.svg";
 
 export const LogoImgBox = styled.div`
   display: flex;

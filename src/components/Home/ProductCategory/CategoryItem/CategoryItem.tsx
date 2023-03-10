@@ -6,10 +6,10 @@ interface CategoryItemProps {
   category: ICategoryList;
 }
 
-const CategoryItem = ({ category: { image, text, href } }: CategoryItemProps) => {
+const CategoryItem = ({ category: { image, text } }: CategoryItemProps) => {
   return (
-    <CategoryItemLayout>
-      <CategoryItemImg />
+    <CategoryItemLayout to={`/store?category=${text}`}>
+      <CategoryItemImg src={image} />
       <CategoryItemText>{text}</CategoryItemText>
     </CategoryItemLayout>
   );

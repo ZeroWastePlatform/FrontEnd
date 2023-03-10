@@ -8,7 +8,7 @@ import {
   ShipInfoCol,
   ShipInfoLayout,
 } from "./ShipInfo.styles";
-import ZipCodeModal from "./ZipCodeModal/ZipCodeModal";
+import ZipCodeModal from "../../../Common/ZipCodeModal/ZipCodeModal";
 
 interface ShipInfoProps {
   onCompletePost: (data: any) => void;

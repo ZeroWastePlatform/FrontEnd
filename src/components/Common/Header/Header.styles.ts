@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import logoImg from "../../../assets/images/header-logo.svg";
-import bagImg from "../../../assets/images/bag-04.png";
-import heartImg from "../../../assets/images/heart.png";
+import bagImg from "../../../assets/images/bag-04.svg";
+import heartImg from "../../../assets/images/heart.svg";
 
 export const HeaderLayout = styled.div`
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);

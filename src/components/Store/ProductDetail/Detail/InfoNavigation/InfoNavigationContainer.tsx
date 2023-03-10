@@ -10,7 +10,7 @@ interface InfoNavigationContainerProps {
 const InfoNavigationContainer = ({ navigate, navigation }: InfoNavigationContainerProps) => {
   const { data } = useQuery(
     ["product", "infonavigation", "1"],
-    () => axios(`http://localhost:8000/infonavigation`).then(res => res.data),
+    () => axios(`https://zerowasteproduct.herokuapp.com/product/infonavigation`).then(res => res.data),
     {
       suspense: true,
       useErrorBoundary: true,

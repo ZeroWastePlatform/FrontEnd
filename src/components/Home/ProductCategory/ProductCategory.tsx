@@ -1,4 +1,3 @@
-import React from "react";
 import CategoryItem from "./CategoryItem/CategoryItem";
 import { ProductCategoryLayout, ProductCategoryList } from "./ProductCategory.styles";
 import { ICategoryList } from "../../../types/index";

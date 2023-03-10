@@ -29,7 +29,7 @@ const AskContainer = ({ askRef }: AskContainerProps) => {
   const { page, sort, setPage, setSort } = useSortPaging(1, "베스트순");
   const { data } = useSuspenseQuery<AskDataType>(
     ["Store", "ProductDetal", "Ask", "1", sort, page],
-    `ask?sort=${sort}&page=${page}`,
+    `product/ask?sort=${sort}&page=${page}`,
   );
 
   return <Ask page={page} setPage={setPage} sort={sort} setSort={setSort} data={data} askRef={askRef} />;

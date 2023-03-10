@@ -11,7 +11,7 @@ interface DeliveryContainerProps {
 }
 
 const DeliveryContainer = ({ deliveryRef }: DeliveryContainerProps) => {
-  const { data } = useSuspenseQuery<DeliveryDataType>(["Store", "ProductDetail", "Delivery", "1"], "delivery");
+  const { data } = useSuspenseQuery<DeliveryDataType>(["Store", "ProductDetail", "Delivery", "1"], "product/delivery");
 
   return <Delivery data={data} deliveryRef={deliveryRef} />;
 };

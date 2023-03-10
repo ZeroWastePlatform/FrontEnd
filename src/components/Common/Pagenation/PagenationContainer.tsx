@@ -6,11 +6,12 @@ interface PagenationContainerProps {
   unit: number;
   setPage: (page: number) => void;
 }
+
 const PagenationContainer = ({ page, setPage, totalPage, unit }: PagenationContainerProps) => {
   const makePageList = () => {
     const unitPage = Math.ceil(page / unit);
-    const startPage = (unitPage - 1) * 9 + 1;
-    const list = new Array(9)
+    const startPage = (unitPage - 1) * unit + 1;
+    const list = new Array(unit)
       .fill(0)
       .map((_, index) => index + startPage)
       .filter(page => page <= totalPage);

@@ -14,7 +14,7 @@ const ProductSort = ({ condition, setCondition }: ProductSortProps) => {
           <ProductSortText
             key={index}
             same={element === condition.sort}
-            onClick={() => setCondition({ ...condition, sort: element })}
+            onClick={() => setCondition({ ...condition, sort: element, page: 1 })}
           >
             {element}
           </ProductSortText>

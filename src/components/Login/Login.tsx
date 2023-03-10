@@ -2,11 +2,18 @@ import React from "react";
 import Logo from "../Common/Logo/Logo";
 import { LoginButton, LoginButtonBox, LoginLayout, LoginText, LoginTextBox } from "./Login.styles";
 
-const Login = () => {
+interface LoginProps {
+  useTestAccount: () => void;
+}
+
+const Login = ({ useTestAccount }: LoginProps) => {
   return (
     <LoginLayout>
       <Logo />
       <LoginButtonBox>
+        <LoginButton authType="ect" bgColor="#EAEAEA" onClick={useTestAccount}>
+          테스트 로그인
+        </LoginButton>
         <LoginButton authType="kakao" bgColor="#FEE500">
           카카오 로그인
         </LoginButton>
