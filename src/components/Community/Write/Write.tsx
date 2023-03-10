@@ -1,4 +1,5 @@
 import React from "react";
+import { PostType } from "../../../types";
 import CustomSelectContainer from "../../Common/CustomSelect/CustomSelectContainer";
 import AttachmentContainer from "./Attachment/AttachmentContainer";
 import HashtagBoxContainer from "./HashtagBox/HashtagBoxContainer";
@@ -16,9 +17,10 @@ import {
 interface WriteProps {
   handleClickRegist: () => void;
   changeFormData: (key: string, data: string | number) => void;
+  postData?: PostType;
 }
 
-const Write = ({ handleClickRegist, changeFormData }: WriteProps) => {
+const Write = ({ handleClickRegist, changeFormData, postData }: WriteProps) => {
   return (
     <WriteLayout>
       <WriteMenu>
@@ -28,10 +30,15 @@ const Write = ({ handleClickRegist, changeFormData }: WriteProps) => {
           <WriteRegistBtn onClick={handleClickRegist}>등록</WriteRegistBtn>
         </WriteBtnBox>
       </WriteMenu>
-      <WriteSubjectInput placeholder="제목을 입력해주세요." onChange={e => changeFormData("title", e.target.value)} />
+      <WriteSubjectInput
+        placeholder="제목을 입력해주세요."
+        onChange={e => changeFormData("title", e.target.value)}
+        defaultValue={postData && postData.title}
+      />
       <WriteContent
         placeholder="내용을 입력해주세요."
         onChange={e => changeFormData("content", e.target.value)}
+        defaultValue={postData && postData.content}
       ></WriteContent>
       <WriteOptionBox>
         <AttachmentContainer />

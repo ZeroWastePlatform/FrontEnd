@@ -5,7 +5,7 @@ export interface WriteFormAtomType {
   title: string;
   content: string;
   price?: number;
-  hashtag: string;
+  hashtag: string | string[];
 }
 
 export const writeFormAtom = atom<WriteFormAtomType>({
