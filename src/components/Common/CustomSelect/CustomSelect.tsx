@@ -16,7 +16,7 @@ const CustomSelect = ({ options, selectValue, isShowOption, setIsShowOption, han
         {selectValue}
       </CustomSelectLabel>
       <CustomSelectList show={isShowOption}>
-        {options.map((option, idx) => (
+        {options?.map((option, idx) => (
           <CustomSelectItem key={idx} onClick={handleClick}>
             {option}
           </CustomSelectItem>

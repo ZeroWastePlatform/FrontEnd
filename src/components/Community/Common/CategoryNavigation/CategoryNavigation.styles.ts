@@ -13,7 +13,6 @@ export const CategoryNavigationBox = styled.div`
   align-items: center;
   justify-content: space-between;
   padding-left: 240px;
-  padding-right: 40px;
   font-size: 18px;
   font-weight: 700;
 `;

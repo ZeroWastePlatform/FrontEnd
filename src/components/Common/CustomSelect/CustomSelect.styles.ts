@@ -4,13 +4,12 @@ import upArrowImg from "../../../assets/images/up_arrow.png";
 
 export const CustomSelectBox = styled.div`
   position: relative;
-  width: 160px;
 `;
 
 export const CustomSelectLabel = styled.label<{ show: boolean }>`
   position: relative;
   cursor: pointer;
-  padding-right: 10px;
+  padding-right: 20px;
 
   &::after {
     position: absolute;
@@ -18,14 +17,14 @@ export const CustomSelectLabel = styled.label<{ show: boolean }>`
     background: url(${({ show }) => (show ? upArrowImg : downArrowImg)}) no-repeat center;
     width: 15px;
     height: 15px;
-    right: -15px;
+    right: 0;
     top: 50%;
     transform: translateY(-50%);
   }
 `;
 
 export const CustomSelectList = styled.ul<{ show: boolean }>`
-  width: 100%;
+  width: 160px;
   position: absolute;
   display: ${({ show }) => (show ? "block" : "none")};
   border: 1px solid #bdbdbe;
