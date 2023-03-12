@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import commentImg from "../../../../assets/images/comment_black.png";
 import visitImg from "../../../../assets/images/visit_black.png";
@@ -19,9 +20,15 @@ export const ContentBoxType = styled.span`
 
 export const ContentBoxBtns = styled.div``;
 
-export const ContentBoxEdit = styled.button``;
+export const ContentBoxEdit = styled(Link)`
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.gray5};
+`;
 
-export const ContentBoxDelete = styled.button``;
+export const ContentBoxDelete = styled.button`
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.gray5};
+`;
 
 export const ContentBoxTitle = styled.p`
   font-size: 28px;

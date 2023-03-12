@@ -41,7 +41,7 @@ const ContentBox = ({ id, kind, title, content, createdAt, replyCnt, viewCnt, ha
       <ContentBoxHeader>
         <ContentBoxType>{contentType}</ContentBoxType>
         <ContentBoxBtns>
-          <ContentBoxEdit>수정</ContentBoxEdit>
+          <ContentBoxEdit to={`/community/article/${id}/edit`}>수정</ContentBoxEdit>
           <ContentBoxDelete onClick={() => handleDeletePost(id)}>삭제</ContentBoxDelete>
         </ContentBoxBtns>
       </ContentBoxHeader>
