@@ -4,6 +4,7 @@ export interface ICategoryList {
 }
 
 export interface UserInfoType {
+  accessToken: string;
   isLogin: boolean;
   id: null | number;
   couponCnt: number;
