@@ -4,6 +4,7 @@ import { UserInfoType } from "../types";
 export const userInfoAtom = atom<UserInfoType>({
   key: "userInfo",
   default: {
+    accessToken: "",
     isLogin: false,
     id: null,
     couponCnt: 0,
