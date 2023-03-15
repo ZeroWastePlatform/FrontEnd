@@ -15,21 +15,6 @@ export const OrderListParagraph = styled.p`
   color: #252525;
 `;
 
-export const PeriodSelect = styled.select`
-  width: 74px;
-  height: 33px;
-  background: #ffffff;
-  border: 1px solid #a7a7a8;
-  border-radius: 8px;
-  font-family: "Pretendard";
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0.2px;
-  color: #7a7b7d;
-  padding: 0 6px;
-`;
-
 export const DeliveryStatusBox = styled.div`
   display: flex;
   width: 860px;
@@ -40,48 +25,31 @@ export const DeliveryStatusBox = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 26px;
-  img {
-    margin: 0 55px;
-  }
 `;
 
-export const TotalBox = styled.div`
+export const OrderListDataButton = styled.button`
   display: flex;
   flex-direction: column;
   gap: 6px;
   align-items: center;
+  width: 160px;
 `;
 
-export const PaymentCompletedBox = styled(TotalBox)``;
-export const DeliveryPreparationBox = styled(TotalBox)``;
-export const DeliveryInProgressBox = styled(TotalBox)``;
-export const DeliveryCompletedBox = styled(TotalBox)``;
-
-export const TotalNumber = styled.div`
+export const OrderListDataNumber = styled.span`
   font-family: "Pretendard";
   font-weight: 700;
   font-size: 32px;
   line-height: 38px;
-  color: #66f095;
+  color: #7a7b7d;
 `;
 
-export const PaymentCompletedNumber = styled(TotalNumber)``;
-export const DeliveryPreparationNumber = styled(TotalNumber)``;
-export const DeliveryInProgressNumber = styled(TotalNumber)``;
-export const DeliveryCompletedNumber = styled(TotalNumber)``;
-
-export const TotalText = styled.div`
+export const OrderListDataText = styled.span`
   font-family: "Pretendard";
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
   color: #7a7b7d;
 `;
-
-export const PaymentCompletedText = styled(TotalText)``;
-export const DeliveryPreparationText = styled(TotalText)``;
-export const DeliveryInProgressText = styled(TotalText)``;
-export const DeliveryCompletedText = styled(TotalText)``;
 
 export const OrderInfoBox = styled.div`
   width: 860px;
@@ -196,4 +164,16 @@ export const CancelParagraph = styled.p`
   font-size: 32px;
   line-height: 38px;
   margin-top: 100px;
+  margin-bottom: 100px;
+`;
+
+export const CancelData = styled.p`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+  font-family: "Pretendard";
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: #a7a7a8;
 `;
