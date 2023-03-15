@@ -42,41 +42,42 @@ import KakaoImg from "../../../assets/images/kakao.svg";
 import { useCallback, useState } from "react";
 
 import useDaumPost from "../../../hooks/useDaumPost";
-import KakaoAdress from "../../KakaoAPI/KakaoAdress";
+import ZipCodeModal from "../../Common/ZipCodeModal/ZipCodeModal";
 
 const MemberInfo = () => {
   const [nickName, setNickName] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+
   const { addressState, handleComplete } = useDaumPost();
   const [isDaumPostOpen, setIsDaumPostOpen] = useState(false);
-  const handleDaumPostOpne = useCallback(() => setIsDaumPostOpen(prve => !prve), []);
-  const [input, setInput] = useState("");
-  const [locates, setLocates] = useState<never[]>([]);
+  const handleDaumPostOpen = useCallback(() => setIsDaumPostOpen(prve => !prve), []);
+
+  const [inputValue, setInputValue] = useState("");
+  const [locates, setLocates] = useState<string[]>([]);
 
   const handleNickName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNickName(e.target.value);
-    if (!isValidNickName(e.target.value)) {
+    const inputVal = e.target.value;
+    const nickNameRule = /^[a-zA-Z0-9가-힣]+$/;
+
+    if (!nickNameRule.test(inputVal)) {
       setErrorMsg("닉네임에 특수문자 사용은 불가합니다.");
     } else {
+      setNickName(inputVal);
       setErrorMsg("");
     }
   };
 
-  const isValidNickName = (e: string) => {
-    const nickNameRule = /^[a-zA-Z0-9]+$/;
-    return nickNameRule.test(e);
-  };
-
   const handleLocate = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
+    setInputValue(e.target.value);
   };
 
   const handlePlusClick = () => {
-    setLocates([...locates, input]);
+    setLocates([...locates, inputValue]);
+    setInputValue("");
   };
 
   const handleDelete = (locateInfo: string) => {
-    if (locates !== null) {
+    if (locates) {
       setLocates(locates.filter(locate => locate !== locateInfo));
     }
   };
@@ -118,11 +119,11 @@ const MemberInfo = () => {
 
           <PostCodeBox>
             <PostCodeInput />
-            <PostCodeButton onClick={handleDaumPostOpne}>우편번호 검색</PostCodeButton>
+            <PostCodeButton onClick={handleDaumPostOpen}>우편번호 검색</PostCodeButton>
           </PostCodeBox>
           <AddressInfoInput />
 
-          {isDaumPostOpen && <KakaoAdress handleDaumPostOpne={handleDaumPostOpne} handleComplete={handleComplete} />}
+          {isDaumPostOpen && <ZipCodeModal />}
 
           <AdressBox>
             <AddressDetailInfoInput />
@@ -134,9 +135,9 @@ const MemberInfo = () => {
           <LocateSettingParagraph>지역 설정</LocateSettingParagraph>
 
           <LocateInfoRow>
-            <LocateInfoInput placeholder="내 지역을 입력해주세요" onChange={handleLocate} />
+            <LocateInfoInput placeholder="내 지역을 입력해주세요" onChange={handleLocate} value={inputValue} />
 
-            <LocateAddButton onClick={handlePlusClick}>
+            <LocateAddButton onClick={handlePlusClick} disabled={!inputValue.length}>
               <AddText>추가</AddText>
               <Add>+</Add>
             </LocateAddButton>

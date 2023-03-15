@@ -219,6 +219,7 @@ export const LocateRow = styled.div`
   flex-wrap: wrap;
   width: 428px;
   gap: 10px;
+  margin-bottom: 32px;
 `;
 
 export const LocateBox = styled.div`
