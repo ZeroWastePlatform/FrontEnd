@@ -40,7 +40,6 @@ const CommunityList = () => {
       <Suspense fallback={<div>...로딩중</div>}>
         <CommunityHeaderContainer title={outputChildren().title} />
         <CommunityListLayout>{outputChildren().component}</CommunityListLayout>
-        <Pagenation page={1} pageList={[]} movePage={1} />
       </Suspense>
     </ErrorBoundary>
   );

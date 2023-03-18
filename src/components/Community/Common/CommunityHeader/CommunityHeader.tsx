@@ -18,9 +18,10 @@ import {
 interface CommunityHeaderProps {
   title: string;
   categoryList: string[] | null;
+  popularHashtags: string[];
 }
 
-const CommunityHeader = ({ title, categoryList }: CommunityHeaderProps) => {
+const CommunityHeader = ({ title, categoryList, popularHashtags }: CommunityHeaderProps) => {
   const { type } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const category = searchParams.get("category");
@@ -34,7 +35,9 @@ const CommunityHeader = ({ title, categoryList }: CommunityHeaderProps) => {
             <CommunityHeaderKeywordBox>
               <CommunityHeaderKeywordText>인기 검색 키워드</CommunityHeaderKeywordText>
               <CommunityHeaderKeywordList>
-                <CommunityHeaderKeywordItem>#ee</CommunityHeaderKeywordItem>
+                {popularHashtags.map((hashtag, idx) => (
+                  <CommunityHeaderKeywordItem key={idx}>{hashtag}</CommunityHeaderKeywordItem>
+                ))}
               </CommunityHeaderKeywordList>
             </CommunityHeaderKeywordBox>
           ) : (
