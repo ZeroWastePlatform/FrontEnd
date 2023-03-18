@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useRecoilState } from "recoil";
 import uuid from "react-uuid";
 import { writeFormAtom } from "../../../../atom/writeForm";
@@ -6,7 +6,6 @@ import Attachment from "./Attachment";
 
 const AttachmentContainer = () => {
   const [writeForm, setWriteForm] = useRecoilState(writeFormAtom);
-  const [imgFileList, setImgFileList] = useState<string[]>([]);
 
   const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
@@ -29,9 +28,8 @@ const AttachmentContainer = () => {
       });
     };
   };
-  console.log("writeForm", writeForm);
+
   const handleClickRemoveImg = (id: string) => {
-    // setImgFileList(imgFileList.filter(item => item !== id));
     setWriteForm(prev => {
       const filterImage = prev.images?.filter(image => image.id !== id);
       const newWriteForm = {
