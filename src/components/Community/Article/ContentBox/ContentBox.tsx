@@ -21,6 +21,8 @@ import {
 } from "./ContentBox.styles";
 import onLikeImg from "../../../../assets/images/on_like.png";
 import offLikeImg from "../../../../assets/images/off_like.png";
+import { UseMutateFunction } from "react-query";
+import { AxiosResponse } from "axios";
 
 interface ContentBoxProps {
   id: number;
@@ -31,11 +33,24 @@ interface ContentBoxProps {
   replyCnt: number;
   viewCnt: number;
   handleDeletePost: (postId: number) => void;
+  toggleLike: UseMutateFunction<AxiosResponse<any, unknown>, unknown, unknown, unknown>;
 }
 
-const ContentBox = ({ id, kind, title, content, createdAt, replyCnt, viewCnt, handleDeletePost }: ContentBoxProps) => {
+const ContentBox = ({
+  id,
+  kind,
+  title,
+  content,
+  createdAt,
+  replyCnt,
+  viewCnt,
+  handleDeletePost,
+  toggleLike,
+}: ContentBoxProps) => {
   const [isLike, setIsLike] = useState(false);
+
   const contentType = kind === 1 ? "자유게시판" : kind === 2 ? "중고거래" : kind === 3 && "정보공유";
+
   return (
     <ContentBoxLayout>
       <ContentBoxHeader>
@@ -60,7 +75,13 @@ const ContentBox = ({ id, kind, title, content, createdAt, replyCnt, viewCnt, ha
         </ContentBoxSubInfo>
       </ContentBoxInfo>
       <ContentBoxBody>{content}</ContentBoxBody>
-      <ContentBoxLikeImg src={isLike ? onLikeImg : offLikeImg} onClick={() => setIsLike(prev => !prev)} />
+      <ContentBoxLikeImg
+        src={isLike ? onLikeImg : offLikeImg}
+        onClick={() => {
+          setIsLike(prev => !prev);
+          toggleLike(id);
+        }}
+      />
     </ContentBoxLayout>
   );
 };

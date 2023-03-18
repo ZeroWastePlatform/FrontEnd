@@ -7,6 +7,7 @@ import Article from "./Article";
 const ArticleContainer = () => {
   const { id } = useParams();
   const { data } = useSuspenseQuery<PostType>(["Community", "Article", "ContentBox", id], `posts/${id}`);
+
   console.log("data : ", data);
   return <Article post={data} />;
 };

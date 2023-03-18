@@ -11,6 +11,8 @@ interface ContentBoxContainerProps {
 const ContentBoxContainer = ({ post }: ContentBoxContainerProps) => {
   const { mutate: deletePost } = useSetQueryMutate(postId => customAPI.delete(`posts/${postId}`));
 
+  const { mutate: toggleLike } = useSetQueryMutate(postId => customAPI.delete(`posts/recommendations/${postId}`));
+
   const handleDeletePost = (postId: number) => {
     if (confirm("게시글을 삭제 하시겠습니까?")) {
       deletePost(postId);
@@ -26,6 +28,7 @@ const ContentBoxContainer = ({ post }: ContentBoxContainerProps) => {
       replyCnt={post.replyCnt}
       viewCnt={post.viewCnt}
       handleDeletePost={handleDeletePost}
+      toggleLike={toggleLike}
     />
   );
 };

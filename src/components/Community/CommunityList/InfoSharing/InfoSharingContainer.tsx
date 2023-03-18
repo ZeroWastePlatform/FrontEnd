@@ -9,7 +9,7 @@ const InfoSharingContainer = () => {
   console.log(data);
   return (
     <>
-      <InfoSharing posts={data.content} />;
+      <InfoSharing posts={data.content} />
       <Pagenation page={1} pageList={[]} movePage={1} />
     </>
   );

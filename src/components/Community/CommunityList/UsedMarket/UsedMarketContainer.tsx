@@ -9,7 +9,7 @@ const UsedMarketContainer = () => {
   console.log(data);
   return (
     <>
-      <UsedMarket posts={data.content} />;
+      <UsedMarket posts={data.content} />
       <Pagenation page={1} pageList={[]} movePage={1} />
     </>
   );
