@@ -25,7 +25,15 @@ const useWriteForm = (
     } else if (writeForm.content === "") {
       alert("내용을 입력해 주세요.");
     } else {
-      mutate(writeForm);
+      const formData = new FormData();
+      formData.append("kind", writeForm.kind as any);
+      formData.append("title", writeForm.title);
+      formData.append("content", writeForm.content);
+      formData.append("price", writeForm.price as any);
+      formData.append("storedFileNames", writeForm.images as any);
+      formData.append("hashtag", writeForm.hashtag as any);
+
+      mutate(formData);
     }
   };
 

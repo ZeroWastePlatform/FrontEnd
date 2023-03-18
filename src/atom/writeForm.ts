@@ -1,4 +1,5 @@
 import { atom } from "recoil";
+import uuid from "react-uuid";
 
 export interface WriteFormAtomType {
   kind: number;
@@ -6,6 +7,11 @@ export interface WriteFormAtomType {
   content: string;
   price?: number;
   hashtag: string | string[];
+  images?: {
+    id: string;
+    file: File;
+    src: string;
+  }[];
 }
 
 export const writeFormAtom = atom<WriteFormAtomType>({
@@ -16,5 +22,12 @@ export const writeFormAtom = atom<WriteFormAtomType>({
     content: "",
     price: 0,
     hashtag: "",
+    images: [
+      {
+        id: uuid(),
+        file: {} as File,
+        src: "",
+      },
+    ],
   },
 });

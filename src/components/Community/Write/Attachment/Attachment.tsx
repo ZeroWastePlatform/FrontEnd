@@ -12,7 +12,13 @@ import {
 interface AttachmentProps {
   handleChangeImg: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleClickRemoveImg: (src: string) => void;
-  imgFileList: string[];
+  imgFileList:
+    | {
+        id: string;
+        file: File;
+        src: string;
+      }[]
+    | undefined;
 }
 
 const Attachment = ({ handleChangeImg, handleClickRemoveImg, imgFileList }: AttachmentProps) => {
@@ -24,9 +30,9 @@ const Attachment = ({ handleChangeImg, handleClickRemoveImg, imgFileList }: Atta
         <AttachmentUploadImgInput type="file" accept="image/*" id="file" name="file" onChange={handleChangeImg} />
       </AttachmentUploadImgLabel>
       <AttachmentUploadImgList>
-        {imgFileList?.map((src, idx) => (
-          <AttachmentUploadImgItem key={idx} src={src}>
-            <AttachmentUploadImgClose onClick={() => handleClickRemoveImg(src)}>X</AttachmentUploadImgClose>
+        {imgFileList?.map((image, idx) => (
+          <AttachmentUploadImgItem key={idx} src={image.src}>
+            <AttachmentUploadImgClose onClick={() => handleClickRemoveImg(image.id)}>X</AttachmentUploadImgClose>
           </AttachmentUploadImgItem>
         ))}
       </AttachmentUploadImgList>
