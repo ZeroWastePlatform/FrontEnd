@@ -15,6 +15,7 @@ const FreeBoard = ({ posts }: FreeBoardProps) => {
           key={post.id}
           id={post.id}
           kind={post.kind}
+          nickname={post.nickname}
           title={post.title}
           content={post.content}
           viewCnt={post.viewCnt}

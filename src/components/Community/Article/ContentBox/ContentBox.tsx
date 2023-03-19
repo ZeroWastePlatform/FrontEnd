@@ -9,6 +9,7 @@ import {
   ContentBoxHeader,
   ContentBoxInfo,
   ContentBoxLayout,
+  ContentBoxLiked,
   ContentBoxLikeImg,
   ContentBoxProfile,
   ContentBoxProfileImg,
@@ -23,6 +24,8 @@ import onLikeImg from "../../../../assets/images/on_like.png";
 import offLikeImg from "../../../../assets/images/off_like.png";
 import { UseMutateFunction } from "react-query";
 import { AxiosResponse } from "axios";
+import { useRecoilValue } from "recoil";
+import { userInfoAtom } from "../../../../atom/userInfo";
 
 interface ContentBoxProps {
   id: number;
@@ -32,6 +35,7 @@ interface ContentBoxProps {
   createdAt: string;
   replyCnt: number;
   viewCnt: number;
+  recommendCnt: number;
   handleDeletePost: (postId: number) => void;
   toggleLike: UseMutateFunction<AxiosResponse<any, unknown>, unknown, unknown, unknown>;
 }
@@ -44,10 +48,12 @@ const ContentBox = ({
   createdAt,
   replyCnt,
   viewCnt,
+  recommendCnt,
   handleDeletePost,
   toggleLike,
 }: ContentBoxProps) => {
   const [isLike, setIsLike] = useState(false);
+  const userInfo = useRecoilValue(userInfoAtom);
 
   const contentType = kind === 1 ? "자유게시판" : kind === 2 ? "중고거래" : kind === 3 && "정보공유";
 
@@ -55,10 +61,12 @@ const ContentBox = ({
     <ContentBoxLayout>
       <ContentBoxHeader>
         <ContentBoxType>{contentType}</ContentBoxType>
-        <ContentBoxBtns>
-          <ContentBoxEdit to={`/community/article/${id}/edit`}>수정</ContentBoxEdit>
-          <ContentBoxDelete onClick={() => handleDeletePost(id)}>삭제</ContentBoxDelete>
-        </ContentBoxBtns>
+        {userInfo.id === id && (
+          <ContentBoxBtns>
+            <ContentBoxEdit to={`/community/article/${id}/edit`}>수정</ContentBoxEdit>
+            <ContentBoxDelete onClick={() => handleDeletePost(id)}>삭제</ContentBoxDelete>
+          </ContentBoxBtns>
+        )}
       </ContentBoxHeader>
       <ContentBoxTitle>{title}</ContentBoxTitle>
       <ContentBoxInfo>
@@ -72,6 +80,7 @@ const ContentBox = ({
         <ContentBoxSubInfo>
           <ContentBoxComment>{replyCnt}</ContentBoxComment>
           <ContentBoxVisit>{viewCnt}</ContentBoxVisit>
+          <ContentBoxLiked>{recommendCnt}</ContentBoxLiked>
         </ContentBoxSubInfo>
       </ContentBoxInfo>
       <ContentBoxBody>{content}</ContentBoxBody>

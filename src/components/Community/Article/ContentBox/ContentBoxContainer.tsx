@@ -18,6 +18,7 @@ const ContentBoxContainer = ({ post }: ContentBoxContainerProps) => {
       deletePost(postId);
     }
   };
+
   return (
     <ContentBox
       id={post.id}
@@ -27,6 +28,7 @@ const ContentBoxContainer = ({ post }: ContentBoxContainerProps) => {
       createdAt={post.createdAt}
       replyCnt={post.replyCnt}
       viewCnt={post.viewCnt}
+      recommendCnt={post.recommendCnt}
       handleDeletePost={handleDeletePost}
       toggleLike={toggleLike}
     />

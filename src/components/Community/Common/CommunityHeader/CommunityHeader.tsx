@@ -25,6 +25,7 @@ const CommunityHeader = ({ title, categoryList, popularHashtags }: CommunityHead
   const { type } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const category = searchParams.get("category");
+
   return (
     <>
       <CategoryNavigation />

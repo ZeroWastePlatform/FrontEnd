@@ -22,7 +22,18 @@ import {
   PostContentTitle,
 } from "./Post.styles";
 
-const Post = ({ id, kind, title, content, viewCnt, replyCnt, recommendCnt, createdAt, hashtags }: PostType) => {
+const Post = ({
+  id,
+  kind,
+  nickname,
+  title,
+  content,
+  viewCnt,
+  replyCnt,
+  recommendCnt,
+  createdAt,
+  hashtags,
+}: PostType) => {
   const navigate = useNavigate();
   return (
     <PostContent onClick={() => navigate(`/community/article/${id}`)}>
@@ -42,7 +53,7 @@ const Post = ({ id, kind, title, content, viewCnt, replyCnt, recommendCnt, creat
       <PostContentSubInfo>
         <PostContentSubInfoLeft>
           <PostContentSubInfoProfileImg />
-          <PostContentSubInfoProfileName>dngur9801</PostContentSubInfoProfileName>
+          <PostContentSubInfoProfileName>{nickname}</PostContentSubInfoProfileName>
           <PostContentSubInfoDate>{createdAt}</PostContentSubInfoDate>
         </PostContentSubInfoLeft>
         <PostContentSubInfoRight>

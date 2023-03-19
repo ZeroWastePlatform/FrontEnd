@@ -10,7 +10,7 @@ interface CommunityHeaderContainerProps {
 const CommunityHeaderContainer = ({ title }: CommunityHeaderContainerProps) => {
   const { type } = useParams();
 
-  const { data } = useSuspenseQuery<string[]>(["Community", "popularHashtags"], "hashtags/popularity");
+  const { data } = useSuspenseQuery<{ hashtags: string[] }>(["Community", "popularHashtags"], "hashtags/popularity");
 
   const getCategoryList = () => {
     if (type === "market") {
@@ -22,7 +22,7 @@ const CommunityHeaderContainer = ({ title }: CommunityHeaderContainerProps) => {
     return null;
   };
 
-  return <CommunityHeader title={title} categoryList={getCategoryList()} popularHashtags={data} />;
+  return <CommunityHeader title={title} categoryList={getCategoryList()} popularHashtags={data.hashtags} />;
 };
 
 export default CommunityHeaderContainer;

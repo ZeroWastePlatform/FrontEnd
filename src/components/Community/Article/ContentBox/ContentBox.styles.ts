@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import commentImg from "../../../../assets/images/comment_black.png";
 import visitImg from "../../../../assets/images/visit_black.png";
+import likeImg from "../../../../assets/images/small_like.png";
 
 export const ContentBoxLayout = styled.div`
   width: 873px;
@@ -101,8 +102,17 @@ export const ContentBoxVisit = styled(ContentBoxComment)`
   }
 `;
 
+export const ContentBoxLiked = styled(ContentBoxComment)`
+  &::after {
+    background: url(${likeImg}) no-repeat 100% center/cover;
+    width: 18px;
+    height: 18px;
+  }
+`;
+
 export const ContentBoxBody = styled.div`
   margin: 50px 0;
+  white-space: pre-line;
 `;
 
 export const ContentBoxLikeImg = styled.img`

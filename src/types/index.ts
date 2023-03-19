@@ -7,6 +7,7 @@ export interface PostType {
   id: number;
   kind: number;
   title: string;
+  nickname: string;
   content: string;
   price?: number;
   viewCnt: number;
@@ -50,4 +51,17 @@ export interface PopularityPostType {
   id: number;
   title: string;
   recommendCnt: number;
+}
+
+export interface CommentType {
+  commentMember: {
+    memberId: number;
+    nickname: string;
+  };
+  content: string;
+  id: number;
+}
+
+export interface CommentResponseType {
+  content: CommentType[];
 }
