@@ -11,6 +11,6 @@ const Template: ComponentStory<typeof RadioFilter> = args => <RadioFilter {...ar
 export const GeneralType = Template.bind({});
 GeneralType.args = {
   text: "10000원미만",
-  value: "100000",
+  value: "LT_10",
   name: "price",
 };
