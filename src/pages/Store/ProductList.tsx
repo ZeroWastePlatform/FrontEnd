@@ -7,7 +7,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import ProductCarouselContainer from "../../components/Common/Carousel/CarouselContainer";
 import makeQuery from "../../utils/makeQuery";
 
-type category = "FOOD" | "KITCHEN" | "BATH" | "LIFE" | "HOBBY" | "GIFT" | "WOMAN" | "PET" | "STATIONERY";
+export type category = "FOOD" | "KITCHEN" | "BATH" | "LIFE" | "HOBBY" | "GIFT" | "WOMAN" | "PET" | "STATIONERY";
 type price = "LT_10" | "BT_10_30" | "BT_30_50" | "GT_50";
 type sort = "POPULARITY" | "NEW" | "LOW_PRICE" | "HIGH_PRICE";
 type status = "FREE_SHIPPING" | "DISCOUNT_STOCK" | "REMOVE_OUT_OF_STOCK";
@@ -15,7 +15,7 @@ export interface conditionType {
   category: category | "ALL" | "TOP6" | null;
   brand: string | null;
   price: price | null;
-  status: status | null;
+  productStatus: status | null;
   sort: sort | category | "TOP6";
   page: number;
 }
@@ -30,7 +30,7 @@ function Store() {
     category: query ? (query as category) : "ALL",
     brand: null,
     price: null,
-    status: null,
+    productStatus: null,
     sort: "POPULARITY",
     page: 1,
   });
