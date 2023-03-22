@@ -12,6 +12,7 @@ type price = "LT_10" | "BT_10_30" | "BT_30_50" | "GT_50";
 type sort = "POPULARITY" | "NEW" | "LOW_PRICE" | "HIGH_PRICE";
 type status = "FREE_SHIPPING" | "DISCOUNT_STOCK" | "REMOVE_OUT_OF_STOCK";
 export interface conditionType {
+  [key: string]: string | null | number;
   category: category | "ALL" | "TOP6" | null;
   brand: string | null;
   price: price | null;
