@@ -36,13 +36,19 @@ const Carousel = ({ data, order, changeOrder, type, stopTransition, checkActiveI
           <CarouselButtonWrap>
             <CarouselButton
               direction={"left"}
-              onClick={() => changeOrder({ direction: "left", length: data.length, order })}
+              onClick={e => {
+                changeOrder({ direction: "left", length: data.length, order });
+                e.preventDefault();
+              }}
             >
               <img src={leftArrow} />
             </CarouselButton>
             <CarouselButton
               direction={"right"}
-              onClick={() => changeOrder({ direction: "right", length: data.length, order })}
+              onClick={e => {
+                changeOrder({ direction: "right", length: data.length, order });
+                e.preventDefault();
+              }}
             >
               <img src={rightArrow} />
             </CarouselButton>
