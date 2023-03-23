@@ -95,6 +95,7 @@ export const BuyRoundButton = styled.div<{ filled: string }>`
   color: ${({ theme, filled }) => (filled === "true" ? theme.colors.gray0 : theme.colors.primaryGreen100)};
   background-color: ${({ theme, filled }) => (filled === "true" ? theme.colors.primaryGreen100 : theme.colors.gray0)};
   border: 2px solid ${({ theme }) => theme.colors.primaryGreen100};
+  cursor: pointer;
 `;
 
 export const BuyCircleButton = styled.div`
@@ -108,6 +109,7 @@ export const BuyCircleButton = styled.div`
   align-items: center;
   gap: 4px;
   border: 2px solid ${({ theme }) => theme.colors.gray3};
+  cursor: pointer;
 `;
 
 export const BuyCircleButtonIcon = styled.img``;

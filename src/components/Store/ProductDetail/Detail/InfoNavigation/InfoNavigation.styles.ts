@@ -17,7 +17,7 @@ export const InfoNavigationRow = styled.div`
   gap: 40px;
   margin: auto;
   padding: 0 20px;
-
+  cursor: pointer;
   border-top: 1px solid #d9d9d9;
   border-bottom: 1px solid #d9d9d9;
 `;
