@@ -6,6 +6,7 @@ import ProductFilterBlockContainer from "../../components/Store/ProductList/Prod
 import { ErrorBoundary } from "react-error-boundary";
 import ProductCarouselContainer from "../../components/Common/Carousel/CarouselContainer";
 import makeQuery from "../../utils/makeQuery";
+import fixProductCondition from "../../utils/fixProductCondition";
 
 export type category = "FOOD" | "KITCHEN" | "BATH" | "LIFE" | "HOBBY" | "GIFT" | "WOMAN" | "PET" | "STATIONERY";
 type price = "LT_10" | "BT_10_30" | "BT_30_50" | "GT_50";
@@ -17,7 +18,7 @@ export interface conditionType {
   brand: string | null;
   price: price | null;
   productStatus: status | null;
-  sort: sort | category | "TOP6";
+  order: sort | category | "TOP6";
   page: number;
 }
 
@@ -32,24 +33,13 @@ function Store() {
     brand: null,
     price: null,
     productStatus: null,
-    sort: "POPULARITY",
+    order: "POPULARITY",
     page: 1,
   });
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fixQuery = (condition: conditionType) => {
-      const newCondition = { ...condition };
-      if (condition.category === "ALL") {
-        newCondition.category = null;
-      }
-      if (condition.category === "TOP6") {
-        newCondition.category = newCondition.sort as category;
-        newCondition.sort = "TOP6";
-      }
-      return newCondition;
-    };
-    const query = makeQuery(fixQuery(condition));
+    const query = makeQuery(fixProductCondition(condition));
     navigate(`/store?${query}`);
   }, [condition]);
 

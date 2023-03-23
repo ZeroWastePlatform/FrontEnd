@@ -2,6 +2,7 @@ import axios from "axios";
 import useSetQueryMutate from "../../../../hooks/useSetQueryMutate";
 import useSuspenseQuery from "../../../../hooks/useSuspenseQuery";
 import { conditionType, setConditionType } from "../../../../pages/Store/ProductList";
+import fixProductCondition from "../../../../utils/fixProductCondition";
 import { ProductCardProps } from "../../Common/ProductCard/ProductCard";
 import ProductCardList from "./ProductCardList";
 
@@ -12,15 +13,14 @@ export interface ProductCardListDataContentType {
   title: string;
   discountRate: number;
   price: number;
-  badges: string[];
-  liked: boolean;
-  img: string;
+  badges: string;
+  thumbnail: string;
 }
 
 export interface ProductCardListDataType {
-  totalCount: number;
+  totalElements: number;
   totalPage: number;
-  contents: ProductCardListDataContentType[];
+  content: ProductCardListDataContentType[];
 }
 
 interface ProductCardListContainerProps {
@@ -29,39 +29,40 @@ interface ProductCardListContainerProps {
 }
 
 const ProductCardListContainer = ({ condition, setCondition }: ProductCardListContainerProps) => {
-  const { category, filter, sort, page } = condition;
+  const { category, sort, page, brand, price, productStatus } = condition;
   const { data } = useSuspenseQuery<ProductCardListDataType>(
-    ["Store", "ProductList", "ProductCardList", category, filter, sort, page],
-    `product?category=${category}&filter=${filter}&sort=${sort}&page=${page}`,
+    ["Store", "ProductList", "ProductCardList", category, sort, page, brand, price, productStatus],
+    `product${fixProductCondition(condition)}`,
   );
 
-  const { mutate } = useSetQueryMutate<
-    { id: number },
-    (data: { totalCount: number; contents: ProductCardProps[] }) => {
-      totalCount: number;
-      contents: ProductCardProps[];
-    }
-  >(
-    id => axios.post("http://localhost:8000/product", { id }),
-    ["Store", "ProductList", "ProductCardList", category, filter, sort, page],
-    e => {
-      return (data: { totalCount: number; contents: ProductCardProps[] }) => {
-        return {
-          totalCount: data.totalCount,
-          contents: data.contents.map(el => {
-            if (el.id === e.data.id) {
-              console.log(el.id);
-              return { ...el, liked: !el.liked };
-            }
-            return el;
-          }),
-        };
-      };
-    },
-  );
+  // const { mutate } = useSetQueryMutate<
+  //   { id: number },
+  //   (data: { totalCount: number; contents: ProductCardProps[] }) => {
+  //     totalCount: number;
+  //     contents: ProductCardProps[];
+  //   }
+  // >(
+  //   id => axios.post("http://localhost:8000/product", { id }),
+  //   ["Store", "ProductList", "ProductCardList", category, filter, sort, page],
+  //   e => {
+  //     return (data: { totalCount: number; contents: ProductCardProps[] }) => {
+  //       return {
+  //         totalCount: data.totalCount,
+  //         contents: data.contents.map(el => {
+  //           if (el.id === e.data.id) {
+  //             return { ...el, liked: !el.liked };
+  //           }
+  //           return el;
+  //         }),
+  //       };
+  //     };
+  //   },
+  // );
+
   const setPage = (page: number) => {
     setCondition({ ...condition, page });
   };
+
   return (
     <ProductCardList
       data={data}
