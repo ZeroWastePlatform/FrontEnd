@@ -40,7 +40,7 @@ function Store() {
 
   useEffect(() => {
     const query = makeQuery(fixProductCondition(condition));
-    navigate(`/store?${query}`);
+    navigate(`/store${query}`);
   }, [condition]);
 
   return (
