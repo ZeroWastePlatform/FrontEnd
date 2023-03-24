@@ -14,7 +14,7 @@ const CategoryNavigation = ({ condition, setCondition }: CategoryNavigationProps
       <CategoryNavigationLayout>
         <CategoryNavigationRow>
           {categoryData.map(category => (
-            <CategoryNavigationItem key={category} same={category === condition.category}>
+            <CategoryNavigationItem key={category} same={categoryMap[category] === condition.category}>
               <Link
                 to={`/store?category=${category}`}
                 onClick={() =>
