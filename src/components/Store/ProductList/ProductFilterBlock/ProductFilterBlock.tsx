@@ -14,11 +14,6 @@ const ProductFilterBlock = ({ setFilter, isSelected }: ProductFilterBlockProps) 
   return (
     <ProductFilterBlockLayout>
       <ProductFilterBlockCol>
-<<<<<<< HEAD
-        {filterList.map(({ title, list }) => (
-          <StoreFilterRow title={title} list={list} setFilter={setFilter} key={title} isSelected={isSelected} />
-        ))}
-=======
         <StoreFilterRow
           title={"브랜드"}
           list={[
@@ -75,7 +70,6 @@ const ProductFilterBlock = ({ setFilter, isSelected }: ProductFilterBlockProps) 
           deleteFilter={deleteFilter}
           resetFilter={resetFilter}
         />
->>>>>>> develop
       </ProductFilterBlockCol>
     </ProductFilterBlockLayout>
   );
