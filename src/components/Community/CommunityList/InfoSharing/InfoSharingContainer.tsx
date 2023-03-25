@@ -5,7 +5,7 @@ import Pagenation from "../../../Common/Pagenation/Pagenation";
 import InfoSharing from "./InfoSharing";
 
 const InfoSharingContainer = () => {
-  const { data } = useSuspenseQuery<PostListType>(["Community", "FreeBoard"], "posts/lists/3");
+  const { data } = useSuspenseQuery<PostListType>(["Community", "InfoSharing"], "posts/lists/3");
   console.log(data);
   return (
     <>
