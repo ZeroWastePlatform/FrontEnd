@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import commentImg from "../../../../assets/images/comment_black.png";
 import visitImg from "../../../../assets/images/visit_black.png";
+import likeImg from "../../../../assets/images/small_like.png";
 
 export const ContentBoxLayout = styled.div`
   width: 873px;
@@ -8,8 +10,25 @@ export const ContentBoxLayout = styled.div`
   border-bottom: 2px solid ${({ theme }) => theme.colors.gray2};
 `;
 
+export const ContentBoxHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const ContentBoxType = styled.span`
   font-weight: 700;
+`;
+
+export const ContentBoxBtns = styled.div``;
+
+export const ContentBoxEdit = styled(Link)`
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.gray5};
+`;
+
+export const ContentBoxDelete = styled.button`
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.gray5};
 `;
 
 export const ContentBoxTitle = styled.p`
@@ -83,8 +102,17 @@ export const ContentBoxVisit = styled(ContentBoxComment)`
   }
 `;
 
+export const ContentBoxLiked = styled(ContentBoxComment)`
+  &::after {
+    background: url(${likeImg}) no-repeat 100% center/cover;
+    width: 18px;
+    height: 18px;
+  }
+`;
+
 export const ContentBoxBody = styled.div`
   margin: 50px 0;
+  white-space: pre-line;
 `;
 
 export const ContentBoxLikeImg = styled.img`

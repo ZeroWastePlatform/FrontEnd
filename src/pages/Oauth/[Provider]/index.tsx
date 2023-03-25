@@ -14,7 +14,7 @@ const Oauth = () => {
   const { provider } = useParams();
   const { mutate } = useSetQueryMutate(
     code =>
-      customAPI.post(`/api/auth/${provider}/token`, {
+      customAPI.post(`auth/${provider}/token`, {
         code,
         redirectUri: process.env.GOOGLE_REDIRECT_URI,
       }),

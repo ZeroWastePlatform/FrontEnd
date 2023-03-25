@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import penImg from "../../../../assets/images/pen.svg";
 
 export const CategoryNavigationLayout = styled.div`
   border: 2px solid #e8e8e8;
@@ -11,7 +13,6 @@ export const CategoryNavigationBox = styled.div`
   align-items: center;
   justify-content: space-between;
   padding-left: 240px;
-  padding-right: 40px;
   font-size: 18px;
   font-weight: 700;
 `;
@@ -40,4 +41,21 @@ export const CategoryNavigationItem = styled.li`
   }
 `;
 
-export const CategoryNavigationSortBox = styled.div``;
+export const CategoryNavigationWrite = styled(Link)`
+  padding-left: 5px;
+  font-size: 18px;
+  font-weight: 700;
+  position: relative;
+
+  &::after {
+    position: absolute;
+    content: "";
+    width: 17px;
+    height: 17px;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: -1px;
+    background: url(${penImg}) no-repeat center/cover;
+  }
+`;

@@ -1,7 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import HashtagBox from "./HashtagBox";
 
-const HashtagBoxContainer = () => {
+interface HashtagBoxContainerProps {
+  changeFormData: (key: string, data: string | number) => void;
+}
+
+const HashtagBoxContainer = ({ changeFormData }: HashtagBoxContainerProps) => {
   const [hashtagList, setHashtagList] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -15,6 +19,7 @@ const HashtagBoxContainer = () => {
         return;
       }
       setHashtagList([...hashtagList, `#${e.currentTarget.value}`]);
+
       if (inputRef.current) {
         inputRef.current.value = "";
       }
@@ -23,6 +28,10 @@ const HashtagBoxContainer = () => {
       setHashtagList(prev => prev.slice(0, -1));
     }
   };
+
+  useEffect(() => {
+    changeFormData("hashtag", hashtagList.join(""));
+  }, [hashtagList]);
   return <HashtagBox handleKeyDown={handleKeyDown} hashtagList={hashtagList} inputRef={inputRef} />;
 };
 

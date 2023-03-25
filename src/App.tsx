@@ -19,13 +19,14 @@ import { useSetRecoilState } from "recoil";
 import { userInfoAtom } from "./atom/userInfo";
 import { useEffect } from "react";
 import { UserInfoResponseType } from "./types";
+import Edit from "./pages/Community/Edit";
 
 function App() {
   const setUserInfo = useSetRecoilState(userInfoAtom);
   const accessToken = localStorage.getItem("accessToken");
   const { data } = useSuspenseQuery<UserInfoResponseType>(
     ["userInfo", accessToken],
-    "api/members/me",
+    "members/me",
     e => e,
     !!accessToken,
   );
@@ -48,6 +49,7 @@ function App() {
           <Route path="/community/:type" element={<CommunityList />} />
           <Route path="/community/write" element={<Write />} />
           <Route path="/community/article/:id" element={<Article />} />
+          <Route path="/community/article/:id/edit" element={<Edit />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />

@@ -5,7 +5,7 @@ import {
   CategoryNavigationItem,
   CategoryNavigationLayout,
   CategoryNavigationList,
-  CategoryNavigationSortBox,
+  CategoryNavigationWrite,
 } from "./CategoryNavigation.styles";
 
 const categoryList = [
@@ -36,7 +36,7 @@ const CategoryNavigation = () => {
             </CategoryNavigationItem>
           ))}
         </CategoryNavigationList>
-        <CategoryNavigationSortBox>최신순</CategoryNavigationSortBox>
+        <CategoryNavigationWrite to={"/community/write"}>글쓰기</CategoryNavigationWrite>
       </CategoryNavigationBox>
     </CategoryNavigationLayout>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import { PopularityPostType, RecommendationsPostType } from "../../../../types";
 import {
   AsideLayout,
   AsidePopularBox,
@@ -12,38 +13,31 @@ import {
   AsideTitle,
 } from "./Aside.styles";
 
-const Aside = () => {
+interface AsideProps {
+  recommendations: RecommendationsPostType[];
+  popularity: PopularityPostType[];
+}
+
+const Aside = ({ recommendations, popularity }: AsideProps) => {
   return (
     <AsideLayout>
       <AsideRecommendationBox>
         <AsideTitle>자유게시판 추천글</AsideTitle>
-        <AsideRecommendationPost>
-          <AsideRecommendationSubject>게시글 제목이에요</AsideRecommendationSubject>
-          <AsideRecommendationBody>본문이 아주 살짝 보여요</AsideRecommendationBody>
-        </AsideRecommendationPost>
-        <AsideRecommendationPost>
-          <AsideRecommendationSubject>게시글 제목이에요</AsideRecommendationSubject>
-          <AsideRecommendationBody>본문이 아주 살짝 보여요</AsideRecommendationBody>
-        </AsideRecommendationPost>
-        <AsideRecommendationPost>
-          <AsideRecommendationSubject>게시글 제목이에요</AsideRecommendationSubject>
-          <AsideRecommendationBody>본문이 아주 살짝 본문이 아주 살짝 보이다가</AsideRecommendationBody>
-        </AsideRecommendationPost>
+        {recommendations?.map(post => (
+          <AsideRecommendationPost key={post.id}>
+            <AsideRecommendationSubject>{post.title}</AsideRecommendationSubject>
+            <AsideRecommendationBody>{post.content}</AsideRecommendationBody>
+          </AsideRecommendationPost>
+        ))}
       </AsideRecommendationBox>
       <AsidePopularBox>
         <AsideTitle>오늘의 그리너스 인기글</AsideTitle>
-        <AsidePopularPost>
-          <AsidePopularSubject>인기글 제목은 어느정도로 하면 되는</AsidePopularSubject>
-          <AsidePopularLiked>23</AsidePopularLiked>
-        </AsidePopularPost>
-        <AsidePopularPost>
-          <AsidePopularSubject>인기글 제목은 어느정도로</AsidePopularSubject>
-          <AsidePopularLiked>23</AsidePopularLiked>
-        </AsidePopularPost>
-        <AsidePopularPost>
-          <AsidePopularSubject>인기글 제목은 어느정도로</AsidePopularSubject>
-          <AsidePopularLiked>23</AsidePopularLiked>
-        </AsidePopularPost>
+        {popularity?.map(post => (
+          <AsidePopularPost key={post.id}>
+            <AsidePopularSubject>{post.title}</AsidePopularSubject>
+            <AsidePopularLiked>{post.recommendCnt}</AsidePopularLiked>
+          </AsidePopularPost>
+        ))}
       </AsidePopularBox>
     </AsideLayout>
   );

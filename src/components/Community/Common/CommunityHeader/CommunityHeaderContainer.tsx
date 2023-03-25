@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import useSuspenseQuery from "../../../../hooks/useSuspenseQuery";
 import CommunityHeader from "./CommunityHeader";
 
 interface CommunityHeaderContainerProps {
@@ -8,6 +9,8 @@ interface CommunityHeaderContainerProps {
 
 const CommunityHeaderContainer = ({ title }: CommunityHeaderContainerProps) => {
   const { type } = useParams();
+
+  const { data } = useSuspenseQuery<{ hashtags: string[] }>(["Community", "popularHashtags"], "hashtags/popularity");
 
   const getCategoryList = () => {
     if (type === "market") {
@@ -19,7 +22,7 @@ const CommunityHeaderContainer = ({ title }: CommunityHeaderContainerProps) => {
     return null;
   };
 
-  return <CommunityHeader title={title} categoryList={getCategoryList()} />;
+  return <CommunityHeader title={title} categoryList={getCategoryList()} popularHashtags={data.hashtags} />;
 };
 
 export default CommunityHeaderContainer;
