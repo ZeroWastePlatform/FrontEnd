@@ -8,7 +8,7 @@ const ArticleContainer = () => {
   const { id } = useParams();
   const { data } = useSuspenseQuery<PostType>(["Community", "Article", "ContentBox", id], `posts/${id}`);
 
-  console.log("data : ", data);
+  console.log("post : ", data);
   return <Article post={data} />;
 };
 

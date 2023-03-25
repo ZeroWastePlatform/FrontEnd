@@ -7,7 +7,10 @@ export interface PostType {
   id: number;
   kind: number;
   title: string;
-  nickname: string;
+  postMember: {
+    memberId: number;
+    nickname: string;
+  };
   content: string;
   price?: number;
   viewCnt: number;
@@ -60,6 +63,7 @@ export interface CommentType {
   };
   content: string;
   id: number;
+  parentId: number;
 }
 
 export interface CommentResponseType {

@@ -13,7 +13,7 @@ const refresh = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> 
       const body = {
         refreshToken,
       };
-      const { data } = await axios.post(`${process.env.API_SERVER}api/auth/token/access`, body);
+      const { data } = await axios.post(`${process.env.API_SERVER}auth/token/access`, body);
       token = data.accessToken;
       localStorage.setItem("accessToken", data.accessToken);
       setExpiresAt();

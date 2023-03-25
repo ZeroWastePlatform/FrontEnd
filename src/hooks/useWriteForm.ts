@@ -33,6 +33,7 @@ const useWriteForm = (
       formData.append("storedFileNames", writeForm.images as any);
       formData.append("hashtag", writeForm.hashtag as any);
 
+      console.log("writeForm2222", writeForm);
       mutate(formData);
     }
   };
@@ -44,7 +45,7 @@ const useWriteForm = (
   useEffect(() => {
     if (postData) {
       const formData = {
-        kind: postData.kind,
+        kind: 0,
         title: postData.title,
         content: postData.content,
         hashtag: postData.hashtags,

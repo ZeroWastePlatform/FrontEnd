@@ -13,10 +13,10 @@ const EditContainer = () => {
   const { data } = useSuspenseQuery<PostType>(["Community", "Article", "ContentBox", id], `posts/${id}`);
 
   const { mutate } = useSetQueryMutate(
-    data => customAPI.put(`posts/${id}`, { data }),
-    ["Community"],
+    data => customAPI.put(`posts/${id}`, data),
+    ["Community", id],
     e => {
-      alert("게시물이 등록되었습니다.");
+      alert("게시물이 수정되었습니다.");
       navigate("/community/board");
     },
   );

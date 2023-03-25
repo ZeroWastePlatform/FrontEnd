@@ -22,8 +22,10 @@ const ContentBoxContainer = ({ post }: ContentBoxContainerProps) => {
   return (
     <ContentBox
       id={post.id}
+      userId={post.postMember.memberId}
       kind={post.kind}
       title={post.title}
+      nickname={post.postMember.nickname}
       content={post.content}
       createdAt={post.createdAt}
       replyCnt={post.replyCnt}

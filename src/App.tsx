@@ -26,7 +26,7 @@ function App() {
   const accessToken = localStorage.getItem("accessToken");
   const { data } = useSuspenseQuery<UserInfoResponseType>(
     ["userInfo", accessToken],
-    "api/members/me",
+    "members/me",
     e => e,
     !!accessToken,
   );

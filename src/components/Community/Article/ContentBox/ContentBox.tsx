@@ -29,8 +29,10 @@ import { userInfoAtom } from "../../../../atom/userInfo";
 
 interface ContentBoxProps {
   id: number;
+  userId: number;
   kind: number;
   title: string;
+  nickname: string;
   content: string;
   createdAt: string;
   replyCnt: number;
@@ -42,8 +44,10 @@ interface ContentBoxProps {
 
 const ContentBox = ({
   id,
+  userId,
   kind,
   title,
+  nickname,
   content,
   createdAt,
   replyCnt,
@@ -61,7 +65,7 @@ const ContentBox = ({
     <ContentBoxLayout>
       <ContentBoxHeader>
         <ContentBoxType>{contentType}</ContentBoxType>
-        {userInfo.id === id && (
+        {userInfo.id === userId && (
           <ContentBoxBtns>
             <ContentBoxEdit to={`/community/article/${id}/edit`}>수정</ContentBoxEdit>
             <ContentBoxDelete onClick={() => handleDeletePost(id)}>삭제</ContentBoxDelete>
@@ -73,7 +77,7 @@ const ContentBox = ({
         <ContentBoxProfile>
           <ContentBoxProfileImg />
           <ContentBoxProfileTextBox>
-            <ContentBoxProfileName>dngur9801</ContentBoxProfileName>
+            <ContentBoxProfileName>{nickname}</ContentBoxProfileName>
             <ContentBoxDate>{createdAt}</ContentBoxDate>
           </ContentBoxProfileTextBox>
         </ContentBoxProfile>

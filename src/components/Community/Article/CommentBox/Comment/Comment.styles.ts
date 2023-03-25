@@ -43,3 +43,17 @@ export const CommentButton = styled.button`
 export const CommentReplyBox = styled.div`
   padding-left: 150px;
 `;
+
+export const CommentEditInput = styled.input`
+  width: 600px;
+  height: 30px;
+  border-radius: 10px;
+  border: 2px solid #bdbdbe;
+  padding-left: 10px;
+`;
+
+export const CommentEditBtns = styled.div`
+  display: flex;
+  gap: 15px;
+  width: 600px;
+`;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import InputBox from "./Common/InputBox/InputBox";
 import Comment from "./Comment/Comment";
 import {
@@ -19,6 +19,7 @@ interface CommentBoxProps {
 }
 
 const CommentBox = ({ comments, regist, handleClickRemove }: CommentBoxProps) => {
+  const [isEditId, setIsEditId] = useState(0);
   return (
     <CommentBoxLayout>
       <CommentBoxTotal>
@@ -30,6 +31,8 @@ const CommentBox = ({ comments, regist, handleClickRemove }: CommentBoxProps) =>
         {comments.map((comment, idx) => (
           <Comment
             key={comment.id}
+            isEdit={comment.id === isEditId}
+            setIsEditId={setIsEditId}
             commentId={comment.id}
             content={comment.content}
             memberId={comment.commentMember.memberId}
