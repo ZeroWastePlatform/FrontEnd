@@ -1,12 +1,16 @@
 import moment from "moment";
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { userInfoAtom } from "../../../atom/userInfo";
 import useSetQueryMutate from "../../../hooks/useSetQueryMutate";
 import customAPI from "../../../lib/customApi";
 import { setExpiresAt } from "../../../utils/setExpiresAt";
 
 const Oauth = () => {
+  const navigate = useNavigate();
   const code = new URL(window.location.href).searchParams.get("code");
+  const setUserInfo = useSetRecoilState(userInfoAtom);
   const { provider } = useParams();
   const { mutate } = useSetQueryMutate(
     code =>
@@ -16,10 +20,15 @@ const Oauth = () => {
       }),
     [provider],
     e => {
-      localStorage.setItem("refreshToken", e.data.refreshToken);
-      localStorage.setItem("accessToken", e.data.accessToken);
-      setExpiresAt();
-      window.location.href = "/";
+      if (e.data.newMember) {
+        setUserInfo(prev => ({ ...prev, accessToken: e.data.accessToken }));
+        navigate("/signup");
+      } else {
+        localStorage.setItem("refreshToken", e.data.refreshToken);
+        localStorage.setItem("accessToken", e.data.accessToken);
+        setExpiresAt();
+        window.location.href = "/";
+      }
     },
   );
 

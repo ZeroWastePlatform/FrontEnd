@@ -1,20 +1,28 @@
 import React, { Suspense, useEffect, useState } from "react";
+<<<<<<< HEAD
+import { useNavigate, useSearchParams } from "react-router-dom";
+=======
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+>>>>>>> develop
 import CategoryNavigation from "../../components/Store/Common/CategoryNavigation/CategoryNavigation";
 import ProductCardListContainer from "../../components/Store/ProductList/ProductCardList/ProductCardListContainer";
 import ProductFilterBlockContainer from "../../components/Store/ProductList/ProductFilterBlock/ProductFilterBlockContainer";
 import { ErrorBoundary } from "react-error-boundary";
 import ProductCarouselContainer from "../../components/Common/Carousel/CarouselContainer";
+import makeQuery from "../../utils/makeQuery";
+import fixProductCondition from "../../utils/fixProductCondition";
 
-export interface filterType {
-  name: string | null;
-  value: string;
-  text: string;
-}
+export type category = "FOOD" | "KITCHEN" | "BATH" | "LIFE" | "HOBBY" | "GIFT" | "WOMAN" | "PET" | "STATIONERY";
+type price = "LT_10" | "BT_10_30" | "BT_30_50" | "GT_50";
+type sort = "POPULARITY" | "NEW" | "LOW_PRICE" | "HIGH_PRICE";
+type status = "FREE_SHIPPING" | "DISCOUNT_STOCK" | "REMOVE_OUT_OF_STOCK";
 export interface conditionType {
-  category: string;
-  filter: filterType[];
-  sort: string;
+  [key: string]: string | null | number;
+  category: category | "ALL" | "TOP6" | null;
+  brand: string | null;
+  price: price | null;
+  productStatus: status | null;
+  order: sort | category | "TOP6";
   page: number;
 }
 
@@ -25,9 +33,17 @@ function Store() {
   const query = searchParams.get("category");
 
   const [condition, setCondition] = useState<conditionType>({
+<<<<<<< HEAD
+    category: query ? (query as category) : "ALL",
+    brand: null,
+    price: null,
+    productStatus: null,
+    order: "POPULARITY",
+=======
     category: query ? query : "전체",
     filter: [],
     sort: "인기순",
+>>>>>>> develop
     page: 1,
   });
   const navigate = useNavigate();
@@ -35,13 +51,23 @@ function Store() {
     window.scrollTo(0, 0);
   }, []);
   useEffect(() => {
-    const filterQuery = `&filter=${condition.filter.map(({ text }) => text).join("%")}`;
-    navigate(
-      `/store?category=${condition.category}${condition.filter.length ? filterQuery : ""}&sort=${condition.sort}&page=${
-        condition.page
-      }`,
-    );
+    const query = makeQuery(fixProductCondition(condition));
+    navigate(`/store${query}`);
   }, [condition]);
+<<<<<<< HEAD
+
+  return (
+    <>
+      <CategoryNavigation condition={condition} setCondition={setCondition} />
+      {condition.category === "ALL" || condition.category === "TOP6" ? null : (
+        <ProductFilterBlockContainer condition={condition} setCondition={setCondition} />
+      )}
+      <ErrorBoundary FallbackComponent={() => <div style={exceptCaseStyle}>에러발생</div>}>
+        <Suspense fallback={<div style={exceptCaseStyle}>로딩중</div>}>
+          {condition.category === "ALL" || condition.category === "TOP6" ? (
+            <ProductCarouselContainer type="Store" />
+          ) : null}
+=======
   return (
     <>
       <CategoryNavigation condition={condition} setCondition={setCondition} />
@@ -52,6 +78,7 @@ function Store() {
           ) : (
             <ProductFilterBlockContainer condition={condition} setCondition={setCondition} />
           )}
+>>>>>>> develop
           <ProductCardListContainer condition={condition} setCondition={setCondition} />
         </Suspense>
       </ErrorBoundary>

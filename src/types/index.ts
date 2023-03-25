@@ -23,6 +23,7 @@ export interface PostListType {
   content: PostType[];
 }
 export interface UserInfoType {
+  accessToken: string;
   isLogin: boolean;
   id: null | number;
   couponCnt: number;

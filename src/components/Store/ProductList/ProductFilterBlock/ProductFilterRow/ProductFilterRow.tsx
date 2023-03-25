@@ -1,41 +1,29 @@
-import StoreFilterCheckBox from "./CheckBoxFilter/CheckBoxFilter";
-import StoreFilterRadio from "./RadioFilter/RadioFilter";
+import { filter } from "../ProductFilterBlockContainer";
 import { ProductFilterRowLayout, ProductFilterRowList, ProductFilterRowTitle } from "./ProductFilterRow.styles";
-import { filterType } from "../../../../../pages/Store/ProductList";
+import RadioFilter from "./RadioFilter/RadioFilter";
 
 interface ProductFilterRowProps {
   title: string;
-  list: { text: string; value: string; name?: string }[];
-  setCheckboxFilter: (clickedFilter: filterType) => void;
-  setRadioFilter: (clickedFilter: filterType) => void;
-  selectedCheck: (text: string) => boolean;
+  list: filter[];
+  setFilter: (clickedFilter: filter) => void;
+  isSelected: (name: string, value: string) => boolean;
 }
 
-const ProductFilterRow = ({ title, list, setCheckboxFilter, setRadioFilter, selectedCheck }: ProductFilterRowProps) => {
+const ProductFilterRow = ({ title, list, setFilter, isSelected }: ProductFilterRowProps) => {
   return (
     <ProductFilterRowLayout>
       <ProductFilterRowTitle wrap={title === "브랜드" ? "true" : "false"}>{title}</ProductFilterRowTitle>
       <ProductFilterRowList>
-        {list.map(({ text, value, name }) =>
-          name ? (
-            <StoreFilterRadio
-              text={text}
-              value={value}
-              name={name}
-              key={text}
-              setRadioFilter={setRadioFilter}
-              checked={selectedCheck(text)}
-            />
-          ) : (
-            <StoreFilterCheckBox
-              text={text}
-              value={value}
-              key={text}
-              setCheckboxFilter={setCheckboxFilter}
-              checked={selectedCheck(text)}
-            />
-          ),
-        )}
+        {list.map(({ text, value, name }) => (
+          <RadioFilter
+            text={text}
+            value={value}
+            name={name}
+            key={text}
+            setFilter={setFilter}
+            checked={isSelected(name, value)}
+          />
+        ))}
       </ProductFilterRowList>
     </ProductFilterRowLayout>
   );

@@ -1,15 +1,15 @@
-import { filterType } from "../../../../../../pages/Store/ProductList";
+import { filter } from "../../ProductFilterBlockContainer";
 import { RadioFilterInput, RadioFilterLabel, RadioFilterLayout } from "./RadioFilter.styles";
 
 interface RadioFilterProps {
   text: string;
   name: string;
   value: string;
-  setRadioFilter: (clickedFilter: filterType) => void;
+  setFilter: (clickedFilter: filter) => void;
   checked: boolean;
 }
 
-const RadioFilter = ({ text, name, value, setRadioFilter, checked }: RadioFilterProps) => {
+const RadioFilter = ({ text, name, value, setFilter, checked }: RadioFilterProps) => {
   return (
     <RadioFilterLayout>
       <RadioFilterInput
@@ -18,7 +18,11 @@ const RadioFilter = ({ text, name, value, setRadioFilter, checked }: RadioFilter
         name={name}
         value={value}
         checked={checked}
+<<<<<<< HEAD
+        onChange={() => setFilter({ name, value, text })}
+=======
         onChange={() => setRadioFilter({ name, value, text })}
+>>>>>>> develop
       />
       <RadioFilterLabel htmlFor={text}>{text}</RadioFilterLabel>
     </RadioFilterLayout>
