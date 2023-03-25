@@ -11,6 +11,6 @@ const Template: ComponentStory<typeof CategoryNavigation> = args => <CategoryNav
 
 export const GeneralType = Template.bind({});
 GeneralType.args = {
-  condition: { category: "전체", filter: [], sort: "인기순", page: 1 },
+  condition: { category: "ALL", sort: "POPULARITY", page: 1, brand: null, price: null, productStatus: null },
   setCondition: action("카테고리 변경"),
 };

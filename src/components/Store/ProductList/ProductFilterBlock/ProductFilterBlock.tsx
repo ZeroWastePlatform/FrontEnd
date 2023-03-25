@@ -1,28 +1,24 @@
-import { conditionType, filterType } from "../../../../pages/Store/ProductList";
+import { conditionType } from "../../../../pages/Store/ProductList";
 import { ProductFilterBlockCol, ProductFilterBlockLayout } from "./ProductFilterBlock.styles";
+import { filter } from "./ProductFilterBlockContainer";
+import filterList from "./ProductFilterData";
 import StoreFilterRow from "./ProductFilterRow/ProductFilterRow";
-import SelectedProductFilterList from "./SelectedProductFilterList/SelectedProductFilterList";
 
 interface ProductFilterBlockProps {
   condition: conditionType;
-  setCheckboxFilter: (clickedFilter: filterType) => void;
-  setRadioFilter: (clickedFilter: filterType) => void;
-  deleteFilter: (clickedFilter: filterType) => void;
-  selectedCheck: (text: string) => boolean;
-  resetFilter: () => void;
+  setFilter: (clickedFilter: filter) => void;
+  isSelected: (name: string, value: string) => boolean;
 }
 
-const ProductFilterBlock = ({
-  condition,
-  setCheckboxFilter,
-  setRadioFilter,
-  deleteFilter,
-  selectedCheck,
-  resetFilter,
-}: ProductFilterBlockProps) => {
+const ProductFilterBlock = ({ setFilter, isSelected }: ProductFilterBlockProps) => {
   return (
     <ProductFilterBlockLayout>
       <ProductFilterBlockCol>
+<<<<<<< HEAD
+        {filterList.map(({ title, list }) => (
+          <StoreFilterRow title={title} list={list} setFilter={setFilter} key={title} isSelected={isSelected} />
+        ))}
+=======
         <StoreFilterRow
           title={"브랜드"}
           list={[
@@ -79,6 +75,7 @@ const ProductFilterBlock = ({
           deleteFilter={deleteFilter}
           resetFilter={resetFilter}
         />
+>>>>>>> develop
       </ProductFilterBlockCol>
     </ProductFilterBlockLayout>
   );
