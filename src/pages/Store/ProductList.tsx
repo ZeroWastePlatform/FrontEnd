@@ -1,9 +1,5 @@
 import React, { Suspense, useEffect, useState } from "react";
-<<<<<<< HEAD
 import { useNavigate, useSearchParams } from "react-router-dom";
-=======
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
->>>>>>> develop
 import CategoryNavigation from "../../components/Store/Common/CategoryNavigation/CategoryNavigation";
 import ProductCardListContainer from "../../components/Store/ProductList/ProductCardList/ProductCardListContainer";
 import ProductFilterBlockContainer from "../../components/Store/ProductList/ProductFilterBlock/ProductFilterBlockContainer";
@@ -22,7 +18,7 @@ export interface conditionType {
   brand: string | null;
   price: price | null;
   productStatus: status | null;
-  order: sort | category | "TOP6";
+  sort: sort | category | "TOP6";
   page: number;
 }
 
@@ -33,17 +29,11 @@ function Store() {
   const query = searchParams.get("category");
 
   const [condition, setCondition] = useState<conditionType>({
-<<<<<<< HEAD
     category: query ? (query as category) : "ALL",
     brand: null,
     price: null,
     productStatus: null,
-    order: "POPULARITY",
-=======
-    category: query ? query : "전체",
-    filter: [],
-    sort: "인기순",
->>>>>>> develop
+    sort: "POPULARITY",
     page: 1,
   });
   const navigate = useNavigate();
@@ -54,7 +44,6 @@ function Store() {
     const query = makeQuery(fixProductCondition(condition));
     navigate(`/store${query}`);
   }, [condition]);
-<<<<<<< HEAD
 
   return (
     <>
@@ -67,18 +56,6 @@ function Store() {
           {condition.category === "ALL" || condition.category === "TOP6" ? (
             <ProductCarouselContainer type="Store" />
           ) : null}
-=======
-  return (
-    <>
-      <CategoryNavigation condition={condition} setCondition={setCondition} />
-      <ErrorBoundary FallbackComponent={() => <div style={exceptCaseStyle}>에러발생</div>}>
-        <Suspense fallback={<div style={exceptCaseStyle}>로딩중</div>}>
-          {condition.category === "전체" || condition.category === "베스트" ? (
-            <ProductCarouselContainer type="Store" />
-          ) : (
-            <ProductFilterBlockContainer condition={condition} setCondition={setCondition} />
-          )}
->>>>>>> develop
           <ProductCardListContainer condition={condition} setCondition={setCondition} />
         </Suspense>
       </ErrorBoundary>

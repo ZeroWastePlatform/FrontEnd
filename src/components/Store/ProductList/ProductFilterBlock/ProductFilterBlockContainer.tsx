@@ -18,7 +18,7 @@ const ProductFilterBlockContainer = ({ condition, setCondition }: ProductFilterB
     return false;
   };
 
-  return <ProductFilterBlock condition={condition} setFilter={setFilter} isSelected={isSelected} />;
+  return <ProductFilterBlock setFilter={setFilter} isSelected={isSelected} />;
 };
 
 export default ProductFilterBlockContainer;
