@@ -5,7 +5,7 @@ import Pagenation from "../../../Common/Pagenation/Pagenation";
 import UsedMarket from "./UsedMarket";
 
 const UsedMarketContainer = () => {
-  const { data } = useSuspenseQuery<PostListType>(["Community", "FreeBoard", "UsedMarket"], "posts/lists/2");
+  const { data } = useSuspenseQuery<PostListType>(["Community", "UsedMarket"], "posts/lists/2");
   console.log(data);
   return (
     <>
