@@ -18,7 +18,7 @@ export interface conditionType {
   brand: string | null;
   price: price | null;
   productStatus: status | null;
-  sort: sort | category | "TOP6";
+  order: sort | category | "TOP6";
   page: number;
 }
 
@@ -33,7 +33,7 @@ function Store() {
     brand: null,
     price: null,
     productStatus: null,
-    sort: "POPULARITY",
+    order: "POPULARITY",
     page: 1,
   });
   const navigate = useNavigate();
@@ -51,11 +51,9 @@ function Store() {
       {condition.category === "ALL" || condition.category === "TOP6" ? null : (
         <ProductFilterBlockContainer condition={condition} setCondition={setCondition} />
       )}
+      {condition.category === "ALL" || condition.category === "TOP6" ? <ProductCarouselContainer type="Store" /> : null}
       <ErrorBoundary FallbackComponent={() => <div style={exceptCaseStyle}>에러발생</div>}>
         <Suspense fallback={<div style={exceptCaseStyle}>로딩중</div>}>
-          {condition.category === "ALL" || condition.category === "TOP6" ? (
-            <ProductCarouselContainer type="Store" />
-          ) : null}
           <ProductCardListContainer condition={condition} setCondition={setCondition} />
         </Suspense>
       </ErrorBoundary>
