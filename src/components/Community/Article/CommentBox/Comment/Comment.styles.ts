@@ -41,6 +41,7 @@ export const CommentButton = styled.button`
 `;
 
 export const CommentReplyBox = styled.div`
+  width: 778px;
   padding-left: 150px;
 `;
 

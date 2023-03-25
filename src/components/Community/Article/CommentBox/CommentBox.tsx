@@ -20,6 +20,11 @@ interface CommentBoxProps {
 
 const CommentBox = ({ comments, regist, handleClickRemove }: CommentBoxProps) => {
   const [isEditId, setIsEditId] = useState(0);
+
+  const commentList = comments.filter(comment => {
+    return !comment.parentId;
+  });
+
   return (
     <CommentBoxLayout>
       <CommentBoxTotal>
@@ -28,7 +33,7 @@ const CommentBox = ({ comments, regist, handleClickRemove }: CommentBoxProps) =>
       </CommentBoxTotal>
       <InputBox placeholder="댓글을 남겨 보세요." regist={regist} />
       <CommentBoxComments>
-        {comments.map((comment, idx) => (
+        {commentList.map((comment, idx) => (
           <Comment
             key={comment.id}
             isEdit={comment.id === isEditId}
@@ -38,6 +43,7 @@ const CommentBox = ({ comments, regist, handleClickRemove }: CommentBoxProps) =>
             memberId={comment.commentMember.memberId}
             nickname={comment.commentMember.nickname}
             handleClickRemove={handleClickRemove}
+            comments={comments}
           />
         ))}
       </CommentBoxComments>

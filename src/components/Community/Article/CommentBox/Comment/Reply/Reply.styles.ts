@@ -29,3 +29,29 @@ export const ReplyUserName = styled.span`
 `;
 
 export const ReplyContent = styled.div``;
+
+export const ReplyActions = styled.div`
+  display: flex;
+  gap: 15px;
+`;
+
+export const ReplyButton = styled.button`
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: ${({ theme }) => theme.colors.gray4};
+`;
+
+export const ReplyEditInput = styled.input`
+  width: 400px;
+  height: 30px;
+  border-radius: 10px;
+  border: 2px solid #bdbdbe;
+  padding-left: 10px;
+`;
+
+export const ReplyEditBtns = styled.div`
+  display: flex;
+  gap: 15px;
+  width: 600px;
+`;

@@ -6,6 +6,7 @@ import { useRecoilValue } from "recoil";
 import { userInfoAtom } from "../../../../../atom/userInfo";
 import useSetQueryMutate from "../../../../../hooks/useSetQueryMutate";
 import customAPI from "../../../../../lib/customApi";
+import { CommentType } from "../../../../../types";
 import InputBox from "../Common/InputBox/InputBox";
 import {
   CommentActions,
@@ -30,13 +31,24 @@ interface CommentProps {
   isEdit: boolean;
   setIsEditId: React.Dispatch<React.SetStateAction<number>>;
   handleClickRemove: (id: number) => void;
+  comments: CommentType[];
 }
 
-const Comment = ({ commentId, content, memberId, nickname, isEdit, setIsEditId, handleClickRemove }: CommentProps) => {
+const Comment = ({
+  commentId,
+  content,
+  memberId,
+  nickname,
+  isEdit,
+  setIsEditId,
+  handleClickRemove,
+  comments,
+}: CommentProps) => {
   const [isShowInput, setIsShowInput] = useState(false);
   const userInfo = useRecoilValue(userInfoAtom);
   const [editContent, setEditContent] = useState(content);
   const { id } = useParams();
+  const [isEditReplyId, setIsEditReplyId] = useState(0);
 
   const { mutate: regist } = useSetQueryMutate(
     data => customAPI.post(`posts/comments/${commentId}`, data),
@@ -63,6 +75,12 @@ const Comment = ({ commentId, content, memberId, nickname, isEdit, setIsEditId, 
     edit(id);
     setIsEditId(0);
   };
+
+  const replyList = comments.filter(comment => {
+    return comment.parentId === commentId;
+  });
+
+  console.log("replyList", replyList);
 
   return (
     <CommentLayout>
@@ -94,7 +112,17 @@ const Comment = ({ commentId, content, memberId, nickname, isEdit, setIsEditId, 
         )}
 
         <CommentReplyBox>
-          {/* <Reply></Reply> */}
+          {replyList.map(comment => (
+            <Reply
+              key={comment.id}
+              content={comment.content}
+              nickname={comment.commentMember.nickname}
+              userId={comment.commentMember.memberId}
+              replyId={comment.id}
+              isEdit={isEditReplyId === comment.id}
+              setIsEditReplyId={setIsEditReplyId}
+            ></Reply>
+          ))}
           {isShowInput && <InputBox placeholder="답글을 남겨 주세요." regist={regist} />}
         </CommentReplyBox>
       </CommentBox>
