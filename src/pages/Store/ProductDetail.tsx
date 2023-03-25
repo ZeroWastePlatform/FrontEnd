@@ -1,4 +1,4 @@
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useLocation } from "react-router-dom";
 import CategoryNavigation from "../../components/Store/Common/CategoryNavigation/CategoryNavigation";
@@ -9,6 +9,9 @@ import { conditionType } from "./ProductList";
 const ProductDetail = () => {
   const location = useLocation();
   const [condition, setCondition] = useState<{ category?: string }>({ category: location.state?.category });
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <main>
       <CategoryNavigation condition={condition as conditionType} setCondition={() => null} />

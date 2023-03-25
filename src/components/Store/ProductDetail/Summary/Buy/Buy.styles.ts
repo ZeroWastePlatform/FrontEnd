@@ -112,7 +112,10 @@ export const BuyCircleButton = styled.div`
   cursor: pointer;
 `;
 
-export const BuyCircleButtonIcon = styled.img``;
+export const BuyCircleButtonIcon = styled.div<{ liked: string }>`
+  font-size: 25px;
+  color: ${({ liked }) => (liked === "true" ? "red" : "black")};
+`;
 
 export const BuyBadgeList = styled.ul`
   display: flex;

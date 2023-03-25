@@ -5,14 +5,16 @@ import Thumnail from "./Thumnail/Thumnail";
 
 interface SummaryProps {
   data: SummaryType;
+  liked: boolean;
+  changeLike: (productId: number) => Promise<void>;
 }
 
-const Summary = ({ data }: SummaryProps) => {
+const Summary = ({ data, liked, changeLike }: SummaryProps) => {
   return (
     <SummaryLayout>
       <SummaryRow>
-        <Thumnail photos={data.thumnail} />
-        <BuyContainer data={data} />
+        <Thumnail photo={data.thumnail} />
+        <BuyContainer data={data} liked={liked} changeLike={changeLike} />
       </SummaryRow>
     </SummaryLayout>
   );

@@ -12,7 +12,7 @@ interface ProductFilterRowProps {
 const ProductFilterRow = ({ title, list, setFilter, isSelected }: ProductFilterRowProps) => {
   return (
     <ProductFilterRowLayout>
-      <ProductFilterRowTitle>{title}</ProductFilterRowTitle>
+      <ProductFilterRowTitle wrap={title === "브랜드" ? "true" : "false"}>{title}</ProductFilterRowTitle>
       <ProductFilterRowList>
         {list.map(({ text, value, name }) => (
           <RadioFilter

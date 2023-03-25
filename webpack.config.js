@@ -6,12 +6,6 @@ const dotenv = require("dotenv");
 
 module.exports = env => {
   const { DEV } = env;
-  if (DEV) {
-    dotenv.config({ path: "./dev.env" });
-  } else {
-    dotenv.config({ path: "./.env" });
-  }
-  console.log(Object.keys(process.env));
   return {
     mode: "development",
     entry: {
@@ -52,7 +46,8 @@ module.exports = env => {
       }),
       new CleanWebpackPlugin(),
       new webpack.DefinePlugin({
-        "process.env.API_SERVER": JSON.stringify(process.env.API_SERVER), // env에서 읽은 ip를 저장
+        // "process.env.API_SERVER": JSON.stringify(process.env.API_SERVER), // env에서 읽은 ip를 저장
+        "process.env": JSON.stringify(dotenv.config({ path: DEV ? "./dev.env" : "./.env" }).parsed),
       }),
     ],
     devServer: {

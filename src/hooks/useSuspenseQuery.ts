@@ -1,12 +1,20 @@
-import axios from "axios";
 import { useQuery } from "react-query";
+import customAPI from "../lib/customApi";
 
-const useSuspenseQuery = <T>(queryKey: unknown[], url: string, onSuccess?: (data: T) => void) => {
-  const { data } = useQuery<T>(queryKey, () => axios(`http://localhost:8000/${url}`).then(res => res.data), {
-    suspense: true,
-    useErrorBoundary: true,
-    onSuccess,
-  });
+const useSuspenseQuery = <T>(queryKey: unknown[], url: string, onSuccess?: (data: T) => void, enabled?: boolean) => {
+  const { data } = useQuery<T>(
+    queryKey,
+    () =>
+      customAPI(`${url}`)
+        .then(res => res.data)
+        .catch(err => console.error("err :", err)),
+    {
+      enabled: enabled ?? true,
+      suspense: true,
+      useErrorBoundary: true,
+      onSuccess,
+    },
+  );
 
   return { data: data as T };
 };

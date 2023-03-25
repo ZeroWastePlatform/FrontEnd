@@ -2,29 +2,22 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { isBuyFormAtom, PriceSelector } from "../../../../../atom/buyForm";
+import { userInfoAtom } from "../../../../../atom/userInfo";
 import BuyButton from "./BuyButton";
 
 const BuyButtonContainer = () => {
   const price = useRecoilValue(PriceSelector);
   const buyInfo = useRecoilValue(isBuyFormAtom);
+  const user = useRecoilValue(userInfoAtom);
+
   const navigation = useNavigate();
   const buyProduct = async () => {
     const body = {
-      name: buyInfo.ordererName,
-      phoneNum: buyInfo.ordererPhone,
-      email: buyInfo.ordererEmailFirst,
-      address: {
-        addressName: "집",
-        recipient: buyInfo.ordererName,
-        recipientPhone: buyInfo.ordererPhone,
-        zipCode: buyInfo.address1,
-        address: buyInfo.address2,
-        addressDetail: buyInfo.address3,
-      },
-      totalPrice: price + 3000 - buyInfo.point,
+      product: buyInfo.product.map(({ id }) => id),
+      id: user.id,
     };
     try {
-      await axios.post("http://greenus.duckdns.org/api/purchases", body);
+      await axios.post("https://zerowasteproduct.herokuapp.com/purchase", body);
       alert("구매에 성공하였습니다!");
       navigation("/");
     } catch {

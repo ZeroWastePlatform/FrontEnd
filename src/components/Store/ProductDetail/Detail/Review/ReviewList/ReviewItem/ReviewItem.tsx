@@ -26,7 +26,7 @@ const ReviewItem = ({ review }: ReviewItemProps) => {
   return (
     <ReviewItemLayout>
       <ReviewItemTopBox>
-        <ReviewItemUserAvatar src={review.avatar} />
+        <ReviewItemUserAvatar src={`https://zerowasteproduct.herokuapp.com${review.avatar}`} />
         <ReviewItemTopLeftBox>
           <ReviewItemUserNickname>{review.nickname}</ReviewItemUserNickname>
           <ReviewItemTopLeftBottomBox>
@@ -49,7 +49,7 @@ const ReviewItem = ({ review }: ReviewItemProps) => {
       <ReviewItemContent>{review.content}</ReviewItemContent>
       <ReviewItemImgList>
         {review.photo.map(src => {
-          return <ReviewItemImg src={src} key={src} />;
+          return <ReviewItemImg src={`https://zerowasteproduct.herokuapp.com${src}`} key={src} />;
         })}
       </ReviewItemImgList>
     </ReviewItemLayout>

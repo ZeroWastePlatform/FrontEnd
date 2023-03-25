@@ -26,8 +26,9 @@ import { discountPrice, numberWithCommas } from "../../../../utils/priceProcess"
 import flagImg from "../../../../assets/images/flag.svg";
 
 export interface ProductCardProps extends ProductCardListDataContentType {
-  changeLiked: UseMutateFunction<AxiosResponse<unknown, unknown>, unknown, unknown, unknown>;
   order: number;
+  liked: boolean;
+  changeLike: (productId: number) => Promise<void>;
 }
 
 const ProductCard = ({
@@ -39,9 +40,9 @@ const ProductCard = ({
   discountRate,
   price,
   badges,
+  thumnail,
   liked,
-  img,
-  changeLiked,
+  changeLike,
 }: ProductCardProps) => {
   return (
     <ThemeProvider theme={theme}>
@@ -50,11 +51,11 @@ const ProductCard = ({
           <ProductCardImgBox>
             {order ? <ProductRankImg src={flagImg} /> : null}
             {order ? <ProductRank>{order}</ProductRank> : null}
-            <ProductCardImg src={img} />
+            <ProductCardImg src={`https://zerowasteproduct.herokuapp.com${thumnail}`} />
             <ProdcutCardLikeIcon
               onClick={e => {
                 e.preventDefault();
-                changeLiked(id);
+                changeLike(id);
               }}
             >
               {liked ? "♥" : "♡"}
@@ -71,11 +72,19 @@ const ProductCard = ({
               ) : null}
             </ProductCardPriceBox>
             <ProductCardBadgeList>
-              {badges.map(badge => (
-                <ProductCardBadgeItem key={badge} type={badge}>
-                  {badge.toUpperCase()}
-                </ProductCardBadgeItem>
-              ))}
+              {badges
+                .toString(2)
+                .split("")
+                .map((bool, index) => {
+                  if (bool === "1") return badgeList[index];
+                  return "false";
+                })
+                .filter(el => el !== "false")
+                .map(badge => (
+                  <ProductCardBadgeItem key={badge} type={badge}>
+                    {badge}
+                  </ProductCardBadgeItem>
+                ))}
             </ProductCardBadgeList>
           </ProductCardInfoList>
         </ProductCardCol>
@@ -85,3 +94,5 @@ const ProductCard = ({
 };
 
 export default ProductCard;
+
+const badgeList = ["BEST", "NEW", "SALE"];

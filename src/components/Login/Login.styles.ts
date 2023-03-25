@@ -31,15 +31,16 @@ export const LoginLogoImg = styled.img.attrs({
   width: 260px;
 `;
 
-export const LoginButtonBox = styled.div`
+export const LoginAnchorBox = styled.div`
   margin-top: 120px;
 `;
 
-export const LoginButton = styled.button<{ authType: string; bgColor: string }>`
+export const LoginAnchor = styled.a<{ authType: string; bgColor: string }>`
+  display: inline-block;
+  text-align: center;
   position: relative;
-  border: 0;
   width: 100%;
-  height: 60px;
+  padding: 20px;
   border-radius: 50px;
   cursor: pointer;
   margin-bottom: 20px;
@@ -70,15 +71,4 @@ export const LoginButton = styled.button<{ authType: string; bgColor: string }>`
     top: 50%;
     transform: translateY(-50%);
   }
-`;
-
-export const LoginTextBox = styled.div`
-  text-align: center;
-  margin-top: 100px;
-`;
-
-export const LoginText = styled.span`
-  text-decoration: underline;
-  color: ${({ theme }) => theme.colors.gray6};
-  cursor: pointer;
 `;

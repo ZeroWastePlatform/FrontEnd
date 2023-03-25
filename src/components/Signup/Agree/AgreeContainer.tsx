@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useRecoilState } from "recoil";
+import { checkedListSelector } from "../../../atom/signupForm";
 import Agree from "./Agree";
 
 const agreeList = [
@@ -25,7 +27,7 @@ const agreeList = [
 ];
 
 const AgreeContainer = () => {
-  const [checkedList, setCheckedLists] = useState<typeof agreeList>([]);
+  const [checkedList, setCheckedLists] = useRecoilState(checkedListSelector);
 
   const handleChangeAll = (checked: any) => {
     if (checked) {
