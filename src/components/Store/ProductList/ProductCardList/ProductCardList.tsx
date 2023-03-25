@@ -20,42 +20,48 @@ interface ProductCardListProps {
   setCondition: setConditionType;
   setPage: (page: number) => void;
   likeData: number[];
-  changeLike: (productId: number) => Promise<void>;
+  changeLike: any;
 }
 
 const ProductCardList = ({ data, condition, setCondition, setPage, likeData, changeLike }: ProductCardListProps) => {
+  console.log(data);
   return (
     <ProductCardListLayout>
       <ProductCardListTopBox>
         <ProductCardListTotalText>
-          {condition.category === "베스트" ? "베스트순" : `전체 ${data.count}개`}
+          {condition.category === "TOP6" ? "베스트순" : `전체 ${data.totalElements}개`}
         </ProductCardListTotalText>
-        {condition.category === "베스트" ? (
+        {condition.category === "TOP6" ? (
           <ProductBestSort condition={condition} setCondition={setCondition} />
         ) : (
           <StoreSort condition={condition} setCondition={setCondition} />
         )}
       </ProductCardListTopBox>
-      {data.count === 0 ? (
+      {data.totalElements === 0 ? (
         <ProductCardListNoResultLayout>
           <ProductCardListNoResultTitle>상품을 찾을수 없어요</ProductCardListNoResultTitle>
           <img src={characterLogo}></img>
         </ProductCardListNoResultLayout>
       ) : (
         <ProductCardListGrid>
-          {(condition.category === "베스트" ? data.rows.slice(0, 6) : data.rows).map((content, index) => (
+          {(condition.category === "TOP6" ? data.content.slice(0, 6) : data.content).map((content, index) => (
             <ProductCard
               {...content}
               key={content.id}
-              order={condition.category === "베스트" && index < 3 ? index + 1 : 0}
-              liked={likeData.indexOf(content.id) !== -1}
+              order={condition.category === "TOP6" && index < 3 ? index + 1 : 0}
+              liked={false}
               changeLike={changeLike}
             />
           ))}
         </ProductCardListGrid>
       )}
-      {condition.category === "베스트" ? null : (
-        <PagenationContainer page={condition.page} setPage={setPage} totalPage={Math.ceil(data.count / 9)} unit={9} />
+      {condition.category === "TOP6" ? null : (
+        <PagenationContainer
+          page={condition.page}
+          setPage={setPage}
+          totalPage={Math.ceil(data.totalElements / 9)}
+          unit={9}
+        />
       )}
     </ProductCardListLayout>
   );

@@ -9,6 +9,7 @@ const fixProductCondition = (condition: conditionType) => {
     newCondition.category = newCondition.sort as category;
     newCondition.sort = "TOP6";
   }
+  newCondition.page -= 1;
   return newCondition;
 };
 

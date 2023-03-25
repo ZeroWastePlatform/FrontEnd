@@ -18,7 +18,7 @@ const RadioFilter = ({ text, name, value, setFilter, checked }: RadioFilterProps
         name={name}
         value={value}
         checked={checked}
-        onChange={() => setRadioFilter({ name, value, text })}
+        onChange={() => setFilter({ name, value, text })}
       />
       <RadioFilterLabel htmlFor={text}>{text}</RadioFilterLabel>
     </RadioFilterLayout>
