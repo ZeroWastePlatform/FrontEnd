@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { signupFormAtom } from "../../atom/signupForm";
 import { userInfoAtom } from "../../atom/userInfo";
-import customAPI from "../../lib/customApi";
+import customAPI from "../../lib/customAPI";
 import Signup from "./Signup";
 
 const SignupContainer = () => {

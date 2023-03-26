@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import customAPI from "../lib/customApi";
+import customAPI from "../lib/customAPI";
 
 const useSuspenseQuery = <T>(queryKey: unknown[], url: string, onSuccess?: (data: T) => void, enabled?: boolean) => {
   const { data } = useQuery<T>(
