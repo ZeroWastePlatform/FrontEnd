@@ -71,7 +71,6 @@ const Comment = ({
   );
 
   const handleClickEdit = () => {
-    console.log(commentId);
     edit(id);
     setIsEditId(0);
   };
@@ -79,8 +78,6 @@ const Comment = ({
   const replyList = comments.filter(comment => {
     return comment.parentId === commentId;
   });
-
-  console.log("replyList", replyList);
 
   return (
     <CommentLayout>

@@ -21,7 +21,6 @@ const refresh = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> 
 
     config.headers["Authorization"] = `Bearer ${token}`;
   } catch (err) {
-    console.log("refreshError", err);
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("accessToken");
   }
@@ -29,7 +28,6 @@ const refresh = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> 
 };
 
 const refreshErrorHandle = (err: any) => {
-  console.log("refreshErrorHandleErr :", err);
   localStorage.removeItem("refreshToken");
 };
 

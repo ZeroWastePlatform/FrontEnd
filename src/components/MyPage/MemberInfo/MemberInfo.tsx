@@ -93,8 +93,6 @@ const MemberInfo = ({
         Authorization: `Bearer ${accessToken}`,
       },
     });
-
-    console.log(result);
   };
 
   const handleLocate = (e: React.ChangeEvent<HTMLInputElement>) => {

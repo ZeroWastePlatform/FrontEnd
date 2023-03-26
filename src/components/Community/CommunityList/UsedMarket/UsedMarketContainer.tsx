@@ -6,7 +6,7 @@ import UsedMarket from "./UsedMarket";
 
 const UsedMarketContainer = () => {
   const { data } = useSuspenseQuery<PostListType>(["Community", "UsedMarket"], "posts/lists/2");
-  console.log(data);
+
   return (
     <>
       <UsedMarket posts={data.content} />

@@ -37,7 +37,6 @@ const ProfileAside = () => {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    console.log(result);
   };
 
   useEffect(() => {

@@ -18,7 +18,6 @@ const SignupContainer = () => {
     } else if (signupForm.checkedList.filter(item => item.description === "(필수)").length !== 3) {
       alert("필수 동의항목을 모두 선택해 주세요");
     } else {
-      console.log("userInfo.accessToken", userInfo.accessToken);
       await axios
         .post(
           `${process.env.API_SERVER}api/members/signup`,
