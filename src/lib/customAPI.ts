@@ -1,9 +1,9 @@
 import axios from "axios";
 import { refresh, refreshErrorHandle } from "./refresh";
 
-console.log(process.env.API_SERVER);
+console.log(process.env);
 const customAPI = axios.create({
-  baseURL: process.env.API_SERVER,
+  baseURL: "http://greenus.duckdns.org/",
   params: {},
 });
 
