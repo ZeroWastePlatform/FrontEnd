@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import useSetQueryMutate from "../../../hooks/useSetQueryMutate";
 import useWriteForm from "../../../hooks/useWriteForm";
-import customAPI from "../../../lib/customApi";
+import customAPI from "../../../lib/customAPI";
 import Write from "./Write";
 
 const WriteContainer = () => {

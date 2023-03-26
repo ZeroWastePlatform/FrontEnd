@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { userInfoAtom } from "../../../../../atom/userInfo";
 import useSetQueryMutate from "../../../../../hooks/useSetQueryMutate";
-import customAPI from "../../../../../lib/customApi";
+import customAPI from "../../../../../lib/customAPI";
 import { CommentType } from "../../../../../types";
 import InputBox from "../Common/InputBox/InputBox";
 import {

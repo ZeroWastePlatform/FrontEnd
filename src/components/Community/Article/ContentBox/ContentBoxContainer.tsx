@@ -2,7 +2,7 @@ import React from "react";
 import ContentBox from "./ContentBox";
 import { PostType } from "../../../../types/index";
 import useSetQueryMutate from "../../../../hooks/useSetQueryMutate";
-import customAPI from "../../../../lib/customApi";
+import customAPI from "../../../../lib/customAPI";
 
 interface ContentBoxContainerProps {
   post: PostType;

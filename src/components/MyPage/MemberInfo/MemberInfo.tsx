@@ -34,7 +34,7 @@ import {
 import KakaoImg from "../../../assets/images/kakao.svg";
 import { useRef, useState } from "react";
 import ZipCodeModal from "../../Common/ZipCodeModal/ZipCodeModal";
-import customAPI from "../../../lib/customApi";
+import customAPI from "../../../lib/customAPI";
 
 interface IMemberInfoProps {
   onCompletePost: (data: any) => void;
