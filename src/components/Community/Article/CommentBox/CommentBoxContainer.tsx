@@ -37,8 +37,6 @@ const CommentBoxContainer = ({ postId }: CommentBoxContainerProps) => {
     }
   };
 
-  console.log("comment", data);
-
   return <CommentBox comments={data.content} regist={regist} handleClickRemove={handleClickRemove} />;
 };
 

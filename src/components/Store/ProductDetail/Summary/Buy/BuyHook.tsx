@@ -13,7 +13,6 @@ const useBuy = () => {
   const queryClient = useQueryClient();
   const buyProduct = () => {
     const data = queryClient.getQueryData<SummaryType>(["Store", "ProductDetail", "summary", "1"]) as SummaryType;
-    console.log(data);
 
     const product = [
       {

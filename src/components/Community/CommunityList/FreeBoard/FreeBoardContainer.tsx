@@ -5,7 +5,6 @@ import FreeBoard from "./FreeBoard";
 
 const FreeBoardContainer = () => {
   const { data } = useSuspenseQuery<PostListType>(["Community", "FreeBoard"], "posts/lists/1");
-  console.log(data);
 
   return (
     <>

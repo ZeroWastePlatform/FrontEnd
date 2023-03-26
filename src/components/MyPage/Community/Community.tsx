@@ -69,7 +69,6 @@ const Commuinty = () => {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      console.log(result);
     } catch {
       throw new Error("오류");
     }

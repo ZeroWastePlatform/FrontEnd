@@ -26,7 +26,6 @@ const MyPage = ({ selectCategoryComponentList }: IMyPageProps) => {
   //   //   headers: { Authorization: accessToken },
   //   // };
   //   // setLocalPopularGifticons(result.data.data.topShopByLocate);
-  //   console.log(result);
   // };
 
   return (

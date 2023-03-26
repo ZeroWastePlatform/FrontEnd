@@ -16,7 +16,6 @@ const useWriteForm = (
   const changeFormData = (key: string, data: string | number) => {
     setWriteForm(prev => ({ ...prev, [key]: data }));
   };
-  console.log("writeForm", writeForm);
   const handleClickRegist = () => {
     if (writeForm.kind === 0) {
       alert("게시판을 선택해 주세요.");
@@ -33,7 +32,6 @@ const useWriteForm = (
       formData.append("storedFileNames", writeForm.images as any);
       formData.append("hashtag", writeForm.hashtag as any);
 
-      console.log("writeForm2222", writeForm);
       mutate(formData);
     }
   };

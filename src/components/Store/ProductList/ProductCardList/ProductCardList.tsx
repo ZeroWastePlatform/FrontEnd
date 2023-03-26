@@ -24,7 +24,6 @@ interface ProductCardListProps {
 }
 
 const ProductCardList = ({ data, condition, setCondition, setPage, likeData, changeLike }: ProductCardListProps) => {
-  console.log(data);
   return (
     <ProductCardListLayout>
       <ProductCardListTopBox>
