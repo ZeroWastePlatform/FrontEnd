@@ -27,6 +27,7 @@ import { useEffect, useState } from "react";
 import ArrowPng from "../../../../src/assets/images/arrowIcon.png";
 import axios from "axios";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 interface IUserPurchaseProps {
   badges: number;
@@ -43,18 +44,23 @@ interface IUserPurchaseProps {
 }
 
 const MyOrderList = () => {
+  const navigate = useNavigate();
   const [orderList, setOrderList] = useState<IUserPurchaseProps[]>([]);
 
-  const statusList = ["결제완료", "배송준비", "배송중", "배송완료"];
-  const defaultSelect = statusList[0];
-  const [selectStatusList, setSelectStatusList] = useState(defaultSelect);
+  const [selectStatusList, setSelectStatusList] = useState(0);
 
   const orderListAPI = async (): Promise<void> => {
-    const result = await axios.get("http://localhost:3306/purchase/detail?id=1 ");
-    setOrderList(result.data.userPurchase);
+    try {
+      const result = await axios.get("http://localhost:3306/purchase/detail?id=1 ");
+      setOrderList(result.data.userPurchase);
+    } catch {
+      throw new Error("network error");
+    }
   };
 
-  console.log(orderList);
+  const handleDetailClick = (id: number) => {
+    navigate(`/store/product/${id}`);
+  };
 
   useEffect(() => {
     orderListAPI();
@@ -75,12 +81,12 @@ const MyOrderList = () => {
 
       <DeliveryStatusBox>
         {orderListData.map(({ img, text, number }, index) => {
-          const isSelected = selectStatusList === text;
+          const isSelected = selectStatusList === index;
           return (
             <React.Fragment key={text}>
               <OrderListDataButton
                 onClick={() => {
-                  setSelectStatusList(text);
+                  setSelectStatusList(index);
                 }}
               >
                 <OrderListDataNumber style={isSelected ? { color: "#66f095" } : undefined}>
@@ -94,43 +100,54 @@ const MyOrderList = () => {
         })}
       </DeliveryStatusBox>
 
-      {orderList?.map(order => {
-        const date = order.createdAt.substr(0, order.createdAt.indexOf("T"));
-        const orderNumber = parseInt(date.replace(/-/g, ""));
-        const month = date.split("-")[1];
-        const day = date.split("-")[2];
-        const deliveryStatus = ["배송준비", "배송중", "배송완료"];
+      {orderList
+        .filter(item => {
+          if (selectStatusList === 0) return true;
+          return item.id === selectStatusList;
+        })
+        .map(order => {
+          const date = order.createdAt.substr(0, order.createdAt.indexOf("T"));
+          const orderNumber = parseInt(date.replace(/-/g, ""));
+          const month = date.split("-")[1];
+          const day = date.split("-")[2];
+          const deliveryStatus = ["배송준비", "배송중", "배송완료"];
 
-        return (
-          <OrderInfoBox key={order.id}>
-            <OrderNumber>
-              주문번호 {orderNumber}-012123 | {date}
-            </OrderNumber>
-            <OrderBox>
-              <OrderStatus>
-                {month}/{day}(수){deliveryStatus[order.id - 1]}
-              </OrderStatus>
-              <OrderButton>상세보기 {">"}</OrderButton>
-            </OrderBox>
+          return (
+            <OrderInfoBox key={order.id}>
+              <OrderNumber>
+                주문번호 {orderNumber}-012123 | {date}
+              </OrderNumber>
+              <OrderBox>
+                <OrderStatus>
+                  {month}/{day}(수){deliveryStatus[order.id - 1]}
+                </OrderStatus>
+                <OrderButton
+                  onClick={() => {
+                    handleDetailClick(order.id);
+                  }}
+                >
+                  상세보기 {">"}
+                </OrderButton>
+              </OrderBox>
 
-            <ProductBox>
-              <ProductInfoBox>
-                <img src={`http://localhost:3306${order.thumnail}`} />
-                <ProductDetailInfoBox>
-                  <ProductBrandSpan>{order.brand}</ProductBrandSpan>
-                  <ProductNameSpan>{order.title}</ProductNameSpan>
-                  <ProductPriceSpan>{order.price.toLocaleString()}원/1개</ProductPriceSpan>
-                </ProductDetailInfoBox>
-              </ProductInfoBox>
+              <ProductBox>
+                <ProductInfoBox>
+                  <img src={`http://localhost:3306${order.thumnail}`} />
+                  <ProductDetailInfoBox>
+                    <ProductBrandSpan>{order.brand}</ProductBrandSpan>
+                    <ProductNameSpan>{order.title}</ProductNameSpan>
+                    <ProductPriceSpan>{order.price.toLocaleString()}원/1개</ProductPriceSpan>
+                  </ProductDetailInfoBox>
+                </ProductInfoBox>
 
-              <ButtonBox>
-                <DeliveryCheckButton>배송조회</DeliveryCheckButton>
-                {order.id === 3 && <ReviewButton>리뷰쓰기</ReviewButton>}
-              </ButtonBox>
-            </ProductBox>
-          </OrderInfoBox>
-        );
-      })}
+                <ButtonBox>
+                  <DeliveryCheckButton>배송조회</DeliveryCheckButton>
+                  {order.id === 3 && <ReviewButton>리뷰쓰기</ReviewButton>}
+                </ButtonBox>
+              </ProductBox>
+            </OrderInfoBox>
+          );
+        })}
 
       <CancelParagraph>취소/교환/반품</CancelParagraph>
       <CancelData>취소내역이 없습니다.</CancelData>

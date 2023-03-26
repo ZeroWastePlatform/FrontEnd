@@ -2,71 +2,146 @@ import {
   ArticleInfoRow,
   CommentBox,
   CommentNumber,
-  CommuintyArticle,
+  CommunityBoardSection,
   CommuintyLayout,
-  CommunitySection,
-  EditButton,
+  CommuintyBoardArticle,
   InquiryBox,
   InquiryNumber,
-  MyArticleNumber,
-  MyArticleSpan,
-  MyCommentNumber,
-  MyCommentSpan,
-  MyInfoRow,
   TitleBox,
   TitleText,
   WritingTime,
+  CommunityCommentSection,
+  CommunityCommentArticle,
+  CommentContent,
+  CommentContentBox,
+  CommentCategory,
+  CommentInfo,
+  CommentTitle,
+  CommunityTapRow,
+  CommunityTap,
+  CommunityTapSpan,
+  CommunityTapNumber,
 } from "./Community.style";
 import commentImg from "../../../assets/images/comments.svg";
+import viewImg from "../../../assets/images/view.svg";
+import { useEffect, useState } from "react";
+import customAPI from "../../../lib/customApi";
+
+interface ICommentResponseProps {
+  content: {
+    content: string;
+    id: number;
+    kind: number;
+    postId: number;
+    replyCnt: number;
+  }[];
+}
+
+interface IPostResponseProps {
+  content: {
+    createdAt: string;
+    id: number;
+    replyCnt: number;
+    title: string;
+    viewCnt: number;
+  }[];
+}
+
+interface IPostDataProps {
+  commentResponses: ICommentResponseProps | null;
+  postResponses: IPostResponseProps | null;
+}
 
 const Commuinty = () => {
+  const taps = ["내가 작성한 게시글", "내가 작성한 댓글"];
+  const [selectTap, setSelectTap] = useState("내가 작성한 게시글");
+  const accessToken = localStorage.getItem("accessToken");
+  const [postData, setPostData] = useState<IPostDataProps | null>();
+
+  // const [page, setPage] = useState(0);
+
+  const kind = encodeURIComponent(selectTap);
+
+  const communityAPI = async () => {
+    try {
+      const result = await customAPI.get(`/api/members/me/communities?kind=${kind}?page=0`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      console.log(result);
+    } catch {
+      throw new Error("오류");
+    }
+  };
+
+  useEffect(() => {
+    communityAPI();
+  }, []);
+
   return (
     <CommuintyLayout>
-      <MyInfoRow>
-        <MyArticleSpan>내가 작성한 게시글</MyArticleSpan>
-        <MyArticleNumber>10</MyArticleNumber>
+      <CommunityTapRow>
+        {taps.map(tap => {
+          const isSelected = selectTap === tap;
+          return (
+            <CommunityTap
+              key={tap}
+              onClick={(): void => {
+                setSelectTap(tap);
+              }}
+            >
+              <CommunityTapSpan style={isSelected ? { color: "#000000" } : undefined}>{tap}</CommunityTapSpan>
 
-        <MyCommentSpan>내가 작성한 댓글</MyCommentSpan>
-        <MyCommentNumber>256</MyCommentNumber>
-      </MyInfoRow>
+              <CommunityTapNumber style={isSelected ? { color: "#66F095" } : undefined}>
+                {postData?.postResponses?.content.length}
+              </CommunityTapNumber>
+            </CommunityTap>
+          );
+        })}
+      </CommunityTapRow>
 
-      <CommunitySection>
-        <CommuintyArticle>
-          <TitleBox>
-            <TitleText>그리너스 작성한 글 목록</TitleText>
-            <EditButton>수정</EditButton>
-          </TitleBox>
-          <ArticleInfoRow>
-            <WritingTime>1분 전</WritingTime>
-            <CommentBox>
-              <img src={commentImg} />
-              <CommentNumber>22</CommentNumber>
-            </CommentBox>
+      {selectTap === "내가 작성한 게시글" && (
+        <CommunityBoardSection>
+          {postData?.postResponses?.content.map(post => {
+            return (
+              <CommuintyBoardArticle key={post.id}>
+                <TitleBox>
+                  <TitleText>{post.title}</TitleText>
+                </TitleBox>
+                <ArticleInfoRow>
+                  <WritingTime>{post.createdAt}</WritingTime>
+                  <CommentBox>
+                    <img src={commentImg} />
+                    <CommentNumber>{post.replyCnt}</CommentNumber>
+                  </CommentBox>
+                  <InquiryBox>
+                    <img src={viewImg} />
+                    <InquiryNumber>{post.viewCnt}</InquiryNumber>
+                  </InquiryBox>
+                </ArticleInfoRow>
+              </CommuintyBoardArticle>
+            );
+          })}
+        </CommunityBoardSection>
+      )}
 
-            <InquiryBox>
-              <InquiryNumber>1,220</InquiryNumber>
-            </InquiryBox>
-          </ArticleInfoRow>
-        </CommuintyArticle>
-
-        <CommuintyArticle>
-          <TitleBox>
-            <TitleText>그리너스 작성한 글 목록</TitleText>
-            <EditButton>수정</EditButton>
-          </TitleBox>
-          <ArticleInfoRow>
-            <WritingTime>1분 전</WritingTime>
-            <CommentBox>
-              <img src={commentImg} />
-              <CommentNumber>22</CommentNumber>
-            </CommentBox>
-
-            <InquiryBox>
-              <InquiryNumber>1,220</InquiryNumber>
-            </InquiryBox>
-          </ArticleInfoRow>
-        </CommuintyArticle>
-      </CommunitySection>
+      {selectTap === "내가 작성한 댓글" && (
+        <CommunityCommentSection>
+          {postData?.commentResponses?.content.map(comment => {
+            return (
+              <CommunityCommentArticle key={comment.id}>
+                <CommentContent>{comment.content}</CommentContent>
+                <CommentContentBox>
+                  <CommentCategory>[자유게시판]</CommentCategory>
+                  <CommentTitle>댓글 작성한 게시글 제목</CommentTitle>
+                  <CommentInfo>[{comment.replyCnt}]</CommentInfo>
+                </CommentContentBox>
+              </CommunityCommentArticle>
+            );
+          })}
+        </CommunityCommentSection>
+      )}
     </CommuintyLayout>
   );
 };

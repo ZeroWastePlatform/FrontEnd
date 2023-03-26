@@ -6,10 +6,8 @@ import {
   AddressInfoInput,
   AddText,
   AdressBox,
-  CurrentLocationButton,
   DeliveryInfoCol,
   DeliveryInfoParagraph,
-  DeliverySaveButton,
   KakaoBox,
   KakaoEmailSpan,
   LocateAddButton,
@@ -20,8 +18,8 @@ import {
   LocateRow,
   LocateSettingCol,
   LocateSettingParagraph,
+  MembeInfoForm,
   MembeInfoParagraph,
-  MembeInfoSection,
   MemberInfoEditButton,
   MemberInfoLayout,
   NickNameCol,
@@ -31,29 +29,40 @@ import {
   PostCodeBox,
   PostCodeButton,
   PostCodeInput,
-  ProfileButtonBox,
-  ProfileDeleteButton,
-  ProfileEditButton,
-  ProfileImageCol,
-  ProfileParagraph,
   RequiredItemSpan,
 } from "./MemberInfo.style";
 import KakaoImg from "../../../assets/images/kakao.svg";
-import { useCallback, useState } from "react";
-
-import useDaumPost from "../../../hooks/useDaumPost";
+import { useRef, useState } from "react";
 import ZipCodeModal from "../../Common/ZipCodeModal/ZipCodeModal";
+import customAPI from "../../../lib/customApi";
 
-const MemberInfo = () => {
+interface IMemberInfoProps {
+  onCompletePost: (data: any) => void;
+  isOpenPost: boolean;
+  changePostStatus: () => void;
+  address1Ref: React.RefObject<HTMLInputElement | HTMLSelectElement>;
+  address2Ref: React.RefObject<HTMLInputElement | HTMLSelectElement>;
+  address1Hander: () => void;
+  address2Hander: () => void;
+}
+
+const MemberInfo = ({
+  onCompletePost,
+  isOpenPost,
+  changePostStatus,
+  address1Ref,
+  address2Ref,
+  address1Hander,
+  address2Hander,
+}: IMemberInfoProps) => {
   const [nickName, setNickName] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
-  const { addressState, handleComplete } = useDaumPost();
-  const [isDaumPostOpen, setIsDaumPostOpen] = useState(false);
-  const handleDaumPostOpen = useCallback(() => setIsDaumPostOpen(prve => !prve), []);
-
   const [inputValue, setInputValue] = useState("");
   const [locates, setLocates] = useState<string[]>([]);
+
+  const addressRef = useRef<HTMLInputElement>(null);
+  const accessToken = localStorage.getItem("accessToken");
 
   const handleNickName = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputVal = e.target.value;
@@ -65,6 +74,27 @@ const MemberInfo = () => {
       setNickName(inputVal);
       setErrorMsg("");
     }
+  };
+
+  const myInfoModifyAPI = async () => {
+    const payload = new FormData();
+    const address = {
+      zipCode: address1Ref?.current?.value,
+      address: address2Ref?.current?.value,
+      addressDetail: addressRef?.current?.value,
+    };
+
+    payload.append("nickname", nickName);
+    payload.append("interestArea", locates);
+    payload.append("address", address);
+
+    const result = await customAPI.post("/api/members/me", payload, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    console.log(result);
   };
 
   const handleLocate = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -82,6 +112,11 @@ const MemberInfo = () => {
     }
   };
 
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    myInfoModifyAPI();
+  };
+
   return (
     <MemberInfoLayout>
       <MembeInfoParagraph>회원정보설정</MembeInfoParagraph>
@@ -96,17 +131,17 @@ const MemberInfo = () => {
         <KakaoEmailSpan>greenus@kakao.com</KakaoEmailSpan>
       </KakaoBox>
 
-      <ProfileParagraph>프로필 사진</ProfileParagraph>
+      {/* <ProfileParagraph>프로필 사진</ProfileParagraph> */}
 
-      <MembeInfoSection>
-        <ProfileImageCol>
+      <MembeInfoForm>
+        {/* <ProfileImageCol>
           <img src="" alt="" />
 
           <ProfileButtonBox>
             <ProfileEditButton>변경</ProfileEditButton>
             <ProfileDeleteButton>삭제</ProfileDeleteButton>
           </ProfileButtonBox>
-        </ProfileImageCol>
+        </ProfileImageCol> */}
 
         <NickNameCol>
           <NickNameParagraph>*닉네임</NickNameParagraph>
@@ -118,16 +153,15 @@ const MemberInfo = () => {
           <DeliveryInfoParagraph>*배송지 정보</DeliveryInfoParagraph>
 
           <PostCodeBox>
-            <PostCodeInput />
-            <PostCodeButton onClick={handleDaumPostOpen}>우편번호 검색</PostCodeButton>
+            <PostCodeInput ref={address1Ref as React.RefObject<HTMLInputElement>} onChange={address1Hander} />
+            <PostCodeButton onClick={changePostStatus}>우편번호 검색</PostCodeButton>
           </PostCodeBox>
-          <AddressInfoInput />
+          <AddressInfoInput ref={address2Ref as React.RefObject<HTMLInputElement>} onChange={address2Hander} />
 
-          {isDaumPostOpen && <ZipCodeModal />}
+          {isOpenPost ? <ZipCodeModal onComplete={onCompletePost} changePostStatus={changePostStatus} /> : null}
 
           <AdressBox>
-            <AddressDetailInfoInput />
-            <DeliverySaveButton>배송지 저장</DeliverySaveButton>
+            <AddressDetailInfoInput ref={addressRef} />
           </AdressBox>
         </DeliveryInfoCol>
 
@@ -156,9 +190,9 @@ const MemberInfo = () => {
         </LocateSettingCol>
 
         {/* <CurrentLocationButton>현재 위치로 찾기</CurrentLocationButton> */}
-      </MembeInfoSection>
+      </MembeInfoForm>
 
-      <MemberInfoEditButton>회원정보 수정</MemberInfoEditButton>
+      <MemberInfoEditButton onClick={handleSubmit}>회원정보 수정</MemberInfoEditButton>
     </MemberInfoLayout>
   );
 };

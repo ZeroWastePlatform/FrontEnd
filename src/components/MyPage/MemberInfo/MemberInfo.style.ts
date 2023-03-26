@@ -61,7 +61,7 @@ export const ProfileParagraph = styled.p`
   margin-bottom: 20px;
 `;
 
-export const MembeInfoSection = styled.section`
+export const MembeInfoForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 50px;
@@ -158,6 +158,7 @@ export const PostCodeInput = styled.input`
   height: 48px;
   border: 1px solid #a7a7a8;
   border-radius: 8px;
+  padding: 8px;
 `;
 
 export const PostCodeButton = styled.button`
@@ -175,6 +176,7 @@ export const AddressInfoInput = styled.input`
   border-radius: 8px;
   margin-top: 10px;
   margin-bottom: 8px;
+  padding: 8px;
 `;
 
 export const AdressBox = styled.div`
