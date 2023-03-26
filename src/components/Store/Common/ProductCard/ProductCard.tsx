@@ -40,7 +40,7 @@ const ProductCard = ({
   discountRate,
   price,
   badges,
-  thumnail,
+  thumbnail,
   liked,
   changeLike,
 }: ProductCardProps) => {
@@ -51,7 +51,7 @@ const ProductCard = ({
           <ProductCardImgBox>
             {order ? <ProductRankImg src={flagImg} /> : null}
             {order ? <ProductRank>{order}</ProductRank> : null}
-            <ProductCardImg src={`https://zerowasteproduct.herokuapp.com${thumnail}`} />
+            <ProductCardImg src={`https://zerowasteproduct.herokuapp.com${thumbnail}`} />
             <ProdcutCardLikeIcon
               onClick={e => {
                 e.preventDefault();
