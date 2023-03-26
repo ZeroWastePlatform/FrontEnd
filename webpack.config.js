@@ -43,7 +43,7 @@ module.exports = () => {
         // favicon: "./public/favicon.ico",
       }),
       new CleanWebpackPlugin(),
-      new Dotenv(),
+      new Dotenv({ systemvars: true }),
     ],
     devServer: {
       static: {

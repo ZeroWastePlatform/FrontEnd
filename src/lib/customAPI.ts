@@ -3,7 +3,7 @@ import { refresh, refreshErrorHandle } from "./refresh";
 
 console.log(process.env);
 const customAPI = axios.create({
-  baseURL: "http://greenus.duckdns.org/",
+  baseURL: process.env.API_SERVER,
   params: {},
 });
 
