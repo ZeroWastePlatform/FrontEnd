@@ -32,7 +32,7 @@ const ProfileAside = () => {
   const accessToken = localStorage.getItem("accessToken");
 
   const memberInfoAPI = async (): Promise<void> => {
-    const result = await customAPI.get("api/members/me?page=1", {
+    const result = await customAPI.get("members/me?page=1", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

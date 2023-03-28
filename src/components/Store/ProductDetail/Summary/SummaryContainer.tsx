@@ -31,7 +31,7 @@ interface SummaryContainerProps {
 
 const SummaryContainer = ({ setCondition }: SummaryContainerProps) => {
   const { id } = useParams();
-  const { data } = useSuspenseQuery<SummaryType>(["Store", "ProductDetail", "summary", id], `api/products/${id}`, e =>
+  const { data } = useSuspenseQuery<SummaryType>(["Store", "ProductDetail", "summary", id], `products/${id}`, e =>
     setCondition({ category: e.category }),
   );
 

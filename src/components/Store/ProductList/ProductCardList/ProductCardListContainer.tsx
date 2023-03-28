@@ -37,7 +37,7 @@ const ProductCardListContainer = ({ condition, setCondition }: ProductCardListCo
   const { category, order, page, brand, price, productStatus } = condition;
   const { data } = useSuspenseQuery<ProductCardListDataType>(
     ["Store", "ProductList", "ProductCardList", category, order, page, brand, price, productStatus],
-    `api/products${makeQuery(fixProductCondition(condition))}`,
+    `products${makeQuery(fixProductCondition(condition))}`,
   );
   const { id, isLogin, like } = useRecoilValue(userInfoAtom);
   const activeChange = useRef(false);

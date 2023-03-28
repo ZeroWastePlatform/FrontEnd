@@ -20,7 +20,7 @@ const SignupContainer = () => {
     } else {
       await axios
         .post(
-          `${process.env.API_SERVER}api/members/signup`,
+          `${process.env.API_SERVER}members/signup`,
           {
             nickName: signupForm.nickName,
           },

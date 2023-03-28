@@ -88,7 +88,7 @@ const MemberInfo = ({
     payload.append("interestArea", locates);
     payload.append("address", address);
 
-    const result = await customAPI.post("/api/members/me", payload, {
+    const result = await customAPI.post("members/me", payload, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

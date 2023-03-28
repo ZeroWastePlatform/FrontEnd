@@ -64,7 +64,7 @@ const Commuinty = () => {
 
   const communityAPI = async () => {
     try {
-      const result = await customAPI.get(`/api/members/me/communities?kind=${kind}?page=0`, {
+      const result = await customAPI.get(`members/me/communities?kind=${kind}?page=0`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
