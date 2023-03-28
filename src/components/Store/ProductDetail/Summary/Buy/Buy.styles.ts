@@ -16,6 +16,11 @@ export const BuyPrice = styled.div`
   font-size: 30px;
   font-weight: 700;
   margin: 0 0 20px 0;
+  & > i {
+    font-size: 25px;
+    color: gray;
+    text-decoration: line-through;
+  }
 `;
 
 export const BuyInfo = styled.div`

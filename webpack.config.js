@@ -3,9 +3,11 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+
 module.exports = () => {
   return {
-    mode: "production",
+    mode: "development",
     entry: {
       main: "./src/index.tsx",
     },
@@ -43,6 +45,9 @@ module.exports = () => {
         // favicon: "./public/favicon.ico",
       }),
       new CleanWebpackPlugin(),
+      new CopyWebpackPlugin({
+        patterns: [{ from: "./public/_redirects", to: path.join(__dirname, "build") }],
+      }),
       new Dotenv({ systemvars: true }),
     ],
     devServer: {

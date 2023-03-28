@@ -10,10 +10,11 @@ interface SummaryProps {
 }
 
 const Summary = ({ data, liked, changeLike }: SummaryProps) => {
+  console.log(data);
   return (
     <SummaryLayout>
       <SummaryRow>
-        <Thumnail photo={data.thumnail} />
+        <Thumnail photo={data.thumbnail} />
         <BuyContainer data={data} liked={liked} changeLike={changeLike} />
       </SummaryRow>
     </SummaryLayout>
