@@ -18,7 +18,7 @@ export const InfoCol = styled.div`
 `;
 
 export const InfoImg = styled.img`
-  height: 100%;
+  height: 1200px;
   width: 100%;
   object-fit: contain;
 `;

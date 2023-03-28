@@ -43,7 +43,7 @@ const ProductCardListContainer = ({ condition, setCondition }: ProductCardListCo
   const activeChange = useRef(false);
   const queryClient = useQueryClient();
 
-  // const { data: likeData } = useSuspenseQuery<number[]>(["Store", "ProductList", "like", id], `like?id=${id}`);
+  const { data: likeData } = useSuspenseQuery<number[]>(["Store", "ProductList", "like", id], `like?id=${id}`);
 
   const setPage = (page: number) => {
     setCondition({ ...condition, page });

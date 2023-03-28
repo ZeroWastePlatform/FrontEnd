@@ -10,7 +10,6 @@ interface SummaryProps {
 }
 
 const Summary = ({ data, liked, changeLike }: SummaryProps) => {
-  console.log(data);
   return (
     <SummaryLayout>
       <SummaryRow>

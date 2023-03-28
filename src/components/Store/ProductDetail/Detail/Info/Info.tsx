@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { InfoButton, InfoCol, InfoImg, InfoLayout, InfoTitle } from "./Info.styles";
-import { InfoDataType } from "./InfoContainer";
 import bottomArrow from "../../../../../assets/images/bottomArrow.svg";
+import { InfoDataType } from "./InfoContainer";
 interface InfoProps {
   infoRef: React.RefObject<HTMLDivElement>;
-  data: InfoDataType;
+  data: InfoDataType[];
 }
 
 const Info = ({ data, infoRef }: InfoProps) => {
@@ -14,7 +14,7 @@ const Info = ({ data, infoRef }: InfoProps) => {
       <InfoCol>
         <InfoTitle>상품정보</InfoTitle>
         {(fold ? [data[0]] : data).map(src => (
-          <InfoImg src={`https://zerowasteproduct.herokuapp.com${src}`} key={src} />
+          <InfoImg src={`https://picsum.photos/id/${src.id}/1320/1200`} key={src.id} />
         ))}
         <InfoButton onClick={() => setFold(!fold)}>
           상품정보 {fold ? "더보기" : "접기"}

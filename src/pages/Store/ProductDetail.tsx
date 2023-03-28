@@ -20,7 +20,7 @@ const ProductDetail = () => {
           <SummaryContainer setCondition={setCondition} />
         </Suspense>
       </ErrorBoundary>
-      {/* <DetailContainer /> */}
+      <DetailContainer />
     </main>
   );
 };
