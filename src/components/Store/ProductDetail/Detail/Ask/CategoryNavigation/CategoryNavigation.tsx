@@ -4,9 +4,10 @@ interface CategoryNavigationProps {
   sort: string;
   setSort: React.Dispatch<React.SetStateAction<string>>;
   counts: number[];
+  setPage: (page: number) => void;
 }
 
-const CategoryNavigation = ({ sort, setSort, counts }: CategoryNavigationProps) => {
+const CategoryNavigation = ({ sort, setSort, setPage, counts }: CategoryNavigationProps) => {
   return (
     <CategoryNavigationLayout>
       {[
@@ -16,7 +17,14 @@ const CategoryNavigation = ({ sort, setSort, counts }: CategoryNavigationProps) 
         `배송문의(${counts[3]})`,
         `기타(${counts[4]})`,
       ].map(el => (
-        <CategoryNavigationItem key={el} selected={sort === el} onClick={() => setSort(el)}>
+        <CategoryNavigationItem
+          key={el}
+          selected={sort === el}
+          onClick={() => {
+            setSort(el);
+            setPage(1);
+          }}
+        >
           {el}
         </CategoryNavigationItem>
       ))}

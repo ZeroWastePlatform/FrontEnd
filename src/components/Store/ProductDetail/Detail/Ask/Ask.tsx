@@ -1,3 +1,4 @@
+import { ask } from "../../../../../mock/askList";
 import PagenationContainer from "../../../../Common/Pagenation/PagenationContainer";
 import { AskLayout, AskTitle, AskTopBox } from "./Ask.styles";
 import { AskDataType } from "./AskContainer";
@@ -10,7 +11,7 @@ interface AskProps {
   sort: string;
   setSort: React.Dispatch<React.SetStateAction<string>>;
   askRef: React.RefObject<HTMLDivElement>;
-  data: AskDataType;
+  data: ask;
 }
 
 const Ask = ({
@@ -25,7 +26,7 @@ const Ask = ({
     <AskLayout ref={askRef}>
       <AskTopBox>
         <AskTitle>문의 {totalElement}</AskTitle>
-        <CategoryNavigation sort={sort} setSort={setSort} counts={categoryElement} />
+        <CategoryNavigation sort={sort} setSort={setSort} setPage={setPage} counts={categoryElement} />
       </AskTopBox>
       <AskList data={content} />
       <PagenationContainer page={page} setPage={setPage} totalPage={totalPage} unit={9} />

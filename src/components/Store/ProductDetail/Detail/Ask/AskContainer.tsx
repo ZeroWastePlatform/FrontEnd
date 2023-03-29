@@ -1,5 +1,7 @@
+import { useQuery } from "react-query";
 import useSortPaging from "../../../../../hooks/useSortPaging";
 import useSuspenseQuery from "../../../../../hooks/useSuspenseQuery";
+import getAsk, { ask } from "../../../../../mock/askList";
 import Ask from "./Ask";
 
 export interface AskDataContentType {
@@ -26,13 +28,13 @@ interface AskContainerProps {
 }
 
 const AskContainer = ({ askRef }: AskContainerProps) => {
-  const { page, sort, setPage, setSort } = useSortPaging(1, "베스트순");
-  const { data } = useSuspenseQuery<AskDataType>(
-    ["Store", "ProductDetal", "Ask", "1", sort, page],
-    `product/ask?sort=${sort}&page=${page}`,
-  );
+  const { page, sort, setPage, setSort } = useSortPaging(1, "전체");
+  const { data } = useQuery(["Store", "ProductDetal", "Review", "1", sort, page], getAsk(sort, page), {
+    suspense: true,
+    useErrorBoundary: true,
+  });
 
-  return <Ask page={page} setPage={setPage} sort={sort} setSort={setSort} data={data} askRef={askRef} />;
+  return <Ask page={page} setPage={setPage} sort={sort} setSort={setSort} data={data as ask} askRef={askRef} />;
 };
 
 export default AskContainer;
