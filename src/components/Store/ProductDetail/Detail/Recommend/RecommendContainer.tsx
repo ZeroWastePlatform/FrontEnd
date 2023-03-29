@@ -13,8 +13,8 @@ export type RecommendDataType = {
   title: string;
   discountRate: number;
   price: number;
-  badges: number;
-  thumnail: string;
+  badges: string;
+  thumbnail: string;
 }[];
 
 interface RecommendContainerProps {
@@ -22,15 +22,16 @@ interface RecommendContainerProps {
 }
 
 const RecommendContainer = ({ recommendRef }: RecommendContainerProps) => {
-  const { data } = useSuspenseQuery<RecommendDataType>(
+  const { data } = useSuspenseQuery<{ content: RecommendDataType }>(
     ["Store", "ProductDetail", "Recommend", "1"],
-    "product/recommend",
+    "products?order=POPULARITY&page=0",
   );
   const { id: userid, isLogin } = useRecoilValue(userInfoAtom);
   const activeChange = useRef(false);
   const queryClient = useQueryClient();
 
   const changeLike = async (productId: number) => {
+    return alert("미구현");
     if (!isLogin) return alert("로그인을 해야 관심상품으로 추가할수 있습니다");
     if (!activeChange.current) {
       activeChange.current = true;
@@ -48,7 +49,8 @@ const RecommendContainer = ({ recommendRef }: RecommendContainerProps) => {
       activeChange.current = false;
     }
   };
-  const { data: likeData } = useSuspenseQuery<number[]>(["Store", "ProductList", "like", userid], `like?id=${userid}`);
+  // const { data: likeData } = useSuspenseQuery<number[]>(["Store", "ProductList", "like", userid], `like?id=${userid}`);
+  const likeData = [1];
   return <Recommend data={data} recommendRef={recommendRef} changeLike={changeLike} likeData={likeData} />;
 };
 
