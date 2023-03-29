@@ -1,7 +1,8 @@
 import { InfoNavigationItem, InfoNavigationLayout, InfoNavigationRow } from "./InfoNavigation.styles";
+import { navigationDataType } from "./InfoNavigationContainer";
 
 interface InfoNavigationProps {
-  data: { review: string; ask: string };
+  data: navigationDataType;
   navigate: (type: string) => void;
   navigation: string;
 }
@@ -12,9 +13,9 @@ const InfoNavigation = ({ data, navigate, navigation }: InfoNavigationProps) => 
       <InfoNavigationRow>
         {[
           { ko: "상품정보", en: "info" },
-          { ko: "리뷰", en: "review", count: data.review },
+          { ko: "리뷰", en: "review", count: data.reviewCount },
           { ko: "배송/환불", en: "delivery" },
-          { ko: "문의", en: "ask", count: data.ask },
+          { ko: "문의", en: "ask", count: data.askCount ?? 0 },
           { ko: "추천제품", en: "recommend" },
         ].map(element => {
           return (

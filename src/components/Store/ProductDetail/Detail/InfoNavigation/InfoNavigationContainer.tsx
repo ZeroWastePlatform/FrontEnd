@@ -1,5 +1,8 @@
 import axios from "axios";
 import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
+import useSuspenseQuery from "../../../../../hooks/useSuspenseQuery";
+import { SummaryType } from "../../Summary/SummaryContainer";
 import InfoNavigation from "./InfoNavigation";
 
 interface InfoNavigationContainerProps {
@@ -7,15 +10,14 @@ interface InfoNavigationContainerProps {
   navigation: string;
 }
 
+export interface navigationDataType {
+  askCount: number | null;
+  reviewCount: number;
+}
+
 const InfoNavigationContainer = ({ navigate, navigation }: InfoNavigationContainerProps) => {
-  const { data } = useQuery(
-    ["product", "infonavigation", "1"],
-    () => axios(`https://zerowasteproduct.herokuapp.com/product/infonavigation`).then(res => res.data),
-    {
-      suspense: true,
-      useErrorBoundary: true,
-    },
-  );
+  const { id } = useParams();
+  const { data } = useSuspenseQuery<navigationDataType>(["Store", "ProductDetail", "summary", id], `products/${id}`);
 
   return <InfoNavigation data={data} navigate={navigate} navigation={navigation} />;
 };
