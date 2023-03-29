@@ -21,7 +21,7 @@ const UsedMarket = ({ posts }: UsedMarketProps) => {
     <UsedMarketLayout>
       {posts.map(post => (
         <UsedMarketContent key={post.id} onClick={() => navigate(`/community/article/${post.id}`)}>
-          <UsedMarketContentImg />
+          <UsedMarketContentImg src={post.thumbnailUrls[0]} />
           <UsedMarketContentTitleBox>
             <UsedMarketContentTitle>{post.title}</UsedMarketContentTitle>
             <UsedMarketContentCategory>생활/주방</UsedMarketContentCategory>

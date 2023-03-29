@@ -21,7 +21,7 @@ const SignupContainer = () => {
       console.log("userInfo.accessToken", userInfo.accessToken);
       await axios
         .post(
-          `${process.env.API_SERVER}api/members/signup`,
+          `${process.env.API_SERVER}members/signup`,
           {
             nickName: signupForm.nickName,
           },
