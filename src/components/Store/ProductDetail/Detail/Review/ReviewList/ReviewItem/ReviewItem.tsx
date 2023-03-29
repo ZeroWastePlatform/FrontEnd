@@ -40,7 +40,9 @@ const ReviewItem = ({ review }: ReviewItemProps) => {
           </ReviewItemTopLeftBottomBox>
         </ReviewItemTopLeftBox>
         <ReviewItemTopRightBox>
-          <ReviewItemLikeButton selected={review.liked}>도움이 돼요</ReviewItemLikeButton>
+          <ReviewItemLikeButton selected={review.liked} onClick={() => alert("미구현!")}>
+            도움이 돼요
+          </ReviewItemLikeButton>
           <ReviewItemLikeCount>
             <i>{review.likedCount}명</i>에게 도움이되었습니다
           </ReviewItemLikeCount>

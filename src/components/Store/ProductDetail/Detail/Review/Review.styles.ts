@@ -9,7 +9,7 @@ export const ReviewLayout = styled.div`
 
 export const ReviewCol = styled.div`
   margin: auto;
-  max-width: 1320px;
+  width: 1320px;
 `;
 
 export const ReviewTitle = styled.div`

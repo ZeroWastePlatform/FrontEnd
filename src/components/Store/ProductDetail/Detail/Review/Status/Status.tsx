@@ -34,7 +34,7 @@ const Status = ({ avgrate, rates, total }: StatusProps) => {
       </StatusStarBox>
       <StatusGraphBox>
         {rates.map((rate, index) => (
-          <StatusGraphRow key={index}>
+          <StatusGraphRow key={index} index={index}>
             <StatusGraphText>{5 - index}점</StatusGraphText>
             <StatusGraphLineBox>
               <StatusGraphLineBase></StatusGraphLineBase>

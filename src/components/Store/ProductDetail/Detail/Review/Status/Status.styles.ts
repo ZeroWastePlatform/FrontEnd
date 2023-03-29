@@ -53,12 +53,12 @@ export const StatusGraphBox = styled.div`
   padding-left: 61px;
 `;
 
-export const StatusGraphRow = styled.div`
+export const StatusGraphRow = styled.div<{ index: number }>`
   display: flex;
   align-items: center;
   gap: 25px;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: ${props => (props.index === 0 ? "700" : "500")};
 `;
 
 export const StatusGraphText = styled.div`
