@@ -23,6 +23,7 @@ export interface PostType {
 }
 export interface PostListType {
   content: PostType[];
+  totalPages: number;
 }
 export interface UserInfoType {
   accessToken: string;
