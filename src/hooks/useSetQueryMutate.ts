@@ -5,6 +5,7 @@ const useSetQueryMutate = <T, F>(
   promiseCallback: MutationFunction<AxiosResponse<T, unknown>>,
   queryKey?: unknown[],
   setQueryCallback?: (e: AxiosResponse<T, unknown>) => F,
+  errorCallback?: (e: unknown) => F,
 ) => {
   const queryClient = useQueryClient();
   const mutateFn = useMutation(promiseCallback, {
@@ -14,7 +15,11 @@ const useSetQueryMutate = <T, F>(
       }
     },
     onError: e => {
-      alert("에러발생"); //추후 에러 로직이 개별로 필요하게될경우 인자로 넘겨받도록 하도록하겠습니다.
+      if (queryKey && errorCallback) {
+        queryClient.setQueryData(queryKey, errorCallback(e));
+      } else {
+        alert("에러발생");
+      }
     },
   });
   return mutateFn;

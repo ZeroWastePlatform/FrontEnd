@@ -18,12 +18,12 @@ interface ProductCardListProps {
   data: ProductCardListDataType;
   condition: conditionType;
   setCondition: setConditionType;
-  setPage: (page: number) => void;
-  likeData: number[];
-  changeLike: any;
+  changePage: (page: number) => void;
+  likeData: { id: number }[];
+  changeLike: (storeId: number) => void;
 }
 
-const ProductCardList = ({ data, condition, setCondition, setPage, likeData, changeLike }: ProductCardListProps) => {
+const ProductCardList = ({ data, condition, setCondition, changePage, likeData, changeLike }: ProductCardListProps) => {
   return (
     <ProductCardListLayout>
       <ProductCardListTopBox>
@@ -48,7 +48,7 @@ const ProductCardList = ({ data, condition, setCondition, setPage, likeData, cha
               {...content}
               key={content.id}
               order={condition.category === "TOP6" && index < 3 ? index + 1 : 0}
-              liked={false}
+              liked={likeData.findIndex(({ id }) => id === content.id) === -1 ? false : true}
               changeLike={changeLike}
             />
           ))}
@@ -57,7 +57,7 @@ const ProductCardList = ({ data, condition, setCondition, setPage, likeData, cha
       {condition.category === "TOP6" ? null : (
         <PagenationContainer
           page={condition.page}
-          setPage={setPage}
+          changePage={changePage}
           totalPage={Math.ceil(data.totalElements / 9)}
           unit={9}
         />

@@ -10,7 +10,6 @@ interface RecommendProps {
 }
 
 const Recommend = ({ data, recommendRef, changeLike, likeData }: RecommendProps) => {
-  console.log(data);
   return (
     <RecommendLayout ref={recommendRef}>
       <RecommendTitle>이런 제품은 어떠세요?</RecommendTitle>
