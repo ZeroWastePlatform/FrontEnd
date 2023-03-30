@@ -197,13 +197,14 @@ const ask = {
 };
 
 const getAsk: (filter: string, page: number) => () => Promise<ask> = (filter: string, page: number) => {
+  const category = filter.split("(")[0];
   return () =>
     new Promise(resolve => {
       setTimeout(() => {
         const content: content[] = JSON.parse(JSON.stringify(ask.content));
         const newContent = content.filter(value => {
-          if (filter === "전체") return true;
-          if (filter === value.category) return true;
+          if (category === "전체") return true;
+          if (category === value.category) return true;
         });
         const paged = newContent.slice((page - 1) * 5, page * 5);
         resolve({
