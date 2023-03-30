@@ -60,15 +60,14 @@ const Commuinty = () => {
 
   // const [page, setPage] = useState(0);
 
-  const kind = encodeURIComponent(selectTap);
-
   const communityAPI = async () => {
     try {
-      const result = await customAPI.get(`/api/members/me/communities?kind=${kind}?page=0`, {
+      const result = await customAPI.get(`/api/members/me/communities?kind=${selectTap}&page=0`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       });
+      setPostData(result.data);
     } catch {
       throw new Error("오류");
     }
@@ -76,13 +75,14 @@ const Commuinty = () => {
 
   useEffect(() => {
     communityAPI();
-  }, []);
+  }, [selectTap]);
 
   return (
     <CommuintyLayout>
       <CommunityTapRow>
-        {taps.map(tap => {
+        {taps.map((tap, index) => {
           const isSelected = selectTap === tap;
+          const postDataLength = [postData?.postResponses?.content.length, postData?.commentResponses?.content.length];
           return (
             <CommunityTap
               key={tap}
@@ -93,7 +93,7 @@ const Commuinty = () => {
               <CommunityTapSpan style={isSelected ? { color: "#000000" } : undefined}>{tap}</CommunityTapSpan>
 
               <CommunityTapNumber style={isSelected ? { color: "#66F095" } : undefined}>
-                {postData?.postResponses?.content.length}
+                {postDataLength[index]}
               </CommunityTapNumber>
             </CommunityTap>
           );
