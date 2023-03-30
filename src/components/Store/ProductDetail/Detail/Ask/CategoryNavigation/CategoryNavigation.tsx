@@ -2,12 +2,11 @@ import { CategoryNavigationItem, CategoryNavigationLayout } from "./CategoryNavi
 
 interface CategoryNavigationProps {
   sort: string;
-  setSort: React.Dispatch<React.SetStateAction<string>>;
+  changeSort: (sort: string) => void;
   counts: number[];
-  setPage: (page: number) => void;
 }
 
-const CategoryNavigation = ({ sort, setSort, setPage, counts }: CategoryNavigationProps) => {
+const CategoryNavigation = ({ sort, changeSort, counts }: CategoryNavigationProps) => {
   return (
     <CategoryNavigationLayout>
       {[
@@ -16,13 +15,12 @@ const CategoryNavigation = ({ sort, setSort, setPage, counts }: CategoryNavigati
         `재입고문의(${counts[2]})`,
         `배송문의(${counts[3]})`,
         `기타(${counts[4]})`,
-      ].map(el => (
+      ].map((el, index) => (
         <CategoryNavigationItem
           key={el}
-          selected={sort === el}
+          selected={sort === "전체" && index === 0 ? true : sort === el}
           onClick={() => {
-            setSort(el);
-            setPage(1);
+            changeSort(el);
           }}
         >
           {el}

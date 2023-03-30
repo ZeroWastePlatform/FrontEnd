@@ -4,10 +4,10 @@ interface PagenationContainerProps {
   page: number;
   totalPage: number;
   unit: number;
-  setPage: (page: number) => void;
+  changePage: (page: number) => void;
 }
 
-const PagenationContainer = ({ page, setPage, totalPage, unit }: PagenationContainerProps) => {
+const PagenationContainer = ({ page, changePage, totalPage, unit }: PagenationContainerProps) => {
   const makePageList = () => {
     const unitPage = Math.ceil(page / unit);
     const startPage = (unitPage - 1) * unit + 1;
@@ -36,7 +36,7 @@ const PagenationContainer = ({ page, setPage, totalPage, unit }: PagenationConta
       moveLeft={checkMoveLeft()}
       moveRight={checkMoveRight()}
       pageList={makePageList()}
-      setPage={setPage}
+      changePage={changePage}
     ></Pagenation>
   );
 };

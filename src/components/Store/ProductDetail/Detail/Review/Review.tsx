@@ -6,20 +6,20 @@ import ReviewSort from "./ReviewSort/ReviewSort";
 import Status from "./Status/Status";
 
 interface ReviewProps {
-  page: number;
-  setPage: (page: number) => void;
-  sort: string;
-  setSort: React.Dispatch<React.SetStateAction<string>>;
-  reviewRef: React.RefObject<HTMLDivElement>;
   data: review;
+  sort: string;
+  page: number;
+  changeSort: (sort: string) => void;
+  changePage: (page: number) => void;
+  reviewRef: React.RefObject<HTMLDivElement>;
 }
 
 const Review = ({
   data: { avgrate, rates, content, totalPage, total },
   sort,
-  setSort,
   page,
-  setPage,
+  changeSort,
+  changePage,
   reviewRef,
 }: ReviewProps) => {
   return (
@@ -27,9 +27,9 @@ const Review = ({
       <ReviewCol>
         <ReviewTitle>리뷰({total})</ReviewTitle>
         <Status avgrate={avgrate} rates={rates} total={total}></Status>
-        <ReviewSort sort={sort} setSort={setSort} />
+        <ReviewSort sort={sort} changeSort={changeSort} />
         <ReviewList data={content}></ReviewList>
-        <PagenationContainer page={page} setPage={setPage} totalPage={totalPage} unit={9} />
+        <PagenationContainer page={page} changePage={changePage} totalPage={totalPage} unit={9} />
       </ReviewCol>
     </ReviewLayout>
   );
