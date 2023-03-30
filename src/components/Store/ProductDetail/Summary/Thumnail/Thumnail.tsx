@@ -8,22 +8,31 @@ import {
   ThumnailSmallImgBlock,
   ThumnailSmallImgBox,
 } from "./Thumnail.styles";
-
-import empty from "../../../../../assets/images/characters-logo.png";
+import thumbnail1 from "../../../../../assets/images/thumbnail1.png";
+import thumbnail2 from "../../../../../assets/images/thumbnail2.png";
+import thumbnail3 from "../../../../../assets/images/thumbnail3.png";
+import thumbnail4 from "../../../../../assets/images/thumbnail4.png";
+import thumbnail5 from "../../../../../assets/images/thumbnail5.png";
+import thumbnail6 from "../../../../../assets/images/thumbnail6.png";
 
 interface ThumnailProps {
+  id: number;
   photo: string;
 }
 
-const Thumnail = ({ photo }: ThumnailProps) => {
-  const photos = [`https://zerowasteproduct.herokuapp.com${photo}`, empty];
+const Thumnail = ({ id, photo }: ThumnailProps) => {
+  const photos = [
+    `https://zerowasteproduct.herokuapp.com${photo}`,
+    thumbnails[id % 6],
+    thumbnails[(id % 6) + 1] && thumbnails[(id % 6) - 1],
+  ];
 
   const [selectedThumnail, setSelectedThumnail] = useState(0);
   return (
     <ThumnailLayout>
       <ThumnailBigImgBox>
         <ThumnailBigImgBlock>
-          <ThumnailBigImg src={selectedThumnail === 0 ? `https://zerowasteproduct.herokuapp.com${photo}` : empty} />
+          <ThumnailBigImg src={photos[selectedThumnail]} />
         </ThumnailBigImgBlock>
       </ThumnailBigImgBox>
       <ThumnailSmallImgBox>
@@ -38,3 +47,5 @@ const Thumnail = ({ photo }: ThumnailProps) => {
 };
 
 export default Thumnail;
+
+const thumbnails = [thumbnail1, thumbnail2, thumbnail3, thumbnail4, thumbnail5, thumbnail6];
