@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import {
   ContentBoxBody,
+  ContentBoxBtns,
   ContentBoxComment,
   ContentBoxDate,
+  ContentBoxDelete,
+  ContentBoxEdit,
+  ContentBoxHeader,
   ContentBoxInfo,
   ContentBoxLayout,
+  ContentBoxLiked,
   ContentBoxLikeImg,
   ContentBoxProfile,
   ContentBoxProfileImg,
@@ -17,29 +22,79 @@ import {
 } from "./ContentBox.styles";
 import onLikeImg from "../../../../assets/images/on_like.png";
 import offLikeImg from "../../../../assets/images/off_like.png";
+import { UseMutateFunction } from "react-query";
+import { AxiosResponse } from "axios";
+import { useRecoilValue } from "recoil";
+import { userInfoAtom } from "../../../../atom/userInfo";
 
-const ContentBox = () => {
+interface ContentBoxProps {
+  id: number;
+  userId: number;
+  kind: number;
+  title: string;
+  nickname: string;
+  content: string;
+  createdAt: string;
+  replyCnt: number;
+  viewCnt: number;
+  recommendCnt: number;
+  handleDeletePost: (postId: number) => void;
+  toggleLike: UseMutateFunction<AxiosResponse<any, unknown>, unknown, unknown, unknown>;
+}
+
+const ContentBox = ({
+  id,
+  userId,
+  kind,
+  title,
+  nickname,
+  content,
+  createdAt,
+  replyCnt,
+  viewCnt,
+  recommendCnt,
+  handleDeletePost,
+  toggleLike,
+}: ContentBoxProps) => {
   const [isLike, setIsLike] = useState(false);
+  const userInfo = useRecoilValue(userInfoAtom);
+
+  const contentType = kind === 1 ? "자유게시판" : kind === 2 ? "중고거래" : kind === 3 && "정보공유";
 
   return (
     <ContentBoxLayout>
-      <ContentBoxType>자유게시판</ContentBoxType>
-      <ContentBoxTitle>본문 제목이에요</ContentBoxTitle>
+      <ContentBoxHeader>
+        <ContentBoxType>{contentType}</ContentBoxType>
+        {userInfo.id === userId && (
+          <ContentBoxBtns>
+            <ContentBoxEdit to={`/community/article/${id}/edit`}>수정</ContentBoxEdit>
+            <ContentBoxDelete onClick={() => handleDeletePost(id)}>삭제</ContentBoxDelete>
+          </ContentBoxBtns>
+        )}
+      </ContentBoxHeader>
+      <ContentBoxTitle>{title}</ContentBoxTitle>
       <ContentBoxInfo>
         <ContentBoxProfile>
           <ContentBoxProfileImg />
           <ContentBoxProfileTextBox>
-            <ContentBoxProfileName>dngur9801</ContentBoxProfileName>
-            <ContentBoxDate>3시간 전</ContentBoxDate>
+            <ContentBoxProfileName>{nickname}</ContentBoxProfileName>
+            <ContentBoxDate>{createdAt}</ContentBoxDate>
           </ContentBoxProfileTextBox>
         </ContentBoxProfile>
         <ContentBoxSubInfo>
-          <ContentBoxComment>10</ContentBoxComment>
-          <ContentBoxVisit>1,220</ContentBoxVisit>
+          <ContentBoxComment>{replyCnt}</ContentBoxComment>
+          <ContentBoxVisit>{viewCnt}</ContentBoxVisit>
+          <ContentBoxLiked>{recommendCnt}</ContentBoxLiked>
         </ContentBoxSubInfo>
       </ContentBoxInfo>
-      <ContentBoxBody>본문 텍스트입니다 뭘 쓰는게 좋을까요 비건파스타 해먹었어요 옴뇸뇸 맛있어요 짱!</ContentBoxBody>
-      <ContentBoxLikeImg src={isLike ? onLikeImg : offLikeImg} onClick={() => setIsLike(prev => !prev)} />
+      <ContentBoxBody>{content}</ContentBoxBody>
+      <ContentBoxLikeImg
+        src={isLike ? onLikeImg : offLikeImg}
+        onClick={() => {
+          setIsLike(prev => !prev);
+          toggleLike(id);
+        }}
+      />
     </ContentBoxLayout>
   );
 };

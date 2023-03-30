@@ -2,12 +2,10 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const dotenv = require("dotenv");
-
-module.exports = env => {
-  const { DEV } = env;
+const Dotenv = require("dotenv-webpack");
+module.exports = () => {
   return {
-    mode: "development",
+    mode: "production",
     entry: {
       main: "./src/index.tsx",
     },
@@ -45,10 +43,7 @@ module.exports = env => {
         // favicon: "./public/favicon.ico",
       }),
       new CleanWebpackPlugin(),
-      new webpack.DefinePlugin({
-        // "process.env.API_SERVER": JSON.stringify(process.env.API_SERVER), // env에서 읽은 ip를 저장
-        "process.env": JSON.stringify(dotenv.config({ path: DEV ? "./dev.env" : "./.env" }).parsed),
-      }),
+      new Dotenv({ systemvars: true }),
     ],
     devServer: {
       static: {

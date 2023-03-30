@@ -11,12 +11,6 @@ const Template: ComponentStory<typeof ProductFilterBlock> = args => <ProductFilt
 
 export const GeneralType = Template.bind({});
 GeneralType.args = {
-  condition: {
-    category: "전체",
-    filter: [],
-    sort: "인기순",
-    page: 1,
-  },
-  setCheckboxFilter: action("체크박스 선택"),
-  setRadioFilter: action("라디오 선택"),
+  isSelected: () => false,
+  setFilter: action("필터 선택"),
 };

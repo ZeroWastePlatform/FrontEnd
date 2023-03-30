@@ -1,32 +1,15 @@
-import React from "react";
-import CategoryNavigation from "../../components/Community/Common/CategoryNavigation/CategoryNavigation";
-import styled from "styled-components";
-import AsideContainer from "../../components/Community/Article/Aside/AsideContainer";
-import ContentBoxContainer from "../../components/Community/Article/ContentBox/ContentBoxContainer";
-import CommentBoxContainer from "../../components/Community/Article/CommentBox/CommentBoxContainer";
+import React, { Suspense } from "react";
+import ArticleContainer from "../../components/Community/Article/ArticleContainer";
+import { ErrorBoundary } from "react-error-boundary";
 
 const Article = () => {
   return (
-    <>
-      <CategoryNavigation />
-      <ArticleLayout>
-        <ArticleBox>
-          <ContentBoxContainer />
-          <CommentBoxContainer />
-        </ArticleBox>
-        <AsideContainer />
-      </ArticleLayout>
-    </>
+    <ErrorBoundary FallbackComponent={() => <div>...에러발생</div>}>
+      <Suspense fallback={<div>...로딩중</div>}>
+        <ArticleContainer />;
+      </Suspense>
+    </ErrorBoundary>
   );
 };
-
-const ArticleLayout = styled.div`
-  max-width: 1320px;
-  margin: 0 auto;
-  margin-top: 60px;
-  display: flex;
-  justify-content: space-between;
-`;
-const ArticleBox = styled.div``;
 
 export default Article;

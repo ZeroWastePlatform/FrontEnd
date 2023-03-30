@@ -38,7 +38,6 @@ const OrderProductContainer = () => {
     setToggleAtom(prev => {
       const product = JSON.parse(JSON.stringify(prev.product));
       const newProduct = product.map((element: { selected: boolean }) => ({ ...element, selected: !element.selected }));
-      console.log(newProduct);
       return { ...prev, product: newProduct };
     });
   };

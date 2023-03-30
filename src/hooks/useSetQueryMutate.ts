@@ -14,7 +14,6 @@ const useSetQueryMutate = <T, F>(
       }
     },
     onError: e => {
-      console.log(e);
       alert("에러발생"); //추후 에러 로직이 개별로 필요하게될경우 인자로 넘겨받도록 하도록하겠습니다.
     },
   });

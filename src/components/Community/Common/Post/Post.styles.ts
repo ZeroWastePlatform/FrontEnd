@@ -9,6 +9,7 @@ export const PostContent = styled.div`
   padding: 30px 15px;
   border-right: 1px solid #e8e8e8;
   border-bottom: 1px solid #e8e8e8;
+  cursor: pointer;
 `;
 
 export const PostContentSubTitle = styled.p`

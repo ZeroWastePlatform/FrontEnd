@@ -13,7 +13,7 @@ const refresh = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> 
       const body = {
         refreshToken,
       };
-      const { data } = await axios.post(`${process.env.API_SERVER}api/auth/token/access`, body);
+      const { data } = await axios.post(`${process.env.API_SERVER}auth/token/access`, body);
       token = data.accessToken;
       localStorage.setItem("accessToken", data.accessToken);
       setExpiresAt();
@@ -21,7 +21,6 @@ const refresh = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> 
 
     config.headers["Authorization"] = `Bearer ${token}`;
   } catch (err) {
-    console.log("refreshError", err);
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("accessToken");
   }
@@ -29,7 +28,6 @@ const refresh = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> 
 };
 
 const refreshErrorHandle = (err: any) => {
-  console.log("refreshErrorHandleErr :", err);
   localStorage.removeItem("refreshToken");
 };
 

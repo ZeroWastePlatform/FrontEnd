@@ -23,7 +23,7 @@ import { useNavigate } from "react-router";
 import { useRecoilValue } from "recoil";
 import { userInfoAtom } from "../../../../atom/userInfo";
 import { useEffect } from "react";
-import customAPI from "../../../../lib/customApi";
+import customAPI from "../../../../lib/customAPI";
 
 const ProfileAside = () => {
   const navigate = useNavigate();
@@ -37,7 +37,6 @@ const ProfileAside = () => {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    console.log(result);
   };
 
   useEffect(() => {

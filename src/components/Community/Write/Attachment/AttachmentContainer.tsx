@@ -1,31 +1,50 @@
-import React, { useState } from "react";
+import React from "react";
+import { useRecoilState } from "recoil";
+import uuid from "react-uuid";
+import { writeFormAtom } from "../../../../atom/writeForm";
 import Attachment from "./Attachment";
 
 const AttachmentContainer = () => {
-  const [file, setFile] = useState("");
-  const [imgFileList, setImgFileList] = useState<string[]>([]);
+  const [writeForm, setWriteForm] = useRecoilState(writeFormAtom);
 
   const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
       return;
     }
+
     const file = e.target.files[0];
-    setFile(file as any);
+
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
-      setImgFileList([...imgFileList, reader.result as string]);
+      setWriteForm(prev => {
+        const newImages = { id: uuid(), file, src: reader.result as string };
+        const newWriteForm = {
+          ...prev,
+          images: [...(prev.images as any), newImages].filter(image => image.src !== ""),
+        };
+
+        return newWriteForm;
+      });
     };
   };
 
-  const handleClickRemoveImg = (src: string) => {
-    setImgFileList(imgFileList.filter(item => item !== src));
+  const handleClickRemoveImg = (id: string) => {
+    setWriteForm(prev => {
+      const filterImage = prev.images?.filter(image => image.id !== id);
+      const newWriteForm = {
+        ...prev,
+        images: filterImage,
+      };
+
+      return newWriteForm;
+    });
   };
   return (
     <Attachment
       handleChangeImg={handleChangeImg}
       handleClickRemoveImg={handleClickRemoveImg}
-      imgFileList={imgFileList}
+      imgFileList={writeForm.images?.filter(image => image.src !== "")}
     />
   );
 };

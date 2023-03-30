@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { PostType } from "../../../../types";
 import {
   UsedMarketContent,
   UsedMarketContentCategory,
@@ -9,17 +11,24 @@ import {
   UsedMarketLayout,
 } from "./UsedMarket.styles";
 
-const UsedMarket = () => {
+interface UsedMarketProps {
+  posts: PostType[];
+}
+
+const UsedMarket = ({ posts }: UsedMarketProps) => {
+  const navigate = useNavigate();
   return (
     <UsedMarketLayout>
-      <UsedMarketContent>
-        <UsedMarketContentImg />
-        <UsedMarketContentTitleBox>
-          <UsedMarketContentTitle>에코백 중고로 팔아요</UsedMarketContentTitle>
-          <UsedMarketContentCategory>생활/주방</UsedMarketContentCategory>
-        </UsedMarketContentTitleBox>
-        <UsedMarketContentPrice>9,500원</UsedMarketContentPrice>
-      </UsedMarketContent>
+      {posts.map(post => (
+        <UsedMarketContent key={post.id} onClick={() => navigate(`/community/article/${post.id}`)}>
+          <UsedMarketContentImg />
+          <UsedMarketContentTitleBox>
+            <UsedMarketContentTitle>{post.title}</UsedMarketContentTitle>
+            <UsedMarketContentCategory>생활/주방</UsedMarketContentCategory>
+          </UsedMarketContentTitleBox>
+          <UsedMarketContentPrice>{post.price}</UsedMarketContentPrice>
+        </UsedMarketContent>
+      ))}
     </UsedMarketLayout>
   );
 };

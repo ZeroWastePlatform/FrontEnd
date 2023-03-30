@@ -12,6 +12,7 @@ export const UsedMarketContent = styled.div`
   gap: 20px;
   width: 427px;
   margin-bottom: 30px;
+  cursor: pointer;
 `;
 
 export const UsedMarketContentImg = styled.img`

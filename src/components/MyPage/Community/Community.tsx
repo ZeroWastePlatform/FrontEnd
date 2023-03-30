@@ -25,7 +25,7 @@ import {
 import commentImg from "../../../assets/images/comments.svg";
 import viewImg from "../../../assets/images/view.svg";
 import { useEffect, useState } from "react";
-import customAPI from "../../../lib/customApi";
+import customAPI from "../../../lib/customAPI";
 
 interface ICommentResponseProps {
   content: {

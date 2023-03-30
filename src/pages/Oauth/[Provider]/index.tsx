@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { userInfoAtom } from "../../../atom/userInfo";
 import useSetQueryMutate from "../../../hooks/useSetQueryMutate";
-import customAPI from "../../../lib/customApi";
+import customAPI from "../../../lib/customAPI";
 import { setExpiresAt } from "../../../utils/setExpiresAt";
 
 const Oauth = () => {
@@ -14,7 +14,7 @@ const Oauth = () => {
   const { provider } = useParams();
   const { mutate } = useSetQueryMutate(
     code =>
-      customAPI.post(`/api/auth/${provider}/token`, {
+      customAPI.post(`auth/${provider}/token`, {
         code,
         redirectUri: process.env.GOOGLE_REDIRECT_URI,
       }),

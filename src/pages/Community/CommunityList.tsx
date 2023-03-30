@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Pagenation from "../../components/Common/Pagenation/Pagenation";
@@ -35,11 +36,12 @@ const CommunityList = () => {
   };
 
   return (
-    <>
-      <CommunityHeaderContainer title={outputChildren().title} />
-      <CommunityListLayout>{outputChildren().component}</CommunityListLayout>
-      <Pagenation curpage={1} pagelist={[]} movePage={1} />
-    </>
+    <ErrorBoundary FallbackComponent={() => <div>...에러발생</div>}>
+      <Suspense fallback={<div>...로딩중</div>}>
+        <CommunityHeaderContainer title={outputChildren().title} />
+        <CommunityListLayout>{outputChildren().component}</CommunityListLayout>
+      </Suspense>
+    </ErrorBoundary>
   );
 };
 
