@@ -64,10 +64,11 @@ const Buy = ({
       <BuyInfo>{description}</BuyInfo>
       <BuyShipBox>
         <BuyShipText>
-          혜택 <i>{Math.floor(Number(price) * 0.05)}p</i> 적립
+          혜택<i>{Math.floor(Number(price) * 0.05)}p</i> 적립
         </BuyShipText>
         <BuyShipText>
-          {deliveryFee === 0 ? "무료배송" : `배송 ${numberWithCommas(deliveryFee)}원 (50,000원 이상 무료배송)}`} |
+          배송<i></i>
+          {deliveryFee === 0 ? "무료배송" : `${numberWithCommas(deliveryFee)}원 (50,000원 이상 무료배송)`} <em>|</em>
           <p>도서산간 배송비 추가</p>
         </BuyShipText>
       </BuyShipBox>
