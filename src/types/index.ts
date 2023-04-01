@@ -1,6 +1,7 @@
 export interface ICategoryList {
   image: string;
   text: string;
+  en: string;
 }
 
 export interface PostType {

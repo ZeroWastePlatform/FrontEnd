@@ -24,6 +24,11 @@ const useSuspenseQuery = <T>(
     suspense: true,
     useErrorBoundary: true,
     onSuccess,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    retry: false,
+    staleTime: 86400000,
   });
 
   return { data: data as T };

@@ -15,10 +15,16 @@ export const MostPopularCategoryList = styled.ul`
 
 export const MostPopularCategoryItem = styled.li``;
 
-export const MostPopularCategoryAnchor = styled(Link)`
+export const MostPopularCategoryItemButton = styled.button<{ match: boolean }>`
   display: inline-block;
   padding: 10px 20px;
-  background-color: #d9d9d9;
+  background-color: ${({ match, theme }) => (match ? theme.colors.primaryPurple60 : theme.colors.primaryPurple20)};
   border-radius: 27px;
   font-weight: 700;
+`;
+export const MostPopularProductList = styled.div`
+  max-width: 1320px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
 `;
