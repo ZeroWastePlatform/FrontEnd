@@ -61,7 +61,7 @@ export const ProfileParagraph = styled.p`
   margin-bottom: 20px;
 `;
 
-export const MembeInfoForm = styled.form`
+export const MembeInfoSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 50px;

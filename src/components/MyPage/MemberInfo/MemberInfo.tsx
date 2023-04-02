@@ -18,7 +18,7 @@ import {
   LocateRow,
   LocateSettingCol,
   LocateSettingParagraph,
-  MembeInfoForm,
+  MembeInfoSection,
   MembeInfoParagraph,
   MemberInfoEditButton,
   MemberInfoLayout,
@@ -131,7 +131,7 @@ const MemberInfo = ({
 
       {/* <ProfileParagraph>프로필 사진</ProfileParagraph> */}
 
-      <MembeInfoForm>
+      <MembeInfoSection>
         {/* <ProfileImageCol>
           <img src="" alt="" />
 
@@ -188,7 +188,7 @@ const MemberInfo = ({
         </LocateSettingCol>
 
         {/* <CurrentLocationButton>현재 위치로 찾기</CurrentLocationButton> */}
-      </MembeInfoForm>
+      </MembeInfoSection>
 
       <MemberInfoEditButton onClick={handleSubmit}>회원정보 수정</MemberInfoEditButton>
     </MemberInfoLayout>
