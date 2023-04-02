@@ -54,6 +54,7 @@ const ProductCardListContainer = ({ condition, setCondition }: ProductCardListCo
   };
 
   const changeLike = (storeId: number) => {
+    if (!isLogin) return alert("로그인 해주세요!");
     const existIndex = likeData.content.findIndex(({ id }) => id === storeId);
     const newList = [
       ...likeData.content.map(({ id }) => {
@@ -103,7 +104,7 @@ const ProductCardListContainer = ({ condition, setCondition }: ProductCardListCo
       condition={condition}
       setCondition={setCondition}
       changePage={changePage}
-      likeData={likeData.content}
+      likeData={likeData === undefined ? [] : likeData.content}
       changeLike={changeLike}
     />
   );

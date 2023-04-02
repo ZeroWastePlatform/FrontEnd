@@ -17,6 +17,7 @@ const useLikeProduct = () => {
   );
 
   const changeLike = (storeId: number) => {
+    if (!isLogin) return alert("로그인 해주세요!");
     const existIndex = likeData.content.findIndex(({ id }) => id === storeId);
     const newList = [
       ...likeData.content.map(({ id }) => {

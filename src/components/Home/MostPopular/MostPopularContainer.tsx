@@ -19,7 +19,7 @@ const MostPopularContainer = () => {
       data={data}
       setSelectedCategory={setSelectedCategory}
       selectedCategory={selectedCategory}
-      likeData={likeData.content}
+      likeData={likeData === undefined ? [] : likeData.content}
       changeLike={changeLike}
     />
   );
