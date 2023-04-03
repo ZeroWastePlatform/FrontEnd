@@ -1,31 +1,18 @@
 import { useParams } from "react-router-dom";
-import useSuspenseQuery from "../../../../../hooks/useSuspenseQuery";
 import Info from "./Info";
-
-export interface InfoDataType {
-  id: string;
-  author: string;
-  width: number;
-  height: number;
-  url: string;
-  download_url: string;
-}
-
+import ProductImage1 from "../../../../../assets/images/productInfo1.png";
+import ProductImage2 from "../../../../../assets/images/productInfo2.png";
+import ProductImage3 from "../../../../../assets/images/productInfo3.png";
+import ProductImage4 from "../../../../../assets/images/productInfo4.png";
 interface InfoContainerProps {
   infoRef: React.RefObject<HTMLDivElement>;
 }
 
 const InfoContainer = ({ infoRef }: InfoContainerProps) => {
   const { id } = useParams();
-  const { data } = useSuspenseQuery<InfoDataType[]>(
-    ["Store", "ProductDetail", "Info", "1"],
-    "product/info",
-    undefined,
-    undefined,
-    `https://picsum.photos/v2/list?page=${id}&limit=5`,
-  );
-
-  return <Info data={data} infoRef={infoRef} />;
+  return <Info image={images[Number(id) % 3]} infoRef={infoRef} />;
 };
 
 export default InfoContainer;
+
+const images = [ProductImage1, ProductImage2, ProductImage3, ProductImage4];

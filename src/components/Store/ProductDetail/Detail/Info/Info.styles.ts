@@ -17,10 +17,14 @@ export const InfoCol = styled.div`
   margin: auto;
 `;
 
-export const InfoImg = styled.img`
-  height: 1200px;
+export const InfoWrap = styled.div<{ fold: boolean }>`
   width: 100%;
-  object-fit: contain;
+  height: ${({ fold }) => (fold ? "800px" : "100%")};
+  overflow: hidden;
+`;
+
+export const InfoImg = styled.img`
+  width: 100%;
 `;
 
 export const InfoButton = styled.button`
