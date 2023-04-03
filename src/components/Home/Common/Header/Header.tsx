@@ -10,7 +10,7 @@ const Header = ({ title, subTitle }: HeaderProps) => {
   return (
     <HeaderTitleBox>
       <HeaderTitle>{title}</HeaderTitle>
-      <HeaderSubTitle>{subTitle}</HeaderSubTitle>
+      <HeaderSubTitle light={subTitle !== "더보기"}>{subTitle}</HeaderSubTitle>
     </HeaderTitleBox>
   );
 };

@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const BestGreenusLayout = styled.div`
   max-width: 1320px;
-  margin: 0 auto;
-  margin-bottom: 50px;
+  margin: 0px auto 50px auto;
 `;
 
 export const BestGreenusUserList = styled.ul`
   display: flex;
-  gap: 60px;
+  justify-content: space-between;
+  margin: 72px 0 95px 0;
 `;
 
 export const BestGreenusUserItem = styled.li`
@@ -19,8 +19,8 @@ export const BestGreenusUserItem = styled.li`
 `;
 
 export const BestGreenusUserImg = styled.img`
-  width: 70px;
-  height: 70px;
+  width: 110px;
+  height: 110px;
   border-radius: 100%;
   background-color: #eee;
 `;

@@ -19,7 +19,8 @@ export const HeaderTitle = styled.p`
   font-size: 26px;
 `;
 
-export const HeaderSubTitle = styled.span`
-  font-weight: 700;
-  font-size: 16px;
+export const HeaderSubTitle = styled.span<{ light: boolean }>`
+  color: ${({ light, theme }) => (light ? theme.colors.gray6 : "#000000")};
+  font-weight: ${({ light }) => (light ? "500" : "700")};
+  font-size: 20px;
 `;
