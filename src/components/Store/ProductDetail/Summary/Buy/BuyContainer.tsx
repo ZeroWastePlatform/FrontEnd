@@ -42,6 +42,7 @@ const BuyContainer = ({ data, liked, changeLike }: BuyContainerProps) => {
       buyProduct={buyProduct}
       setBasket={basketMutate}
       changeLike={changeLike}
+      liked={liked}
     ></Buy>
   );
 };

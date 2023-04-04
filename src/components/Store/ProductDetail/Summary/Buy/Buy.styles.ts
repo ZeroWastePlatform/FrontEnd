@@ -116,13 +116,14 @@ export const BuyCircleButton = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 4px;
   border: 2px solid ${({ theme }) => theme.colors.gray3};
   cursor: pointer;
+  font-size: 14px;
+  color: #535353;
+  padding-top: 7px;
 `;
 
 export const BuyCircleButtonIcon = styled.div<{ liked: string }>`
-  font-size: 25px;
   color: ${({ liked }) => (liked === "true" ? "red" : "black")};
 `;
 

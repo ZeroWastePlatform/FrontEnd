@@ -19,13 +19,15 @@ import {
   BuyToalPayItem,
   BuyTotalPayBox,
 } from "./Buy.styles";
-
+import activeHeart from "../../../../../assets/images/bigHeartNoActive.svg";
+import noActiveHeart from "../../../../../assets/images/bigHeartActive.svg";
 interface BuyProps extends SummaryType {
   count: number;
   changeCount: (op: string) => void;
   buyProduct: () => void;
   setBasket: () => void;
   changeLike: (productId: number) => Promise<void>;
+  liked: boolean;
 }
 
 const Buy = ({
@@ -43,6 +45,7 @@ const Buy = ({
   changeLike,
   discountRate,
   deliveryFee,
+  liked,
 }: BuyProps) => {
   //"♡"
   return (
@@ -82,7 +85,9 @@ const Buy = ({
       </BuyTotalPayBox>
       <BuyButtonBox>
         <BuyCircleButton onClick={() => changeLike(id)}>
-          <BuyCircleButtonIcon liked={"true"}>{"♥"}</BuyCircleButtonIcon>
+          <BuyCircleButtonIcon liked={"true"}>
+            <img src={liked ? activeHeart : noActiveHeart}></img>
+          </BuyCircleButtonIcon>
           {likeCount}
         </BuyCircleButton>
         <BuyRoundButton onClick={setBasket} filled={"false"}>
