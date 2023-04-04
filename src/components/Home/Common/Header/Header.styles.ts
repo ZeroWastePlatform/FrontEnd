@@ -16,7 +16,7 @@ export const HeaderTitleBox = styled.div`
 
 export const HeaderTitle = styled.p`
   font-weight: 700;
-  font-size: 26px;
+  font-size: 24px;
 `;
 
 export const HeaderSubTitle = styled.span<{ light: boolean }>`
