@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { startTransition, useState } from "react";
 import useLikeProduct from "../../../hooks/useLikeProduct";
 import useSuspenseQuery from "../../../hooks/useSuspenseQuery";
 import { getCategoryList } from "../../../utils/getCategoryList";
@@ -9,16 +9,22 @@ const MostPopularContainer = () => {
   const categoryList = getCategoryList();
   const [selectedCategory, setSelectedCategory] = useState("ALL");
   const { data } = useSuspenseQuery<ProductCardListDataType>(
-    ["Home", "MostPopular"],
+    ["Home", "MostPopular", selectedCategory],
     `products?${selectedCategory !== "ALL" ? `category=${selectedCategory}&` : ""}page=0&order=POPULARITY`,
   );
   const { likeData, changeLike } = useLikeProduct();
+
+  const changeSelectedCategory = (category: string) => {
+    startTransition(() => {
+      setSelectedCategory(category);
+    });
+  };
   return (
     <MostPopular
       categoryList={categoryList}
       data={data}
-      setSelectedCategory={setSelectedCategory}
       selectedCategory={selectedCategory}
+      changeSelectedCategory={changeSelectedCategory}
       likeData={likeData === undefined ? [] : likeData.content}
       changeLike={changeLike}
     />

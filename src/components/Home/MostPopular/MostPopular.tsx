@@ -10,12 +10,11 @@ import {
   MostPopularLayout,
   MostPopularProductList,
 } from "./MostPopular.styles";
-import ProductCardList from "./ProductCardList/ProductCardList";
 
 interface MostPopularProps {
   categoryList: ICategoryList[];
   data: ProductCardListDataType;
-  setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
+  changeSelectedCategory: (category: string) => void;
   selectedCategory: string;
   likeData: {
     id: number;
@@ -26,7 +25,7 @@ interface MostPopularProps {
 const MostPopular = ({
   categoryList,
   data,
-  setSelectedCategory,
+  changeSelectedCategory,
   selectedCategory,
   likeData,
   changeLike,
@@ -38,7 +37,7 @@ const MostPopular = ({
         {categoryList.map((item, idx) => (
           <MostPopularCategoryItem key={idx}>
             <MostPopularCategoryItemButton
-              onClick={() => setSelectedCategory(item.en)}
+              onClick={() => changeSelectedCategory(item.en)}
               match={item.en === selectedCategory}
             >
               {item.text}
