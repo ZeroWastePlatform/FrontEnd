@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import commentImg from "../../../../assets/images/comment.png";
-import likeImg from "../../../../assets/images/like.png";
-import visitImg from "../../../../assets/images/visit.png";
+import commentImg from "../../../../assets/images/comment.svg";
+import likeImg from "../../../../assets/images/like.svg";
+import visitImg from "../../../../assets/images/views.svg";
 
 export const PostContent = styled.div`
   width: 50%;
