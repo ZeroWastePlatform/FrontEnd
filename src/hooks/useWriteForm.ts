@@ -25,17 +25,21 @@ const useWriteForm = (
       alert("내용을 입력해 주세요.");
     } else {
       const formData = new FormData();
+      const files = writeForm.images?.map(image => image.file);
       formData.append("kind", writeForm.kind as any);
       formData.append("title", writeForm.title);
       formData.append("content", writeForm.content);
       formData.append("price", writeForm.price as any);
-      formData.append("storedFileNames", writeForm.images as any);
       formData.append("hashtag", writeForm.hashtag as any);
+      if (files[0]?.name) {
+        files?.forEach(file => {
+          formData.append("multipartFiles", file);
+        });
+      }
 
       mutate(formData);
     }
   };
-
   useEffect(() => {
     changeFormData("kind", kind);
   }, [kind]);

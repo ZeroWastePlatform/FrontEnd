@@ -35,7 +35,6 @@ export const PostContentMain = styled.div`
 export const PostContentMainImg = styled.img`
   width: 100px;
   height: 100px;
-  background-color: red;
 `;
 
 export const PostContentTitle = styled.p`
