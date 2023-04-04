@@ -1,5 +1,6 @@
-import { numberWithCommas } from "../../../../../utils/priceProcess";
+import { discountPrice, numberWithCommas } from "../../../../../utils/priceProcess";
 import Counter from "../../../../Common/Counter/Counter";
+import { SummaryType } from "../SummaryContainer";
 import {
   BuyBadgeItem,
   BuyBadgeList,
@@ -18,22 +19,15 @@ import {
   BuyToalPayItem,
   BuyTotalPayBox,
 } from "./Buy.styles";
-import heartImg from "../../../../../assets/images/heart.svg";
-
-interface BuyProps {
-  id: number;
+import activeHeart from "../../../../../assets/images/bigHeartNoActive.svg";
+import noActiveHeart from "../../../../../assets/images/bigHeartActive.svg";
+interface BuyProps extends SummaryType {
   count: number;
   changeCount: (op: string) => void;
   buyProduct: () => void;
   setBasket: () => void;
-  brand: string;
-  badges: number;
-  title: string;
-  price: number;
-  summary: string;
-  liked: boolean;
-  productLike: string[];
   changeLike: (productId: number) => Promise<void>;
+  liked: boolean;
 }
 
 const Buy = ({
@@ -46,39 +40,39 @@ const Buy = ({
   badges,
   title,
   price,
-  summary,
-  liked,
-  productLike,
+  description,
+  likeCount,
   changeLike,
+  discountRate,
+  deliveryFee,
+  liked,
 }: BuyProps) => {
+  //"♡"
   return (
     <BuyLayout>
       <BuyBadgeList>
-        {badges
-          .toString(2)
-          .split("")
-          .map((bool, index) => {
-            if (bool === "1") return badgeList[index];
-            return "false";
-          })
-          .filter(el => el !== "false")
-          .map(badge => (
-            <BuyBadgeItem key={badge} type={badge}>
-              {badge}
-            </BuyBadgeItem>
-          ))}
+        {badges.split("_").map(badge => (
+          <BuyBadgeItem key={badge} type={badge}>
+            {badge}
+          </BuyBadgeItem>
+        ))}
       </BuyBadgeList>
       <BuyProductName>
         [{brand}] {title}
       </BuyProductName>
-      <BuyPrice>{numberWithCommas(Number(price))}원</BuyPrice>
-      <BuyInfo>{summary}</BuyInfo>
+      <BuyPrice>
+        {discountRate !== 0 ? <i>{numberWithCommas(price)}</i> : null}
+        {numberWithCommas(discountPrice({ price, discountRate }))}원
+      </BuyPrice>
+      <BuyInfo>{description}</BuyInfo>
       <BuyShipBox>
         <BuyShipText>
-          혜택 <i>{Math.floor(Number(price) * 0.05)}p</i> 적립
+          혜택<i>{Math.floor(Number(price) * 0.05)}p</i> 적립
         </BuyShipText>
         <BuyShipText>
-          배송 3,000원 (50,000원 이상 무료배송) | <p>도서산간 배송비 추가</p>
+          배송<i></i>
+          {deliveryFee === 0 ? "무료배송" : `${numberWithCommas(deliveryFee)}원 (50,000원 이상 무료배송)`} <em>|</em>
+          <p>도서산간 배송비 추가</p>
         </BuyShipText>
       </BuyShipBox>
       <BuyCounterBox>
@@ -91,8 +85,10 @@ const Buy = ({
       </BuyTotalPayBox>
       <BuyButtonBox>
         <BuyCircleButton onClick={() => changeLike(id)}>
-          <BuyCircleButtonIcon liked={liked ? "true" : "false"}>{liked ? "♥" : "♡"}</BuyCircleButtonIcon>
-          {productLike.length}
+          <BuyCircleButtonIcon liked={"true"}>
+            <img src={liked ? activeHeart : noActiveHeart}></img>
+          </BuyCircleButtonIcon>
+          {likeCount}
         </BuyCircleButton>
         <BuyRoundButton onClick={setBasket} filled={"false"}>
           장바구니

@@ -16,7 +16,6 @@ const useWriteForm = (
   const changeFormData = (key: string, data: string | number) => {
     setWriteForm(prev => ({ ...prev, [key]: data }));
   };
-  console.log("writeForm", writeForm);
   const handleClickRegist = () => {
     if (writeForm.kind === 0) {
       alert("게시판을 선택해 주세요.");

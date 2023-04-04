@@ -13,7 +13,7 @@ const Summary = ({ data, liked, changeLike }: SummaryProps) => {
   return (
     <SummaryLayout>
       <SummaryRow>
-        <Thumnail photo={data.thumnail} />
+        <Thumnail photo={data.thumbnail} id={data.id} />
         <BuyContainer data={data} liked={liked} changeLike={changeLike} />
       </SummaryRow>
     </SummaryLayout>

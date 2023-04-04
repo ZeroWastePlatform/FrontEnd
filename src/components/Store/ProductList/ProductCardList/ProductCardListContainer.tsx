@@ -1,13 +1,12 @@
-import axios from "axios";
-import { useEffect, useRef } from "react";
+import { startTransition, useRef } from "react";
 import { useQueryClient } from "react-query";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { userInfoAtom } from "../../../../atom/userInfo";
-import useSetQueryMutate from "../../../../hooks/useSetQueryMutate";
 import useSuspenseQuery from "../../../../hooks/useSuspenseQuery";
+import customAPI from "../../../../lib/customAPI";
 import { conditionType, setConditionType } from "../../../../pages/Store/ProductList";
 import fixProductCondition from "../../../../utils/fixProductCondition";
-import { ProductCardProps } from "../../Common/ProductCard/ProductCard";
+import makeQuery from "../../../../utils/makeQuery";
 import ProductCardList from "./ProductCardList";
 
 export interface ProductCardListDataContentType {
@@ -33,70 +32,79 @@ interface ProductCardListContainerProps {
 }
 
 const ProductCardListContainer = ({ condition, setCondition }: ProductCardListContainerProps) => {
-  const { category, sort, page, brand, price, productStatus } = condition;
+  const { category, order, page, brand, price, productStatus } = condition;
   const { data } = useSuspenseQuery<ProductCardListDataType>(
-    ["Store", "ProductList", "ProductCardList", category, sort, page, brand, price, productStatus],
-    `product${fixProductCondition(condition)}`,
+    ["Store", "ProductList", "ProductCardList", category, order, page, brand, price, productStatus],
+    `products${makeQuery(fixProductCondition(condition))}`,
   );
-  const { id, isLogin, like } = useRecoilValue(userInfoAtom);
-  const activeChange = useRef(false);
+  const { id, isLogin } = useRecoilValue(userInfoAtom);
+  const timer = useRef<NodeJS.Timeout>();
   const queryClient = useQueryClient();
+  const { data: likeData } = useSuspenseQuery<{ content: { id: number }[] }>(
+    ["Store", "ProductList", "like", id],
+    `members/me/products`,
+    undefined,
+    isLogin,
+  );
 
-  const { data: likeData } = useSuspenseQuery<number[]>(["Store", "ProductList", "like", id], `like?id=${id}`);
-
-  // const { mutate } = useSetQueryMutate<
-  //   { id: number },
-  //   (data: { totalCount: number; contents: ProductCardProps[] }) => {
-  //     totalCount: number;
-  //     contents: ProductCardProps[];
-  //   }
-  // >(
-  //   id => axios.post("http://localhost:8000/product", { id }),
-  //   ["Store", "ProductList", "ProductCardList", category, filter, sort, page],
-  //   e => {
-  //     return (data: { totalCount: number; contents: ProductCardProps[] }) => {
-  //       return {
-  //         totalCount: data.totalCount,
-  //         contents: data.contents.map(el => {
-  //           if (el.id === e.data.id) {
-  //             return { ...el, liked: !el.liked };
-  //           }
-  //           return el;
-  //         }),
-  //       };
-  //     };
-  //   },
-  // );
-
-  const setPage = (page: number) => {
-    setCondition({ ...condition, page });
+  const changePage = (page: number) => {
+    startTransition(() => {
+      setCondition({ ...condition, page });
+    });
   };
 
-  const changeLike = async (productId: number) => {
-    if (!isLogin) return alert("로그인을 해야 관심상품으로 추가할수 있습니다");
-    if (!activeChange.current) {
-      activeChange.current = true;
-      const newLike = queryClient.getQueryData<number[]>(["Store", "ProductList", "like", id]) as number[];
-      if (like.indexOf(productId) === -1) {
-        await axios.post(`https://zerowasteproduct.herokuapp.com/like?productId=${productId}&userId=${id}`);
-        newLike.push(productId);
-      } else {
-        await axios.delete(`https://zerowasteproduct.herokuapp.com/like?productId=${productId}&userId=${id}`);
-        const index = newLike.indexOf(productId);
-        newLike.splice(index, 1);
-      }
-
-      queryClient.setQueryData(["Store", "ProductList", "like", id], [...newLike]);
-      activeChange.current = false;
+  const changeLike = (storeId: number) => {
+    if (!isLogin) return alert("로그인 해주세요!");
+    const existIndex = likeData.content.findIndex(({ id }) => id === storeId);
+    const newList = [
+      ...likeData.content.map(({ id }) => {
+        return { id };
+      }),
+    ];
+    if (existIndex !== -1) newList.splice(existIndex, 1);
+    if (existIndex === -1) newList.push({ id: storeId });
+    queryClient.setQueryData(["Store", "ProductList", "like", id], { content: newList });
+    if (timer.current) {
+      clearTimeout(timer.current);
     }
+    timer.current = setTimeout(() => {
+      if (existIndex !== -1) {
+        customAPI
+          .delete(`products/${storeId}/like`)
+          .then(res => res.data)
+          .catch(err => {
+            queryClient.setQueryData<number[]>(["todos"], old => {
+              if (old !== undefined) {
+                const newdata = [...old];
+                newdata.push(storeId);
+                return newdata;
+              }
+              return [1];
+            });
+          });
+      } else {
+        customAPI
+          .post(`products/${storeId}/like`)
+          .then(res => res.data)
+          .catch(err => {
+            queryClient.setQueryData<number[]>(["todos"], old => {
+              if (old !== undefined) {
+                return old.filter(likeId => likeId !== storeId);
+              }
+              return [1];
+            });
+          });
+      }
+    }, 500);
   };
+
   return (
     <ProductCardList
       data={data}
       condition={condition}
       setCondition={setCondition}
-      setPage={setPage}
-      likeData={likeData}
+      changePage={changePage}
+      likeData={likeData === undefined ? [] : likeData.content}
       changeLike={changeLike}
     />
   );

@@ -2,48 +2,35 @@ import styled from "styled-components";
 
 export const CommuintyLayout = styled.section``;
 
-export const MyInfoRow = styled.div`
+export const CommunityTapRow = styled.div`
   margin-bottom: 33px;
   display: flex;
   align-items: center;
 `;
 
-export const MyArticleSpan = styled.span`
+export const CommunityTap = styled.button``;
+
+export const CommunityTapSpan = styled.span`
   font-family: "Pretendard";
   font-weight: 700;
   font-size: 32px;
   line-height: 38px;
-  color: #000000;
+  color: #bdbdbe;
 `;
 
-export const MyArticleNumber = styled(MyArticleSpan)`
-  color: #66f095;
+export const CommunityTapNumber = styled(CommunityTapSpan)`
+  color: #bdbdbe;
   margin-left: 10px;
   margin-right: 15px;
-  ::after {
-    content: " |";
-    font-family: "Pretendard";
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 38px;
-    color: #bdbdbe;
-  }
 `;
 
-export const MyCommentSpan = styled(MyArticleSpan)`
-  color: #bdbdbe;
-  margin-right: 10px;
-`;
-
-export const MyCommentNumber = styled(MyCommentSpan)``;
-
-export const CommunitySection = styled.section`
+export const CommunityBoardSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 30px;
 `;
 
-export const CommuintyArticle = styled.article`
+export const CommuintyBoardArticle = styled.article`
   width: 883px;
   border-bottom: 2px solid #d3d3d4;
 `;
@@ -56,7 +43,7 @@ export const TitleBox = styled.div`
 
 export const TitleText = styled.span`
   font-family: "Pretendard";
-  font-weight: 700;
+  font-weight: 500;
   font-size: 24px;
   line-height: 22px;
   color: #000000;
@@ -81,6 +68,7 @@ export const WritingTime = styled.span`
 export const CommentBox = styled.div`
   display: flex;
   gap: 5px;
+  align-items: center;
   img {
     width: 18px;
     height: 18px;
@@ -96,6 +84,7 @@ export const CommentNumber = styled.span`
 export const InquiryBox = styled.div`
   display: flex;
   gap: 5px;
+  align-items: center;
   img {
     width: 24px;
     height: 24px;
@@ -103,3 +92,44 @@ export const InquiryBox = styled.div`
 `;
 
 export const InquiryNumber = styled(CommentNumber)``;
+
+export const CommunityCommentSection = styled(CommunityBoardSection)``;
+
+export const CommunityCommentArticle = styled(CommuintyBoardArticle)``;
+
+export const CommentContent = styled.p`
+  font-family: "Pretendard";
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 22px;
+  color: #000000;
+  margin-bottom: 20px;
+`;
+
+export const CommentContentBox = styled.div`
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-bottom: 30px;
+`;
+
+export const CommentCategory = styled.span`
+  font-family: "Pretendard";
+  font-size: 20px;
+  line-height: 24px;
+  color: #919193;
+`;
+
+export const CommentTitle = styled.span`
+  font-family: "Pretendard";
+  font-size: 20px;
+  line-height: 24px;
+  color: #252525;
+`;
+
+export const CommentInfo = styled.span`
+  font-family: "Pretendard";
+  font-size: 20px;
+  line-height: 22px;
+  color: #66f095;
+`;

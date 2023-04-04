@@ -1,7 +1,7 @@
 import React from "react";
 import useSetQueryMutate from "../../../../hooks/useSetQueryMutate";
 import useSuspenseQuery from "../../../../hooks/useSuspenseQuery";
-import customAPI from "../../../../lib/customApi";
+import customAPI from "../../../../lib/customAPI";
 import { CommentResponseType } from "../../../../types";
 import CommentBox from "./CommentBox";
 
@@ -36,8 +36,6 @@ const CommentBoxContainer = ({ postId }: CommentBoxContainerProps) => {
       remove(id);
     }
   };
-
-  console.log("comment", data);
 
   return <CommentBox comments={data.content} regist={regist} handleClickRemove={handleClickRemove} />;
 };

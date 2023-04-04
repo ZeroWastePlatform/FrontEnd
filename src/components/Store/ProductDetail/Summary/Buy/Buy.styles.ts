@@ -12,39 +12,48 @@ export const BuyProductName = styled.div`
 
 export const BuyPrice = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   font-size: 30px;
   font-weight: 700;
-  margin: 0 0 20px 0;
+  margin: 38px 0;
+  & > i {
+    font-size: 25px;
+    color: gray;
+    text-decoration: line-through;
+  }
 `;
 
 export const BuyInfo = styled.div`
-  min-height: 300px;
+  margin-bottom: 44px;
   line-height: 1.55;
   font-size: 22px;
   font-weight: 400;
 `;
 
 export const BuyShipBox = styled.div`
-  background-color: ${({ theme }) => theme.colors.gray1};
-  border-radius: 10px;
-  padding: 18px;
+  color: ${({ theme }) => theme.colors.gray5};
   display: flex;
   flex-direction: column;
   gap: 13px;
   font-size: 20px;
   font-weight: 400;
   margin: 0 0 52px 0;
+  padding: 0 0 55px 0;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray2};
 `;
 
 export const BuyShipText = styled.div`
   & > i {
     font-size: 20px;
     font-weight: 700;
+    margin-left: 14px;
+  }
+  & > em {
+    margin: 0 17px 0 13px;
   }
   & > p {
     display: inline;
-    color: #828282;
+    color: ${({ theme }) => theme.colors.gray3};
   }
 `;
 
@@ -107,13 +116,14 @@ export const BuyCircleButton = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 4px;
   border: 2px solid ${({ theme }) => theme.colors.gray3};
   cursor: pointer;
+  font-size: 14px;
+  color: #535353;
+  padding-top: 7px;
 `;
 
 export const BuyCircleButtonIcon = styled.div<{ liked: string }>`
-  font-size: 25px;
   color: ${({ liked }) => (liked === "true" ? "red" : "black")};
 `;
 

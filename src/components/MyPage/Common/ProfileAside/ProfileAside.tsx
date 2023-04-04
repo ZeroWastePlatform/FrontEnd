@@ -20,19 +20,38 @@ import LikeImg from "../../../../assets/images/heart.svg";
 import pointImg from "../../../../assets/images/point.svg";
 import couponImg from "../../../../assets/images/coupon.svg";
 import { useNavigate } from "react-router";
+import { useRecoilValue } from "recoil";
+import { userInfoAtom } from "../../../../atom/userInfo";
+import { useEffect } from "react";
+import customAPI from "../../../../lib/customAPI";
 
 const ProfileAside = () => {
   const navigate = useNavigate();
+  const userInfo = useRecoilValue(userInfoAtom);
+
+  const accessToken = localStorage.getItem("accessToken");
+
+  const memberInfoAPI = async (): Promise<void> => {
+    const result = await customAPI.get("members/me?page=1", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  };
+
+  useEffect(() => {
+    memberInfoAPI();
+  }, []);
 
   return (
     <ProfileAsideLayout>
       <img src={ProfileImg} />
       <ProfileBox>
-        <PropfileNickNameSpan>그리너스조아</PropfileNickNameSpan>
-        <PropfileLevelSpan>LV. 5 프로 그리너스</PropfileLevelSpan>
+        <PropfileNickNameSpan>{userInfo.nickname}</PropfileNickNameSpan>
+        <PropfileLevelSpan>LV. {userInfo.level} 프로 그리너스</PropfileLevelSpan>
         <MemberInfoButton
           onClick={() => {
-            navigate("mypage?category=회원정보설정");
+            navigate("?category=회원정보설정");
           }}
         >
           회원정보 설정
@@ -43,19 +62,19 @@ const ProfileAside = () => {
         <LikeBox>
           <img src={LikeImg} />
           <LikeText>찜목록</LikeText>
-          <LikeInfoText>13</LikeInfoText>
+          <LikeInfoText>{userInfo.zzimCnt}</LikeInfoText>
         </LikeBox>
 
         <PointBox>
           <img src={pointImg} />
           <PointText>포인트</PointText>
-          <PointInfoText>10,000</PointInfoText>
+          <PointInfoText>{userInfo.point}</PointInfoText>
         </PointBox>
 
         <CouponBox>
           <img src={couponImg} />
           <CouponText>내 쿠폰</CouponText>
-          <CouponInfoText>0</CouponInfoText>
+          <CouponInfoText>{userInfo.couponCnt}</CouponInfoText>
         </CouponBox>
       </MemberDataRow>
     </ProfileAsideLayout>

@@ -108,7 +108,7 @@ export const ProductCardBadgeItem = styled.li<{ type: string }>`
   border: 1px solid ${({ theme, type }) => theme.colors[badgeType[type].border]};
   display: flex;
   justify-content: center;
-  align-items: center;
+  line-height: 38px;
   font-size: 24px;
   font-weight: 400;
 `;

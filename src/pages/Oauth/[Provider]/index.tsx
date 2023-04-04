@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { userInfoAtom } from "../../../atom/userInfo";
 import useSetQueryMutate from "../../../hooks/useSetQueryMutate";
-import customAPI from "../../../lib/customApi";
+import customAPI from "../../../lib/customAPI";
 import { setExpiresAt } from "../../../utils/setExpiresAt";
 
 const Oauth = () => {

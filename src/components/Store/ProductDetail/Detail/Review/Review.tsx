@@ -1,29 +1,35 @@
-import Pagenation from "../../../../Common/Pagenation/Pagenation";
+import { review } from "../../../../../mock/reviewList";
 import PagenationContainer from "../../../../Common/Pagenation/PagenationContainer";
 import { ReviewCol, ReviewLayout, ReviewTitle } from "./Review.styles";
-import { ReviewDataType } from "./ReviewContainer";
 import ReviewList from "./ReviewList/ReviewList";
 import ReviewSort from "./ReviewSort/ReviewSort";
 import Status from "./Status/Status";
 
 interface ReviewProps {
-  page: number;
-  setPage: (page: number) => void;
+  data: review;
   sort: string;
-  setSort: React.Dispatch<React.SetStateAction<string>>;
+  page: number;
+  changeSort: (sort: string) => void;
+  changePage: (page: number) => void;
   reviewRef: React.RefObject<HTMLDivElement>;
-  data: ReviewDataType;
 }
 
-const Review = ({ data: { avgrate, rates, content, total }, sort, setSort, page, setPage, reviewRef }: ReviewProps) => {
+const Review = ({
+  data: { avgrate, rates, content, totalPage, total },
+  sort,
+  page,
+  changeSort,
+  changePage,
+  reviewRef,
+}: ReviewProps) => {
   return (
     <ReviewLayout ref={reviewRef}>
       <ReviewCol>
         <ReviewTitle>리뷰({total})</ReviewTitle>
         <Status avgrate={avgrate} rates={rates} total={total}></Status>
-        <ReviewSort sort={sort} setSort={setSort} />
+        <ReviewSort sort={sort} changeSort={changeSort} />
         <ReviewList data={content}></ReviewList>
-        <PagenationContainer page={page} setPage={setPage} totalPage={9} unit={9} />
+        <PagenationContainer page={page} changePage={changePage} totalPage={totalPage} unit={9} />
       </ReviewCol>
     </ReviewLayout>
   );

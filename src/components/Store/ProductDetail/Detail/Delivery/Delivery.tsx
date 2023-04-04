@@ -10,14 +10,26 @@ import {
   DeliveryText,
   DeliveryTitle,
 } from "./Delivery.styles";
-import { DeliveryDataType } from "./DeliveryContainer";
 
 interface DeliveryProps {
-  data: DeliveryDataType;
+  data: { deliveryFee: number };
   deliveryRef: React.RefObject<HTMLDivElement>;
 }
 
 const Delivery = ({ data, deliveryRef }: DeliveryProps) => {
+  const delivery = {
+    delivery: [
+      "일반택배",
+      data.deliveryFee === 0 ? "무료" : `${data.deliveryFee}원 (50,000원 이상 무료배송)`,
+      "3000원",
+      "배송불가 지역이 없습니다.",
+    ],
+    return: [
+      "3000원 (최초 배송비가 무료인 경우 6000원 부과),6000원,(12345) 서울 송파구 도로명주소 55길 33 1층 그리너스",
+      "6000원",
+      "(12345) 서울 송파구 도로명주소 55길 33 1층 그리너스",
+    ],
+  };
   return (
     <DeliveryLayout ref={deliveryRef}>
       <DeliveryCol>
@@ -26,7 +38,7 @@ const Delivery = ({ data, deliveryRef }: DeliveryProps) => {
           {["택배배송", "배송비", "도서산간 추가 배송비", "배송불가 지역"].map((el, index) => (
             <DeliveryRow key={el}>
               <DeliverySubTitle>{el}</DeliverySubTitle>
-              <DeliveryText>{data.delivery[index]}</DeliveryText>
+              <DeliveryText>{delivery.delivery[index]}</DeliveryText>
             </DeliveryRow>
           ))}
         </DeliveryBox>
@@ -35,7 +47,7 @@ const Delivery = ({ data, deliveryRef }: DeliveryProps) => {
           {["반품배송비", "교환배송비", "보내실 곳"].map((el, index) => (
             <DeliveryRow key={el}>
               <DeliverySubTitle>{el}</DeliverySubTitle>
-              <DeliveryText>{data.return[index]}</DeliveryText>
+              <DeliveryText>{delivery.return[index]}</DeliveryText>
             </DeliveryRow>
           ))}
         </DeliveryBox>

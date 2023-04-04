@@ -23,7 +23,6 @@ const useDetail = () => {
             .map(ref => ({ position: refs[ref].current?.getBoundingClientRect().top, category: ref }))
             .reverse()
             .find(el => (el.position as number) <= 1);
-          console.log(Object.keys(refs).map(ref => refs[ref].current?.getBoundingClientRect().top));
           if (curNavigation !== undefined) {
             setNavigation(curNavigation.category);
           }

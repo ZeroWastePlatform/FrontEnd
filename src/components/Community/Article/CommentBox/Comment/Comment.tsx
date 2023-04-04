@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { userInfoAtom } from "../../../../../atom/userInfo";
 import useSetQueryMutate from "../../../../../hooks/useSetQueryMutate";
-import customAPI from "../../../../../lib/customApi";
+import customAPI from "../../../../../lib/customAPI";
 import { CommentType } from "../../../../../types";
 import InputBox from "../Common/InputBox/InputBox";
 import {
@@ -71,7 +71,6 @@ const Comment = ({
   );
 
   const handleClickEdit = () => {
-    console.log(commentId);
     edit(id);
     setIsEditId(0);
   };
@@ -79,8 +78,6 @@ const Comment = ({
   const replyList = comments.filter(comment => {
     return comment.parentId === commentId;
   });
-
-  console.log("replyList", replyList);
 
   return (
     <CommentLayout>

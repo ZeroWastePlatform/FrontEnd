@@ -8,7 +8,7 @@ export const AskLayout = styled.div`
 export const AskTopBox = styled.div`
   display: flex;
   border-bottom: 1px solid #eaeaea;
-  max-width: 1200px;
+  width: 1320px;
   margin: auto;
   padding: 0 0 20px 0;
 `;

@@ -2,10 +2,10 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const dotenv = require("dotenv");
+const Dotenv = require("dotenv-webpack");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-module.exports = env => {
-  const { DEV } = env;
+module.exports = () => {
   return {
     mode: "development",
     entry: {
@@ -45,10 +45,10 @@ module.exports = env => {
         // favicon: "./public/favicon.ico",
       }),
       new CleanWebpackPlugin(),
-      new webpack.DefinePlugin({
-        // "process.env.API_SERVER": JSON.stringify(process.env.API_SERVER), // env에서 읽은 ip를 저장
-        "process.env": JSON.stringify(dotenv.config({ path: DEV ? "./dev.env" : "./.env" }).parsed),
+      new CopyWebpackPlugin({
+        patterns: [{ from: "./public/_redirects", to: path.join(__dirname, "build") }],
       }),
+      new Dotenv({ systemvars: true }),
     ],
     devServer: {
       static: {

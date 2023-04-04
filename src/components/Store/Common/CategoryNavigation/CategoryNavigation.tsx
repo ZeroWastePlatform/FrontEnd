@@ -16,7 +16,7 @@ const CategoryNavigation = ({ condition, setCondition }: CategoryNavigationProps
           {categoryData.map(category => (
             <CategoryNavigationItem key={category} same={categoryMap[category] === condition.category}>
               <Link
-                to={`/store?category=${category}`}
+                to={`/store?category=${categoryMap[category]}`}
                 onClick={() =>
                   setCondition(
                     category === "베스트"
@@ -37,20 +37,7 @@ const CategoryNavigation = ({ condition, setCondition }: CategoryNavigationProps
 
 export default CategoryNavigation;
 
-const categoryData = [
-  "베스트",
-  "전체",
-  "식품",
-  "주방",
-  "욕실",
-  "생활",
-  "취미",
-  "선물",
-  "여성용품",
-  "반려동물",
-  "문구",
-  "이벤트",
-];
+const categoryData = ["베스트", "전체", "식품", "주방", "욕실", "생활", "취미", "선물", "여성용품", "반려동물", "문구"];
 
 const categoryMap: { [key: string]: "TOP6" | "ALL" | category } = {
   베스트: "TOP6",

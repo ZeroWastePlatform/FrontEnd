@@ -9,7 +9,7 @@ export const DeliveryCol = styled.div`
   display: flex;
   flex-direction: column;
   gap: 100px;
-  max-width: 1200px;
+  width: 1320px;
   margin: auto;
 `;
 

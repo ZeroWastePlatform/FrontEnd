@@ -1,5 +1,6 @@
+import { useQuery } from "react-query";
 import useSortPaging from "../../../../../hooks/useSortPaging";
-import useSuspenseQuery from "../../../../../hooks/useSuspenseQuery";
+import getReview, { review } from "../../../../../mock/reviewList";
 import Review from "./Review";
 
 export interface ReviewDataContentType {
@@ -25,12 +26,22 @@ interface ReviewContainerProps {
 }
 
 const ReviewContainer = ({ reviewRef }: ReviewContainerProps) => {
-  const { page, sort, setPage, setSort } = useSortPaging(1, "베스트순");
-  const { data } = useSuspenseQuery<ReviewDataType>(
-    ["Store", "ProductDetal", "Review", "1", sort, page],
-    `product/review?sort=${sort}&page=${page}`,
+  const { page, sort, changePage, changeSort } = useSortPaging(1, "베스트순");
+  const { data } = useQuery(["Store", "ProductDetal", "Review", "1", sort, page], getReview(sort, page), {
+    suspense: true,
+    useErrorBoundary: true,
+  });
+
+  return (
+    <Review
+      data={data as review}
+      sort={sort}
+      page={page}
+      changeSort={changeSort}
+      changePage={changePage}
+      reviewRef={reviewRef}
+    />
   );
-  return <Review data={data} sort={sort} page={page} setSort={setSort} setPage={setPage} reviewRef={reviewRef} />;
 };
 
 export default ReviewContainer;

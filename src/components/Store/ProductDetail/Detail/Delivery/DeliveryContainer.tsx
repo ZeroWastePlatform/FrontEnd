@@ -1,17 +1,16 @@
+import { useParams } from "react-router-dom";
 import useSuspenseQuery from "../../../../../hooks/useSuspenseQuery";
 import Delivery from "./Delivery";
-
-export interface DeliveryDataType {
-  delivery: string[];
-  return: string[];
-}
-
 interface DeliveryContainerProps {
   deliveryRef: React.RefObject<HTMLDivElement>;
 }
 
 const DeliveryContainer = ({ deliveryRef }: DeliveryContainerProps) => {
-  const { data } = useSuspenseQuery<DeliveryDataType>(["Store", "ProductDetail", "Delivery", "1"], "product/delivery");
+  const { id } = useParams();
+  const { data } = useSuspenseQuery<{ deliveryFee: number }>(
+    ["Store", "ProductDetail", "summary", id],
+    `products/${id}`,
+  );
 
   return <Delivery data={data} deliveryRef={deliveryRef} />;
 };

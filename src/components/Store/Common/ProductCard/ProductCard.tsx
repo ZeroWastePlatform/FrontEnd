@@ -1,5 +1,3 @@
-import { AxiosResponse } from "axios";
-import { UseMutateFunction } from "react-query";
 import { ProductCardListDataContentType } from "../../ProductList/ProductCardList/ProductCardListContainer";
 import {
   ProductCardLayout,
@@ -28,7 +26,7 @@ import flagImg from "../../../../assets/images/flag.svg";
 export interface ProductCardProps extends ProductCardListDataContentType {
   order: number;
   liked: boolean;
-  changeLike: (productId: number) => Promise<void>;
+  changeLike: (storeId: number) => void;
 }
 
 const ProductCard = ({
@@ -40,7 +38,7 @@ const ProductCard = ({
   discountRate,
   price,
   badges,
-  thumnail,
+  thumbnail,
   liked,
   changeLike,
 }: ProductCardProps) => {
@@ -51,7 +49,7 @@ const ProductCard = ({
           <ProductCardImgBox>
             {order ? <ProductRankImg src={flagImg} /> : null}
             {order ? <ProductRank>{order}</ProductRank> : null}
-            <ProductCardImg src={`https://zerowasteproduct.herokuapp.com${thumnail}`} />
+            <ProductCardImg src={`https://zerowasteproduct.herokuapp.com${thumbnail}`} />
             <ProdcutCardLikeIcon
               onClick={e => {
                 e.preventDefault();
@@ -72,19 +70,11 @@ const ProductCard = ({
               ) : null}
             </ProductCardPriceBox>
             <ProductCardBadgeList>
-              {badges
-                .toString(2)
-                .split("")
-                .map((bool, index) => {
-                  if (bool === "1") return badgeList[index];
-                  return "false";
-                })
-                .filter(el => el !== "false")
-                .map(badge => (
-                  <ProductCardBadgeItem key={badge} type={badge}>
-                    {badge}
-                  </ProductCardBadgeItem>
-                ))}
+              {badges.split("_").map(badge => (
+                <ProductCardBadgeItem key={badge} type={badge}>
+                  {badge}
+                </ProductCardBadgeItem>
+              ))}
             </ProductCardBadgeList>
           </ProductCardInfoList>
         </ProductCardCol>

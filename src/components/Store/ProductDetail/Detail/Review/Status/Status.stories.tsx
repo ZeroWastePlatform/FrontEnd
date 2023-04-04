@@ -6,7 +6,11 @@ export default {
   component: Status,
 } as ComponentMeta<typeof Status>;
 
-const Template: ComponentStory<typeof Status> = args => <Status {...args} />;
+const Template: ComponentStory<typeof Status> = args => (
+  <div style={{ marginTop: "200px" }}>
+    <Status {...args} />
+  </div>
+);
 
 export const GeneralType = Template.bind({});
 GeneralType.args = {

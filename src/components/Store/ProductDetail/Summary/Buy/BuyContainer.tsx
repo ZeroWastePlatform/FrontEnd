@@ -1,10 +1,8 @@
 import axios from "axios";
 import { useQueryClient } from "react-query";
 import { useRecoilValue } from "recoil";
-import { ProductType } from "../../../../../atom/buyForm";
 import { userInfoAtom } from "../../../../../atom/userInfo";
 import useLoginCheck from "../../../../../hooks/useLoginCheck";
-import useSetQueryMutate from "../../../../../hooks/useSetQueryMutate";
 import { SummaryType } from "../SummaryContainer";
 import Buy from "./Buy";
 import useBuy from "./BuyHook";
@@ -43,8 +41,8 @@ const BuyContainer = ({ data, liked, changeLike }: BuyContainerProps) => {
       changeCount={changeCount}
       buyProduct={buyProduct}
       setBasket={basketMutate}
-      liked={liked}
       changeLike={changeLike}
+      liked={liked}
     ></Buy>
   );
 };

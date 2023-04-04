@@ -11,10 +11,10 @@ interface PagenationProps {
   moveLeft: boolean;
   moveRight: boolean;
   pageList: number[];
-  setPage: (page: number) => void;
+  changePage: (page: number) => void;
 }
 
-const Pagenation = ({ page, moveLeft, moveRight, pageList, setPage }: PagenationProps) => {
+const Pagenation = ({ page, moveLeft, moveRight, pageList, changePage }: PagenationProps) => {
   return (
     <PagenationLayout>
       <PagenationMoveButton active={moveLeft}>
@@ -22,7 +22,7 @@ const Pagenation = ({ page, moveLeft, moveRight, pageList, setPage }: Pagenation
       </PagenationMoveButton>
       {pageList.map(num => {
         return (
-          <PagenationNumberButton key={num} onClick={() => setPage(num)} selected={page === num}>
+          <PagenationNumberButton key={num} onClick={() => changePage(num)} selected={page === num}>
             {num}
           </PagenationNumberButton>
         );

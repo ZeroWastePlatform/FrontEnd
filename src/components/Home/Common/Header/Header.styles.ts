@@ -16,10 +16,11 @@ export const HeaderTitleBox = styled.div`
 
 export const HeaderTitle = styled.p`
   font-weight: 700;
-  font-size: 26px;
+  font-size: 24px;
 `;
 
-export const HeaderSubTitle = styled.span`
-  font-weight: 700;
-  font-size: 16px;
+export const HeaderSubTitle = styled.span<{ light: boolean }>`
+  color: ${({ light, theme }) => (light ? theme.colors.gray6 : "#000000")};
+  font-weight: ${({ light }) => (light ? "500" : "700")};
+  font-size: 20px;
 `;

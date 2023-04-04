@@ -11,13 +11,6 @@ const Template: ComponentStory<typeof ProductFilterBlock> = args => <ProductFilt
 
 export const GeneralType = Template.bind({});
 GeneralType.args = {
-  condition: {
-    category: "ALL",
-    brand: null,
-    price: null,
-    productStatus: null,
-    sort: "POPULARITY",
-    page: 1,
-  },
+  isSelected: () => false,
   setFilter: action("필터 선택"),
 };

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const CounterLayout = styled.div`
   display: flex;
+  background-color: white;
 `;
 
 export const CounterItem = styled.div`

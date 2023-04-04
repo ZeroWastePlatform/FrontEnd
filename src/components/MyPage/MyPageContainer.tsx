@@ -22,14 +22,9 @@ const selectCategoryComponentList = [
     id: 2,
   },
   {
-    component: <ContentListContainer />,
-    category: "컨텐츠",
-    id: 3,
-  },
-  {
     component: <MemberInfoContainer />,
     category: "회원정보설정",
-    id: 4,
+    id: 3,
   },
 ];
 
