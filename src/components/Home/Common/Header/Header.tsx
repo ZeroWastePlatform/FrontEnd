@@ -1,16 +1,20 @@
-import React from "react";
-import { HeaderSubTitle, HeaderTitle, HeaderTitleBox } from "./Header.styles";
+import { HeaderSubTitleDate, HeaderSubTitleLink, HeaderTitle, HeaderTitleBox } from "./Header.styles";
 
 interface HeaderProps {
   title: string;
   subTitle?: string;
+  link?: string;
 }
 
-const Header = ({ title, subTitle }: HeaderProps) => {
+const Header = ({ title, subTitle, link }: HeaderProps) => {
   return (
     <HeaderTitleBox>
       <HeaderTitle>{title}</HeaderTitle>
-      <HeaderSubTitle light={subTitle !== "더보기"}>{subTitle}</HeaderSubTitle>
+      {subTitle === "더보기" ? (
+        <HeaderSubTitleLink to={link as string}>{subTitle}</HeaderSubTitleLink>
+      ) : (
+        <HeaderSubTitleDate>{subTitle}</HeaderSubTitleDate>
+      )}
     </HeaderTitleBox>
   );
 };

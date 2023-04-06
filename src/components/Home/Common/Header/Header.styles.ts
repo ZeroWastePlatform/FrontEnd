@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const HeaderLayout = styled.div`
@@ -19,8 +20,14 @@ export const HeaderTitle = styled.p`
   font-size: 24px;
 `;
 
-export const HeaderSubTitle = styled.span<{ light: boolean }>`
-  color: ${({ light, theme }) => (light ? theme.colors.gray6 : "#000000")};
-  font-weight: ${({ light }) => (light ? "500" : "700")};
+export const HeaderSubTitleDate = styled.span`
+  color: ${({ theme }) => theme.colors.gray6};
+  font-weight: 500;
+  font-size: 20px;
+`;
+
+export const HeaderSubTitleLink = styled(Link)`
+  color: #000000;
+  font-weight: 700;
   font-size: 20px;
 `;
