@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   CategoryNavigationBox,
   CategoryNavigationItem,
@@ -25,7 +25,16 @@ const categoryList = [
 
 const CategoryNavigation = () => {
   const { type } = useParams();
+  const navigate = useNavigate();
 
+  const handleWriteClick = () => {
+    if (localStorage.getItem("accessToken")) {
+      navigate("/community/write");
+    } else {
+      alert("로그인이 필요한 서비스 입니다.");
+      navigate("/login");
+    }
+  };
   return (
     <CategoryNavigationLayout>
       <CategoryNavigationBox>
@@ -36,7 +45,7 @@ const CategoryNavigation = () => {
             </CategoryNavigationItem>
           ))}
         </CategoryNavigationList>
-        <CategoryNavigationWrite to={"/community/write"}>글쓰기</CategoryNavigationWrite>
+        <CategoryNavigationWrite onClick={handleWriteClick}>글쓰기</CategoryNavigationWrite>
       </CategoryNavigationBox>
     </CategoryNavigationLayout>
   );

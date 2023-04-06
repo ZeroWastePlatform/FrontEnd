@@ -33,6 +33,7 @@ const Post = ({
   recommendCnt,
   createdAt,
   hashtags,
+  thumbnailUrls,
 }: PostType) => {
   const navigate = useNavigate();
   return (
@@ -43,7 +44,7 @@ const Post = ({
           <PostContentTitle>{title}</PostContentTitle>
           <PostContentBody>{content}</PostContentBody>
         </PostContentMain>
-        <PostContentMainImg />
+        <PostContentMainImg src={thumbnailUrls[0]} />
       </PostContentMainBox>
       <PostContentKeywordList>
         {hashtags.map((hashtag, idx) => (

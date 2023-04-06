@@ -23,6 +23,7 @@ const FreeBoard = ({ posts }: FreeBoardProps) => {
           recommendCnt={post.recommendCnt}
           createdAt={post.createdAt}
           hashtags={post.hashtags}
+          thumbnailUrls={post.thumbnailUrls}
         />
       ))}
     </FreeBoardLayout>

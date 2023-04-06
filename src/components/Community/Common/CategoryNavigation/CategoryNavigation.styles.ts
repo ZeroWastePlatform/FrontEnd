@@ -41,7 +41,7 @@ export const CategoryNavigationItem = styled.li`
   }
 `;
 
-export const CategoryNavigationWrite = styled(Link)`
+export const CategoryNavigationWrite = styled.button`
   padding-left: 5px;
   font-size: 18px;
   font-weight: 700;

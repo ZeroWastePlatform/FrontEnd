@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import commentImg from "../../../../assets/images/comment.png";
-import likeImg from "../../../../assets/images/like.png";
-import visitImg from "../../../../assets/images/visit.png";
+import commentImg from "../../../../assets/images/comment.svg";
+import likeImg from "../../../../assets/images/like.svg";
+import visitImg from "../../../../assets/images/views.svg";
 
 export const PostContent = styled.div`
   width: 50%;
@@ -35,7 +35,6 @@ export const PostContentMain = styled.div`
 export const PostContentMainImg = styled.img`
   width: 100px;
   height: 100px;
-  background-color: red;
 `;
 
 export const PostContentTitle = styled.p`

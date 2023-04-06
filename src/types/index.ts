@@ -12,6 +12,7 @@ export interface PostType {
     memberId: number;
     nickname: string;
   };
+  nickname: string;
   content: string;
   price?: number;
   viewCnt: number;
@@ -19,9 +20,11 @@ export interface PostType {
   recommendCnt: number;
   createdAt: string;
   hashtags: string[];
+  thumbnailUrls: string[];
 }
 export interface PostListType {
   content: PostType[];
+  totalPages: number;
 }
 export interface UserInfoType {
   accessToken: string;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import downArrowImg from "../../../assets/images/down_arrow.png";
-import upArrowImg from "../../../assets/images/up_arrow.png";
+import downArrowImg from "../../../assets/images/down_arrow.svg";
+import upArrowImg from "../../../assets/images/up_arrow.svg";
 
 export const CustomSelectBox = styled.div`
   position: relative;

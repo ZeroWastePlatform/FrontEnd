@@ -18,7 +18,6 @@ export const UsedMarketContent = styled.div`
 export const UsedMarketContentImg = styled.img`
   width: 100%;
   height: 427px;
-  background-color: red;
   border-radius: 10px;
 `;
 
