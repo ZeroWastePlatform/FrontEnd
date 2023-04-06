@@ -32,7 +32,7 @@ const MostPopular = ({
 }: MostPopularProps) => {
   return (
     <MostPopularLayout>
-      <Header title="지금 가장 인기있어요" subTitle="더보기" />
+      <Header title="지금 가장 인기있어요" subTitle="더보기" link={"/store"} />
       <MostPopularCategoryList>
         {categoryList.map((item, idx) => (
           <MostPopularCategoryItem key={idx}>

@@ -1,37 +1,51 @@
-import React from "react";
 import {
-  PostCommentNum,
+  PostCategory,
+  PostCntBox,
+  PostCommentCnt,
   PostContent,
   PostDate,
+  PostHashtag,
+  PostHashtagBox,
   PostImg,
   PostLayout,
+  PostLikeCnt,
+  PostMainBox,
   PostSubInfo,
-  PostText,
   PostTitle,
   PostUserImg,
   PostUserName,
+  PostViewCnt,
 } from "./Post.styles";
+import { PostType } from "../DailyPopularPostContainer";
 
-const Post = () => {
+const Post = ({ kind, title, nickname, content, viewCnt, replyCnt, recommendCnt, createdAt }: PostType) => {
+  console.log(kind);
   return (
     <PostLayout>
-      <PostContent>
-        <PostTitle>인기글 제목</PostTitle>
-        <PostText>
-          텍스트본문텍스트본문텍스트본문 텍스트본문 텍스트본문 텍스트본문 텍스트본문 텍스트본문 텍스트본문 텍스트본문
-          텍스트본문 텍스트본문텍스트본문텍스트본문 텍스트본문 텍스트본문 텍스트본문 텍스트본문 텍스트본문 텍스트본문
-          텍스트본문 텍스트본문텍스트본문텍스트본문 텍스트본문 텍스트본문 텍스트본문 텍스트본문 텍스트본문 텍스트본문
-        </PostText>
+      <PostMainBox>
+        <PostCategory>{categoryMap[kind]}</PostCategory>
+        <PostTitle>{title}</PostTitle>
+        <PostContent>{content}</PostContent>
         <PostSubInfo>
           <PostUserImg />
-          <PostUserName>dngur9801</PostUserName>
-          <PostDate>7일 전</PostDate>
-          <PostCommentNum>22</PostCommentNum>
+          <PostUserName>{nickname}</PostUserName>
+          <PostDate>{createdAt}</PostDate>
+          <PostHashtagBox>
+            <PostHashtag>#플라스틱 프리</PostHashtag>
+            <PostHashtag>#비건요리</PostHashtag>
+            <PostHashtag>#주방용품</PostHashtag>
+          </PostHashtagBox>
+          <PostCntBox>
+            <PostCommentCnt>{replyCnt}</PostCommentCnt>
+            <PostLikeCnt>{recommendCnt}</PostLikeCnt>
+            <PostViewCnt>{viewCnt}</PostViewCnt>
+          </PostCntBox>
         </PostSubInfo>
-      </PostContent>
+      </PostMainBox>
       <PostImg />
     </PostLayout>
   );
 };
 
+const categoryMap = [null, "자유게시판", "정보공유", "중고거래"];
 export default Post;
