@@ -13,9 +13,8 @@ export const CategoryNavigationLayout = styled.nav`
 export const CategoryNavigationRow = styled.ul`
   width: 1200px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin: auto;
-  height: 80px;
   @media screen and (max-width: 1200px) {
     padding: 0 20px;
   }
@@ -23,8 +22,8 @@ export const CategoryNavigationRow = styled.ul`
 
 export const CategoryNavigationItem = styled.li<{ same: boolean }>`
   font-weight: 700;
-  font-size: 24px;
+  font-size: 20px;
   border-bottom: ${({ same, theme }) => (same ? `2px solid ${theme.colors.primaryGreen100}` : "none")};
   color: ${({ same, theme }) => (same ? theme.colors.primaryGreen100 : "#000000")};
-  padding: 25px 0;
+  padding: 27px 15px;
 `;
