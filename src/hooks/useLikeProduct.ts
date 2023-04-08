@@ -35,7 +35,7 @@ const useLikeProduct = () => {
         customAPI
           .delete(`products/${storeId}/like`)
           .then(res => res.data)
-          .catch(err => {
+          .catch(() => {
             queryClient.setQueryData<number[]>(["todos"], old => {
               if (old !== undefined) {
                 const newdata = [...old];
@@ -49,7 +49,7 @@ const useLikeProduct = () => {
         customAPI
           .post(`products/${storeId}/like`)
           .then(res => res.data)
-          .catch(err => {
+          .catch(() => {
             queryClient.setQueryData<number[]>(["todos"], old => {
               if (old !== undefined) {
                 return old.filter(likeId => likeId !== storeId);
@@ -61,9 +61,12 @@ const useLikeProduct = () => {
     }, 500);
   };
 
+  const isLiked = (curId: number) => {
+    return likeData.content.findIndex(({ id }) => id === curId) === -1 ? false : true;
+  };
   return {
-    likeData,
     changeLike,
+    isLiked,
   };
 };
 
