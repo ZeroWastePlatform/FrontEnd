@@ -125,7 +125,6 @@ const MemberInfo = ({
       </AccountBox>
 
       <KakaoBox>
-        <img src={KakaoImg} />
         <KakaoEmailSpan>greenus@kakao.com</KakaoEmailSpan>
       </KakaoBox>
 

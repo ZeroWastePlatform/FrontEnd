@@ -45,26 +45,68 @@ interface IUserPurchaseProps {
 
 const MyOrderList = () => {
   const navigate = useNavigate();
-  const [orderList, setOrderList] = useState<IUserPurchaseProps[]>([]);
+  // const [orderList, setOrderList] = useState<IUserPurchaseProps[]>([]);
+
+  const orderList = [
+    {
+      badges: 5,
+      brand: "그리너스",
+      category: "욕실",
+      createdAt: "2023-03-09T12:15:58.000Z",
+      discountRate: 20,
+      id: 1,
+      price: 10400,
+      summary: "그리너스의 마일드 고체치약 30정입 입니다",
+      thumnail: "https://zerowasteproduct.herokuapp.com/image/product1.png",
+      title: "마일드 고체치약 30정입",
+      updatedAt: "2023-03-09T12:15:58.000Z",
+    },
+    {
+      badges: 4,
+      brand: "그리너스",
+      category: "욕실",
+      createdAt: "2023-03-09T12:15:58.000Z",
+      discountRate: 20,
+      id: 2,
+      price: 10400,
+      summary: "그리너스의 마일드 고체치약 30정입 입니다",
+      thumnail: "https://zerowasteproduct.herokuapp.com/image/product2.png",
+      title: "마일드 고체치약 30정입",
+      updatedAt: "2023-03-09T12:15:58.000Z",
+    },
+    {
+      badges: 5,
+      brand: "그리너스",
+      category: "욕실",
+      createdAt: "2023-03-09T12:15:58.000Z",
+      discountRate: 20,
+      id: 3,
+      price: 10400,
+      summary: "그리너스의 마일드 고체치약 30정입 입니다",
+      thumnail: "https://zerowasteproduct.herokuapp.com/image/product3.png",
+      title: "마일드 고체치약 30정입",
+      updatedAt: "2023-03-09T12:15:58.000Z",
+    },
+  ];
 
   const [selectStatusList, setSelectStatusList] = useState(0);
 
-  const orderListAPI = async (): Promise<void> => {
-    try {
-      const result = await axios.get("http://localhost:3306/purchase/detail?id=1 ");
-      setOrderList(result.data.userPurchase);
-    } catch {
-      throw new Error("network error");
-    }
-  };
+  // const orderListAPI = async (): Promise<void> => {
+  //   try {
+  //     const result = await axios.get("http://localhost:3306/purchase/detail?id=1");
+  //     setOrderList(result.data.userPurchase);
+  //   } catch {
+  //     throw new Error("network error");
+  //   }
+  // };
 
   const handleDetailClick = (id: number) => {
     navigate(`/store/product/${id}`);
   };
 
-  useEffect(() => {
-    orderListAPI();
-  }, []);
+  // useEffect(() => {
+  //   orderListAPI();
+  // }, []);
 
   const orderListData = [
     { img: ArrowPng, text: "결제완료", number: orderList?.length },
@@ -132,7 +174,7 @@ const MyOrderList = () => {
 
               <ProductBox>
                 <ProductInfoBox>
-                  <img src={`http://localhost:3306${order.thumnail}`} />
+                  <img src={order.thumnail} />
                   <ProductDetailInfoBox>
                     <ProductBrandSpan>{order.brand}</ProductBrandSpan>
                     <ProductNameSpan>{order.title}</ProductNameSpan>
@@ -141,8 +183,22 @@ const MyOrderList = () => {
                 </ProductInfoBox>
 
                 <ButtonBox>
-                  <DeliveryCheckButton>배송조회</DeliveryCheckButton>
-                  {order.id === 3 && <ReviewButton>리뷰쓰기</ReviewButton>}
+                  <DeliveryCheckButton
+                    onClick={() => {
+                      alert("서비스 준비중입니다.");
+                    }}
+                  >
+                    배송조회
+                  </DeliveryCheckButton>
+                  {order.id === 3 && (
+                    <ReviewButton
+                      onClick={() => {
+                        alert("서비스 준비중입니다.");
+                      }}
+                    >
+                      리뷰쓰기
+                    </ReviewButton>
+                  )}
                 </ButtonBox>
               </ProductBox>
             </OrderInfoBox>
