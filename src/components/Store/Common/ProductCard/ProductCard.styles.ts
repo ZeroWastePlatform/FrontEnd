@@ -70,6 +70,13 @@ export const ProductCardBrand = styled.div`
 export const ProductCardTitle = styled.div`
   font-weight: 500;
   font-size: 24px;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  line-height: 1.2;
 `;
 
 export const ProductCardPriceBox = styled.div`
