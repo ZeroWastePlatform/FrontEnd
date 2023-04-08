@@ -4,7 +4,7 @@ export const InfoNavigationLayout = styled.div`
   width: 100%;
   margin: 50px 0 0 0;
   position: sticky;
-  top: 80px;
+  top: 70px;
   z-index: 10;
   height: 80px;
   background-color: ${({ theme }) => theme.colors.gray1};
@@ -18,8 +18,6 @@ export const InfoNavigationRow = styled.div`
   margin: auto;
   padding: 0 20px;
   cursor: pointer;
-  border-top: 1px solid #d9d9d9;
-  border-bottom: 1px solid #d9d9d9;
 `;
 
 export const InfoNavigationItem = styled.a<{ selected: boolean }>`
