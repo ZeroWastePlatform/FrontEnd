@@ -5,9 +5,10 @@ import CommunityHeader from "./CommunityHeader";
 
 interface CommunityHeaderContainerProps {
   title: string;
+  changeSort: (sort: string) => void;
 }
 
-const CommunityHeaderContainer = ({ title }: CommunityHeaderContainerProps) => {
+const CommunityHeaderContainer = ({ title, changeSort }: CommunityHeaderContainerProps) => {
   const { type } = useParams();
 
   const { data } = useSuspenseQuery<{ hashtags: string[] }>(["Community", "popularHashtags"], "hashtags/popularity");
@@ -22,7 +23,14 @@ const CommunityHeaderContainer = ({ title }: CommunityHeaderContainerProps) => {
     return null;
   };
 
-  return <CommunityHeader title={title} categoryList={getCategoryList()} popularHashtags={data.hashtags} />;
+  return (
+    <CommunityHeader
+      title={title}
+      categoryList={getCategoryList()}
+      popularHashtags={data.hashtags}
+      changeSort={changeSort}
+    />
+  );
 };
 
 export default CommunityHeaderContainer;

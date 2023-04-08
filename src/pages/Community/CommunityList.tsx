@@ -15,17 +15,14 @@ const CommunityList = () => {
     switch (type) {
       case "board":
         return {
-          title: "자유게시판",
           component: <FreeBoardContainer />,
         };
       case "market":
         return {
-          title: "중고거래",
           component: <UsedMarketContainer />,
         };
       case "sharing":
         return {
-          title: "정보공유",
           component: <InfoSharingContainer />,
         };
     }
@@ -37,18 +34,9 @@ const CommunityList = () => {
 
   return (
     <ErrorBoundary FallbackComponent={() => <div>...에러발생</div>}>
-      <Suspense fallback={<div>...로딩중</div>}>
-        <CommunityHeaderContainer title={outputChildren().title} />
-        <CommunityListLayout>{outputChildren().component}</CommunityListLayout>
-      </Suspense>
+      <Suspense fallback={<div>...로딩중</div>}>{outputChildren().component}</Suspense>
     </ErrorBoundary>
   );
 };
-
-const CommunityListLayout = styled.div`
-  max-width: 1320px;
-  margin: 0 auto;
-  margin-top: 50px;
-`;
 
 export default CommunityList;

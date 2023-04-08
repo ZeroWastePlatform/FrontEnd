@@ -25,7 +25,14 @@ const Write = ({ handleClickRegist, changeFormData, postData }: WriteProps) => {
     <form encType="multipart/form-data" onSubmit={e => e.preventDefault()}>
       <WriteLayout>
         <WriteMenu>
-          <CustomSelectContainer initialValue="게시판 선택" options={["자유게시판", "중고거래", "정보공유"]} />
+          <CustomSelectContainer
+            initialValue="게시판 선택"
+            options={[
+              { name: "자유게시판", value: "1" },
+              { name: "중고거래", value: "2" },
+              { name: "정보공유", value: "3" },
+            ]}
+          />
           <WriteBtnBox>
             <WriteTempDataBtn>임시저장 | 0</WriteTempDataBtn>
             <WriteRegistBtn type="button" onClick={handleClickRegist}>

@@ -19,9 +19,10 @@ interface CommunityHeaderProps {
   title: string;
   categoryList: string[] | null;
   popularHashtags: string[];
+  changeSort: (sort: string) => void;
 }
 
-const CommunityHeader = ({ title, categoryList, popularHashtags }: CommunityHeaderProps) => {
+const CommunityHeader = ({ title, categoryList, popularHashtags, changeSort }: CommunityHeaderProps) => {
   const { type } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const category = searchParams.get("category");
@@ -50,7 +51,15 @@ const CommunityHeader = ({ title, categoryList, popularHashtags }: CommunityHead
               ))}
             </CommunityHeaderCategoryList>
           )}
-          <CustomSelectContainer initialValue="최신 순" options={["최신 순", "추천 순", "조회수 순"]} />
+          <CustomSelectContainer
+            initialValue="최신 순"
+            options={[
+              { name: "최신 순", value: "createdAt" },
+              { name: "추천 순", value: "recommendCnt" },
+              { name: "조회수 순", value: "viewCnt" },
+            ]}
+            changeSort={changeSort}
+          />
         </CommunityHeaderBox>
       </CommunityHeaderLayout>
     </>

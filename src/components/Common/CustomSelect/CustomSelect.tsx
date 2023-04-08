@@ -2,7 +2,10 @@ import React from "react";
 import { CustomSelectBox, CustomSelectItem, CustomSelectLabel, CustomSelectList } from "./CustomSelect.styles";
 
 interface CustomSelectProps {
-  options: string[];
+  options: {
+    name: string;
+    value: string;
+  }[];
   selectValue: string;
   isShowOption: boolean;
   handleClick: (e: React.MouseEvent<HTMLLIElement>) => void;
@@ -17,8 +20,8 @@ const CustomSelect = ({ options, selectValue, isShowOption, setIsShowOption, han
       </CustomSelectLabel>
       <CustomSelectList show={isShowOption}>
         {options?.map((option, idx) => (
-          <CustomSelectItem key={idx} onClick={handleClick}>
-            {option}
+          <CustomSelectItem key={idx} data-value={option.value} onClick={handleClick}>
+            {option.name}
           </CustomSelectItem>
         ))}
       </CustomSelectList>
