@@ -61,8 +61,8 @@ const Buy = ({
         [{brand}] {title}
       </BuyProductName>
       <BuyPrice>
-        {discountRate !== 0 ? <i>{numberWithCommas(price)}</i> : null}
         {numberWithCommas(discountPrice({ price, discountRate }))}원
+        {discountRate !== 0 ? <i>{numberWithCommas(price)}원</i> : null}
       </BuyPrice>
       <BuyInfo>{description}</BuyInfo>
       <BuyShipBox>

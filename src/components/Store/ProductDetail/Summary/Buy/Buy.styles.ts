@@ -17,7 +17,7 @@ export const BuyPrice = styled.div`
   font-weight: 700;
   margin: 38px 0;
   & > i {
-    font-size: 25px;
+    margin: 0 0 0 20px;
     color: gray;
     text-decoration: line-through;
   }
