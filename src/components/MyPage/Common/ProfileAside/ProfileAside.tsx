@@ -25,7 +25,11 @@ import { userInfoAtom } from "../../../../atom/userInfo";
 import { useEffect } from "react";
 import customAPI from "../../../../lib/customAPI";
 
-const ProfileAside = () => {
+interface IProfileAsideProps {
+  setSelectCategoryNav: any;
+}
+
+const ProfileAside = ({ setSelectCategoryNav }) => {
   const navigate = useNavigate();
   const userInfo = useRecoilValue(userInfoAtom);
 
@@ -52,6 +56,7 @@ const ProfileAside = () => {
         <MemberInfoButton
           onClick={() => {
             navigate("?category=회원정보설정");
+            setSelectCategoryNav("회원정보설정");
           }}
         >
           회원정보 설정

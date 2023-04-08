@@ -37,7 +37,7 @@ const MyPage = ({ selectCategoryComponentList }: IMyPageProps) => {
       />
 
       <MyPageRow>
-        <ProfileAside />
+        <ProfileAside setSelectCategoryNav={setSelectCategoryNav} />
         <MyPageCategoryNavData
           selectCategoryComponentList={selectCategoryComponentList}
           selectCategoryNav={selectCategoryNav}

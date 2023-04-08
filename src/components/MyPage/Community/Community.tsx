@@ -58,31 +58,74 @@ const Commuinty = () => {
   const accessToken = localStorage.getItem("accessToken");
   const [postData, setPostData] = useState<IPostDataProps | null>();
 
+  const postDataPost = [
+    {
+      id: 1,
+      title: "그리너스",
+      createdAt: "1분 전",
+      replyCnt: 20,
+      viewCnt: 1220,
+    },
+    {
+      id: 2,
+      title: "그리너스",
+      createdAt: "1분 전",
+      replyCnt: 20,
+      viewCnt: 1220,
+    },
+    {
+      id: 3,
+      title: "그리너스",
+      createdAt: "1분 전",
+      replyCnt: 20,
+      viewCnt: 1220,
+    },
+  ];
+
+  const postDataComment = [
+    {
+      id: 1,
+      content: "그리너스",
+      replyCnt: 20,
+      viewCnt: 1220,
+    },
+    {
+      id: 2,
+      content: "그리너스",
+      replyCnt: 20,
+    },
+    {
+      id: 3,
+      content: "그리너스",
+      replyCnt: 20,
+    },
+  ];
+
   // const [page, setPage] = useState(0);
 
-  const communityAPI = async () => {
-    try {
-      const result = await customAPI.get(`members/me/communities?kind=${selectTap}&page=0`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      setPostData(result.data);
-    } catch {
-      throw new Error("오류");
-    }
-  };
+  // const communityAPI = async () => {
+  //   try {
+  //     const result = await customAPI.get(`members/me/communities?kind=${selectTap}&page=0`, {
+  //       headers: {
+  //         Authorization: `Bearer ${accessToken}`,
+  //       },
+  //     });
+  //     setPostData(result.data);
+  //   } catch {
+  //     throw new Error("오류");
+  //   }
+  // };
 
-  useEffect(() => {
-    communityAPI();
-  }, [selectTap]);
+  // useEffect(() => {
+  //   communityAPI();
+  // }, [selectTap]);
 
   return (
     <CommuintyLayout>
       <CommunityTapRow>
         {taps.map((tap, index) => {
           const isSelected = selectTap === tap;
-          const postDataLength = [postData?.postResponses?.content.length, postData?.commentResponses?.content.length];
+          const postDataLength = [postDataPost.length, postDataComment.length];
           return (
             <CommunityTap
               key={tap}
@@ -102,7 +145,7 @@ const Commuinty = () => {
 
       {selectTap === "내가 작성한 게시글" && (
         <CommunityBoardSection>
-          {postData?.postResponses?.content.map(post => {
+          {postDataPost.map(post => {
             return (
               <CommuintyBoardArticle key={post.id}>
                 <TitleBox>
@@ -127,7 +170,7 @@ const Commuinty = () => {
 
       {selectTap === "내가 작성한 댓글" && (
         <CommunityCommentSection>
-          {postData?.commentResponses?.content.map(comment => {
+          {postDataComment.map(comment => {
             return (
               <CommunityCommentArticle key={comment.id}>
                 <CommentContent>{comment.content}</CommentContent>
