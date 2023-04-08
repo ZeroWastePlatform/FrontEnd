@@ -8,7 +8,7 @@ import FreeBoard from "./FreeBoard";
 const FreeBoardContainer = () => {
   const { page, sort, changePage, changeSort } = useSortPaging(1, "최신순");
 
-  const { data } = useSuspenseQuery<PostListType>(["Community", "FreeBoard", page], `posts/lists/1?page=${page}`);
+  const { data } = useSuspenseQuery<PostListType>(["Community", "FreeBoard", page], `posts/lists/1?page=${page - 1}`);
   console.log(data);
 
   return (

@@ -8,7 +8,7 @@ import UsedMarket from "./UsedMarket";
 const UsedMarketContainer = () => {
   const { page, sort, changePage, changeSort } = useSortPaging(1, "최신순");
 
-  const { data } = useSuspenseQuery<PostListType>(["Community", "UsedMarket", page], `posts/lists/2?page=${page}`);
+  const { data } = useSuspenseQuery<PostListType>(["Community", "UsedMarket", page], `posts/lists/2?page=${page - 1}`);
   console.log(data);
 
   return (

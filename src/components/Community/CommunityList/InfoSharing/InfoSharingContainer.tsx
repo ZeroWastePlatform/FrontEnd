@@ -8,7 +8,7 @@ import InfoSharing from "./InfoSharing";
 const InfoSharingContainer = () => {
   const { page, sort, changePage, changeSort } = useSortPaging(1, "최신순");
 
-  const { data } = useSuspenseQuery<PostListType>(["Community", "InfoSharing", page], `posts/lists/3?page=${page}`);
+  const { data } = useSuspenseQuery<PostListType>(["Community", "InfoSharing", page], `posts/lists/3?page=${page - 1}`);
   console.log(data);
 
   return (
