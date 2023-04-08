@@ -44,7 +44,7 @@ const Post = ({
           <PostContentTitle>{title}</PostContentTitle>
           <PostContentBody>{content}</PostContentBody>
         </PostContentMain>
-        <PostContentMainImg src={thumbnailUrls?.[0]} />
+        {thumbnailUrls?.[0] && <PostContentMainImg src={thumbnailUrls[0]} />}
       </PostContentMainBox>
       <PostContentKeywordList>
         {hashtags.map((hashtag, idx) => (
