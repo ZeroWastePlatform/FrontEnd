@@ -9,6 +9,7 @@ export const LogoImgBox = styled.div`
   justify-content: center;
   gap: 30px;
   margin-top: 70px;
+  height: 173px;
 `;
 
 export const CharactersImg = styled.img.attrs({

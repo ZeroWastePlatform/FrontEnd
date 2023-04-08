@@ -116,9 +116,9 @@ export const PostContentSubInfoComments = styled.div`
   &::after {
     position: absolute;
     content: "";
-    width: 20px;
-    height: 20px;
-    left: -25px;
+    width: 29px;
+    height: 29px;
+    left: -30px;
     top: 50%;
     margin-top: -2px;
     transform: translateY(-50%);
