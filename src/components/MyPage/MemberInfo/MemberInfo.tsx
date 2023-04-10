@@ -31,7 +31,6 @@ import {
   PostCodeInput,
   RequiredItemSpan,
 } from "./MemberInfo.style";
-import KakaoImg from "../../../assets/images/kakao.svg";
 import { useRef, useState } from "react";
 import ZipCodeModal from "../../Common/ZipCodeModal/ZipCodeModal";
 import customAPI from "../../../lib/customAPI";

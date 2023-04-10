@@ -43,7 +43,7 @@ export const EditButon = styled.button`
 export const ProductInterestSection = styled.section`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-row-gap: 30px;
+  grid-gap: 30px;
 `;
 
 export const ProductArticle = styled.article`
