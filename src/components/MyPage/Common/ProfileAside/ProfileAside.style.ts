@@ -53,7 +53,6 @@ export const MemberDataRow = styled.div`
   border-top: 1px solid #a7a7a8;
   display: flex;
   gap: 40px;
-  width: 250px;
   img {
     width: 30px;
     height: 30px;

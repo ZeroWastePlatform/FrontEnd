@@ -26,13 +26,12 @@ import { useEffect } from "react";
 import customAPI from "../../../../lib/customAPI";
 
 interface IProfileAsideProps {
-  setSelectCategoryNav: any;
+  setSelectCategoryNav: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const ProfileAside = ({ setSelectCategoryNav }) => {
+const ProfileAside = ({ setSelectCategoryNav }: IProfileAsideProps) => {
   const navigate = useNavigate();
   const userInfo = useRecoilValue(userInfoAtom);
-
   const accessToken = localStorage.getItem("accessToken");
 
   const memberInfoAPI = async (): Promise<void> => {
@@ -51,7 +50,7 @@ const ProfileAside = ({ setSelectCategoryNav }) => {
     <ProfileAsideLayout>
       <img src={ProfileImg} />
       <ProfileBox>
-        <PropfileNickNameSpan>{userInfo.nickname}</PropfileNickNameSpan>
+        <PropfileNickNameSpan>{userInfo.nickname}그리너스 조아</PropfileNickNameSpan>
         <PropfileLevelSpan>LV. {userInfo.level} 프로 그리너스</PropfileLevelSpan>
         <MemberInfoButton
           onClick={() => {
