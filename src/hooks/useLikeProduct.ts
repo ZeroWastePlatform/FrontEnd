@@ -62,6 +62,7 @@ const useLikeProduct = () => {
   };
 
   const isLiked = (curId: number) => {
+    if (likeData === undefined) return false;
     return likeData.content.findIndex(({ id }) => id === curId) === -1 ? false : true;
   };
   return {
