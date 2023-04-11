@@ -16,9 +16,7 @@ interface MostPopularProps {
   data: ProductCardListDataType;
   changeSelectedCategory: (category: string) => void;
   selectedCategory: string;
-  likeData: {
-    id: number;
-  }[];
+  isLiked: (curId: number) => boolean;
   changeLike: (storeId: number) => void;
 }
 
@@ -27,7 +25,7 @@ const MostPopular = ({
   data,
   changeSelectedCategory,
   selectedCategory,
-  likeData,
+  isLiked,
   changeLike,
 }: MostPopularProps) => {
   return (
@@ -47,13 +45,7 @@ const MostPopular = ({
       </MostPopularCategoryList>
       <MostPopularProductList>
         {data.content.slice(0, 3).map((value, index) => (
-          <ProductCard
-            {...value}
-            key={index}
-            order={0}
-            liked={likeData.findIndex(({ id }) => id === value.id) === -1 ? false : true}
-            changeLike={changeLike}
-          />
+          <ProductCard {...value} key={index} order={0} liked={isLiked(value.id)} changeLike={changeLike} />
         ))}
       </MostPopularProductList>
     </MostPopularLayout>

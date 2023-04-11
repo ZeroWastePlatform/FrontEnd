@@ -12,7 +12,7 @@ const MostPopularContainer = () => {
     ["Home", "MostPopular", selectedCategory],
     `products?${selectedCategory !== "ALL" ? `category=${selectedCategory}&` : ""}page=0&order=POPULARITY`,
   );
-  const { likeData, changeLike } = useLikeProduct();
+  const { isLiked, changeLike } = useLikeProduct();
 
   const changeSelectedCategory = (category: string) => {
     startTransition(() => {
@@ -25,7 +25,7 @@ const MostPopularContainer = () => {
       data={data}
       selectedCategory={selectedCategory}
       changeSelectedCategory={changeSelectedCategory}
-      likeData={likeData === undefined ? [] : likeData.content}
+      isLiked={isLiked}
       changeLike={changeLike}
     />
   );
