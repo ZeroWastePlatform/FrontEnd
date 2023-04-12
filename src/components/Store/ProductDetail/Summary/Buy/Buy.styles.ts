@@ -5,7 +5,7 @@ export const BuyLayout = styled.div`
 `;
 
 export const BuyProductName = styled.div`
-  font-size: 36px;
+  font-size: 28px;
   font-weight: 700;
   margin: 0 0 10px 0;
 `;
@@ -13,20 +13,24 @@ export const BuyProductName = styled.div`
 export const BuyPrice = styled.div`
   display: flex;
   justify-content: flex-start;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 700;
   margin: 38px 0;
+  gap: 20px;
   & > i {
-    margin: 0 0 0 20px;
-    color: gray;
+    color: ${({ theme }) => theme.colors.gray4};
     text-decoration: line-through;
+    font-weight: 500;
+  }
+  & > em {
+    color: ${({ theme }) => theme.colors.primaryPurple100};
   }
 `;
 
 export const BuyInfo = styled.div`
   margin-bottom: 44px;
   line-height: 1.55;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 400;
 `;
 
@@ -35,7 +39,7 @@ export const BuyShipBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 13px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
   margin: 0 0 52px 0;
   padding: 0 0 55px 0;
@@ -44,7 +48,6 @@ export const BuyShipBox = styled.div`
 
 export const BuyShipText = styled.div`
   & > i {
-    font-size: 20px;
     font-weight: 700;
     margin-left: 14px;
   }
@@ -134,7 +137,7 @@ export const BuyBadgeList = styled.ul`
 `;
 
 export const BuyBadgeItem = styled.li<{ type: string }>`
-  width: 92px;
+  width: 83px;
   height: 36px;
   border-radius: 10px;
   background: ${({ theme, type }) => theme.colors[badgeType[type].background]};
@@ -142,8 +145,8 @@ export const BuyBadgeItem = styled.li<{ type: string }>`
   border: 1px solid ${({ theme, type }) => theme.colors[badgeType[type].border]};
   display: flex;
   justify-content: center;
-  align-items: center;
-  font-size: 24px;
+  line-height: 38px;
+  font-size: 20px;
   font-weight: 400;
 `;
 

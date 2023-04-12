@@ -25,5 +25,5 @@ export const CategoryNavigationItem = styled.li<{ same: boolean }>`
   font-size: 20px;
   border-bottom: ${({ same, theme }) => (same ? `2px solid ${theme.colors.primaryGreen100}` : "none")};
   color: ${({ same, theme }) => (same ? theme.colors.primaryGreen100 : "#000000")};
-  padding: 27px 15px;
+  padding: 27px 25px;
 `;
