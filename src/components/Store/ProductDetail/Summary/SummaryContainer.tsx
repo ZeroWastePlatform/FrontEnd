@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useRef } from "react";
-import { useQueryClient } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { userInfoAtom } from "../../../../atom/userInfo";
 import useSuspenseQuery from "../../../../hooks/useSuspenseQuery";
+import getReview from "../../../../mock/reviewList";
 import Summary from "./Summary";
 
 export interface SummaryType {

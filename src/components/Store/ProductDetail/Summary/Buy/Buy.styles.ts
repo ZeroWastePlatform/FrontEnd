@@ -27,6 +27,40 @@ export const BuyPrice = styled.div`
   }
 `;
 
+export const BuyReviewStarBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  gap: 14px;
+  margin: 0 0 0 auto;
+`;
+
+export const BuyReviewStar = styled.img`
+  width: 20px;
+  height: 20px;
+`;
+
+export const BuyReviewStarHalf = styled.img`
+  position: absolute;
+  top: 2.5px;
+  left: 80px;
+  width: 22.5px;
+  height: 22.5px;
+`;
+
+export const BuyReviewStarBase = styled.div`
+  z-index: 0;
+  padding: 0;
+`;
+
+export const BuyReviewCount = styled.div`
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: underline;
+  margin-left: 20px;
+`;
+
 export const BuyInfo = styled.div`
   margin-bottom: 44px;
   line-height: 1.55;

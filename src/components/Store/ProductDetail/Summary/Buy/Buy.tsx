@@ -13,6 +13,11 @@ import {
   BuyLayout,
   BuyPrice,
   BuyProductName,
+  BuyReviewCount,
+  BuyReviewStar,
+  BuyReviewStarBase,
+  BuyReviewStarBox,
+  BuyReviewStarHalf,
   BuyRoundButton,
   BuyShipBox,
   BuyShipText,
@@ -21,6 +26,9 @@ import {
 } from "./Buy.styles";
 import activeHeart from "../../../../../assets/images/bigHeartNoActive.svg";
 import noActiveHeart from "../../../../../assets/images/bigHeartActive.svg";
+import starImg from "../../../../../assets/images/star.svg";
+import starHalf from "../../../../../assets/images/star-half.svg";
+
 interface BuyProps extends SummaryType {
   count: number;
   changeCount: (op: string) => void;
@@ -64,6 +72,16 @@ const Buy = ({
         {discountRate !== 0 ? <em>{discountRate}%</em> : null}
         {numberWithCommas(discountPrice({ price, discountRate }))}원
         {discountRate !== 0 ? <i>{numberWithCommas(price)}원</i> : null}
+        <BuyReviewStarBox>
+          <BuyReviewStarBase>
+            <BuyReviewStar src={starImg}></BuyReviewStar>
+            <BuyReviewStar src={starImg}></BuyReviewStar>
+            <BuyReviewStar src={starImg}></BuyReviewStar>
+            <BuyReviewStar src={starImg}></BuyReviewStar>
+            <BuyReviewStarHalf src={starHalf}></BuyReviewStarHalf>
+          </BuyReviewStarBase>
+          <BuyReviewCount>10개의 리뷰</BuyReviewCount>
+        </BuyReviewStarBox>
       </BuyPrice>
       <BuyInfo>{description}</BuyInfo>
       <BuyShipBox>
@@ -103,5 +121,3 @@ const Buy = ({
 };
 
 export default Buy;
-
-const badgeList = ["BEST", "NEW", "SALE"];
