@@ -60,7 +60,8 @@ const ContentBox = ({
   const userInfo = useRecoilValue(userInfoAtom);
 
   const contentType = kind === 1 ? "자유게시판" : kind === 2 ? "중고거래" : kind === 3 && "정보공유";
-
+  console.log("userInfo.id", userInfo.id);
+  console.log("userId", userId);
   return (
     <ContentBoxLayout>
       <ContentBoxHeader>
