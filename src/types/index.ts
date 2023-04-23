@@ -38,9 +38,6 @@ export interface UserInfoType {
   zzimCnt: number;
   like: number[];
 }
-export interface UserInfoResponseType {
-  myPageProfileResponse: UserInfoType;
-}
 
 export type AgreeList = {
   id: number;

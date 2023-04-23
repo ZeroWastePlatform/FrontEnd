@@ -18,21 +18,16 @@ import useSuspenseQuery from "./hooks/useSuspenseQuery";
 import { useSetRecoilState } from "recoil";
 import { userInfoAtom } from "./atom/userInfo";
 import { useEffect } from "react";
-import { UserInfoResponseType } from "./types";
+import { UserInfoType } from "./types";
 import Edit from "./pages/Community/Edit";
 
 function App() {
   const setUserInfo = useSetRecoilState(userInfoAtom);
   const accessToken = localStorage.getItem("accessToken");
-  const { data } = useSuspenseQuery<UserInfoResponseType>(
-    ["userInfo", accessToken],
-    "members/me",
-    e => e,
-    !!accessToken,
-  );
+  const { data } = useSuspenseQuery<UserInfoType>(["userInfo", accessToken], "members/profile", e => e, !!accessToken);
   useEffect(() => {
     if (data) {
-      setUserInfo({ ...data.myPageProfileResponse, isLogin: true });
+      setUserInfo({ ...data, isLogin: true });
     }
   }, [data]);
   return (
