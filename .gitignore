@@ -2,3 +2,5 @@
 /build
 .env
 dev.env
+/dist
+.swc
