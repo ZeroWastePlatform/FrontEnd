@@ -21,6 +21,7 @@ export interface PostType {
   createdAt: string;
   hashtags: string[];
   thumbnailUrls: string[];
+  serverFileUrls: string[];
 }
 export interface PostListType {
   content: PostType[];

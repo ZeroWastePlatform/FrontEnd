@@ -3,13 +3,26 @@ import ContentBox from "./ContentBox";
 import { PostType } from "../../../../types/index";
 import useSetQueryMutate from "../../../../hooks/useSetQueryMutate";
 import customAPI from "../../../../lib/customAPI";
+import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "react-query";
 
 interface ContentBoxContainerProps {
   post: PostType;
 }
 
 const ContentBoxContainer = ({ post }: ContentBoxContainerProps) => {
-  const { mutate: deletePost } = useSetQueryMutate(postId => customAPI.delete(`posts/${postId}`));
+  const navigate = useNavigate();
+
+  const queryClient = useQueryClient();
+
+  const { mutate: deletePost } = useSetQueryMutate(
+    postId => customAPI.delete(`posts/${postId}`),
+    ["Community", "market"],
+    e => {
+      queryClient.invalidateQueries(["Community"]);
+      navigate(-1);
+    },
+  );
 
   const { mutate: toggleLike } = useSetQueryMutate(postId => customAPI.post(`posts/recommendations/${postId}`));
 
@@ -31,6 +44,7 @@ const ContentBoxContainer = ({ post }: ContentBoxContainerProps) => {
       replyCnt={post.replyCnt}
       viewCnt={post.viewCnt}
       recommendCnt={post.recommendCnt}
+      serverFileUrls={post.serverFileUrls}
       handleDeletePost={handleDeletePost}
       toggleLike={toggleLike}
     />

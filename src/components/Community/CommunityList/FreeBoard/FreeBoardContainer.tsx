@@ -11,7 +11,7 @@ const FreeBoardContainer = () => {
   const { page, sort, changePage, changeSort } = useSortPaging(1, "createdAt");
 
   const { data } = useSuspenseQuery<PostListType>(
-    ["Community", "FreeBoard", page, sort],
+    ["Community", "board", page, sort],
     `posts/lists/1?page=${page - 1}&orderby=${sort}`,
   );
   console.log(data);

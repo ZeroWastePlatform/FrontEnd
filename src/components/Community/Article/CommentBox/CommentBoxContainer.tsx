@@ -1,4 +1,5 @@
 import React from "react";
+import { useQueryClient } from "react-query";
 import useSetQueryMutate from "../../../../hooks/useSetQueryMutate";
 import useSuspenseQuery from "../../../../hooks/useSuspenseQuery";
 import customAPI from "../../../../lib/customAPI";
@@ -10,6 +11,8 @@ interface CommentBoxContainerProps {
 }
 
 const CommentBoxContainer = ({ postId }: CommentBoxContainerProps) => {
+  const queryClient = useQueryClient();
+
   const { data } = useSuspenseQuery<CommentResponseType>(
     ["Community", "Article", "CommentBox", postId],
     `posts/comments/${postId}`,
@@ -19,6 +22,7 @@ const CommentBoxContainer = ({ postId }: CommentBoxContainerProps) => {
     data => customAPI.post("posts/comments", data),
     ["Community", "Article", "CommentBox"],
     e => {
+      queryClient.invalidateQueries(["Community", "Article", "CommentBox"]);
       alert("댓글이 등록되었습니다.");
     },
   );
@@ -27,6 +31,7 @@ const CommentBoxContainer = ({ postId }: CommentBoxContainerProps) => {
     data => customAPI.delete(`posts/comments/${data}`),
     ["Community", "Article", "CommentBox"],
     e => {
+      queryClient.invalidateQueries(["Community", "Article", "CommentBox"]);
       alert("댓글이 삭제되었습니다.");
     },
   );

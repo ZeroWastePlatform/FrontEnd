@@ -24,7 +24,7 @@ const useSuspenseQuery = <T>(
     suspense: true,
     useErrorBoundary: true,
     onSuccess,
-    refetchOnWindowFocus: false,
+    refetchOnWindowFocus: true,
     refetchOnMount: false,
     refetchOnReconnect: false,
     retry: false,

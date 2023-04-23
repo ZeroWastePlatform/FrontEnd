@@ -11,7 +11,7 @@ const UsedMarketContainer = () => {
   const { page, sort, changePage, changeSort } = useSortPaging(1, "createdAt");
 
   const { data } = useSuspenseQuery<PostListType>(
-    ["Community", "UsedMarket", page, sort],
+    ["Community", "market", page, sort],
     `posts/lists/2?page=${page - 1}&orderby=${sort}`,
   );
   console.log(data);

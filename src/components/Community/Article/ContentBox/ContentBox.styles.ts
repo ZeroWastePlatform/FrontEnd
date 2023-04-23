@@ -121,3 +121,7 @@ export const ContentBoxLikeImg = styled.img`
   margin: 0 auto;
   cursor: pointer;
 `;
+
+export const ContentBoxImg = styled.img`
+  width: 100%;
+`;

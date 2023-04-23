@@ -19,6 +19,7 @@ import {
   ContentBoxTitle,
   ContentBoxType,
   ContentBoxVisit,
+  ContentBoxImg,
 } from "./ContentBox.styles";
 import onLikeImg from "../../../../assets/images/on_like.png";
 import offLikeImg from "../../../../assets/images/off_like.png";
@@ -38,6 +39,7 @@ interface ContentBoxProps {
   replyCnt: number;
   viewCnt: number;
   recommendCnt: number;
+  serverFileUrls: string[];
   handleDeletePost: (postId: number) => void;
   toggleLike: UseMutateFunction<AxiosResponse<any, unknown>, unknown, unknown, unknown>;
 }
@@ -53,6 +55,7 @@ const ContentBox = ({
   replyCnt,
   viewCnt,
   recommendCnt,
+  serverFileUrls,
   handleDeletePost,
   toggleLike,
 }: ContentBoxProps) => {
@@ -60,8 +63,6 @@ const ContentBox = ({
   const userInfo = useRecoilValue(userInfoAtom);
 
   const contentType = kind === 1 ? "자유게시판" : kind === 2 ? "중고거래" : kind === 3 && "정보공유";
-  console.log("userInfo.id", userInfo.id);
-  console.log("userId", userId);
   return (
     <ContentBoxLayout>
       <ContentBoxHeader>
@@ -88,6 +89,9 @@ const ContentBox = ({
           <ContentBoxLiked>{recommendCnt}</ContentBoxLiked>
         </ContentBoxSubInfo>
       </ContentBoxInfo>
+      {serverFileUrls.map((url, idx) => (
+        <ContentBoxImg src={url} alt="" key={idx} />
+      ))}
       <ContentBoxBody>{content}</ContentBoxBody>
       <ContentBoxLikeImg
         src={isLike ? onLikeImg : offLikeImg}

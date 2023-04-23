@@ -11,7 +11,7 @@ const InfoSharingContainer = () => {
   const { page, sort, changePage, changeSort } = useSortPaging(1, "createdAt");
 
   const { data } = useSuspenseQuery<PostListType>(
-    ["Community", "InfoSharing", page, sort],
+    ["Community", "sharing", page, sort],
     `posts/lists/3?page=${page - 1}&orderby=${sort}`,
   );
   console.log(data);
